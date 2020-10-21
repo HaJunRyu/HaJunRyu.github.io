@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"hajunryu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="월요일오늘 한 일 오늘 패스트캠퍼스 개강 이후 github특강을 제외한 커리큘럼의 첫 강의를 들었다. 앞으로 약 3주간 진행될 김데레사 강사님의 HTML, CSS 강의였다. 확실히 소문대로 발성도 엄청 좋으시고 열정도 있으신거 같다.  오늘 내용은 HTML의 탄생과 HTML5와 그 전에 표준이었던 XHTML1.0, HTML4.01의 이야기에 대해서 듣기도하">
+  <meta name="description" content="ARIA(Accessible Rich Internet Applications) 접근 가능한 리치 인터넷 어플리케이션의 약어이고 장애를 가진 사용자가 웹 콘텐츠와 웹 어플리케이션(특히 JavaScript를 사용하여 개발한 경우)에 더 쉽게 접근할 수 있는 방법을 정의하는 여러 특성을 말한다.  오늘은 그중에 aria-hidden에 대해 알아보려고 한다. ar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20201019-TIL">
-<meta property="og:url" content="https://hajunryu.github.io/2020/10/19/TIL/20201019-TIL/index.html">
+<meta property="og:title" content="개발노트">
+<meta property="og:url" content="https://hajunryu.github.io/2020/10/21/HTML/[html]aria-hidden/index.html">
 <meta property="og:site_name" content="개발노트">
-<meta property="og:description" content="월요일오늘 한 일 오늘 패스트캠퍼스 개강 이후 github특강을 제외한 커리큘럼의 첫 강의를 들었다. 앞으로 약 3주간 진행될 김데레사 강사님의 HTML, CSS 강의였다. 확실히 소문대로 발성도 엄청 좋으시고 열정도 있으신거 같다.  오늘 내용은 HTML의 탄생과 HTML5와 그 전에 표준이었던 XHTML1.0, HTML4.01의 이야기에 대해서 듣기도하">
+<meta property="og:description" content="ARIA(Accessible Rich Internet Applications) 접근 가능한 리치 인터넷 어플리케이션의 약어이고 장애를 가진 사용자가 웹 콘텐츠와 웹 어플리케이션(특히 JavaScript를 사용하여 개발한 경우)에 더 쉽게 접근할 수 있는 방법을 정의하는 여러 특성을 말한다.  오늘은 그중에 aria-hidden에 대해 알아보려고 한다. ar">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-10-19T09:22:26.000Z">
-<meta property="article:modified_time" content="2020-10-20T02:55:36.094Z">
+<meta property="article:published_time" content="2020-10-21T00:45:06.472Z">
+<meta property="article:modified_time" content="2020-10-20T13:28:32.346Z">
 <meta property="article:author" content="HaJun Ryu">
-<meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://hajunryu.github.io/2020/10/19/TIL/20201019-TIL/">
+<link rel="canonical" href="https://hajunryu.github.io/2020/10/21/HTML/[html]aria-hidden/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>20201019-TIL | 개발노트</title>
+  <title> | 개발노트</title>
   
 
 
@@ -152,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/10/19/TIL/20201019-TIL/">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/10/21/HTML/[html]aria-hidden/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -165,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          20201019-TIL
+          
         </h1>
 
         <div class="post-meta">
@@ -175,24 +174,15 @@
               </span>
               <span class="post-meta-item-text">작성일</span>
 
-              <time title="Post created: 2020-10-19 18:22:26" itemprop="dateCreated datePublished" datetime="2020-10-19T18:22:26+09:00">2020-10-19</time>
+              <time title="Post created: 2020-10-21 09:45:06" itemprop="dateCreated datePublished" datetime="2020-10-21T09:45:06+09:00">2020-10-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-10-20 11:55:36" itemprop="dateModified" datetime="2020-10-20T11:55:36+09:00">2020-10-20</time>
+                <time title="Updated at: 2020-10-20 22:28:32" itemprop="dateModified" datetime="2020-10-20T22:28:32+09:00">2020-10-20</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index"><span itemprop="name">TIL</span></a>
-                </span>
-            </span>
 
           
 
@@ -205,27 +195,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="월요일"><a href="#월요일" class="headerlink" title="월요일"></a>월요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
-<li><p>오늘 패스트캠퍼스 개강 이후 github특강을 제외한 커리큘럼의 첫 강의를 들었다. 앞으로 약 3주간 진행될 <a target="_blank" rel="noopener" href="https://github.com/seulbinim">김데레사</a> 강사님의 HTML, CSS 강의였다. 확실히 소문대로 발성도 엄청 좋으시고 열정도 있으신거 같다.</p>
-</li>
-<li><p>오늘 내용은 HTML의 탄생과 <a target="_blank" rel="noopener" href="https://namu.wiki/w/HTML5">HTML5</a>와 그 전에 표준이었던 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/XHTML">XHTML1.0</a>, <a target="_blank" rel="noopener" href="https://www.w3.org/TR/html401/">HTML4.01</a>의 이야기에 대해서 듣기도하고 각 태그들의 콘텐츠 모델 및 HTML문서의 구조를 짜는 일반적인 방법, 논리적인 구조 및 의미있는 태그를 써야하는 <a target="_blank" rel="noopener" href="https://namu.wiki/w/HTML5#s-4.2">시맨틱(semantic)</a>태그를 이용한 마크업에 대해서도 중요하게 강조하셨다. </p>
-</li>
-<li><p>CSS를 위한 class 네이밍의 방법론에 대해서도 말씀하셨는데 최근에 많이 쓰이는 방법론으로 <a target="_blank" rel="noopener" href="http://getbem.com/">BEM</a>을 말씀해주셨다. 어떤 부모요소밑에 자식요소가 있는지를 구분해주는 방법론인데 예를 들어 header의 자식요소로 있는 nav를 네이밍 하려면 class=”header__nav” 이런식으로 언더바(underbar)두개를 이용하여 구분해주는 방법론이다.</p>
-</li>
+        <h1 id="ARIA-Accessible-Rich-Internet-Applications"><a href="#ARIA-Accessible-Rich-Internet-Applications" class="headerlink" title="ARIA(Accessible Rich Internet Applications)"></a>ARIA(Accessible Rich Internet Applications)</h1><ul>
+<li>접근 가능한 리치 인터넷 어플리케이션의 약어이고 장애를 가진 사용자가 웹 콘텐츠와 웹 어플리케이션(특히 JavaScript를 사용하여 개발한 경우)에 더 쉽게 접근할 수 있는 방법을 정의하는 여러 특성을 말한다.</li>
 </ul>
-<h2 id="오늘-느낀-점"><a href="#오늘-느낀-점" class="headerlink" title="오늘 느낀 점"></a>오늘 느낀 점</h2><ul>
-<li><p>반복학습이 중요하다고 생각이 되는게 정말 자주 사용하는 코드는 아무리 길어도 매일 반복하니까 외우는거같은데 이렇게 이론적인부분은 항상 강의 초반에 배우고 반복학습을 하진 않으니까 나중에 이론적인 부분은 누가 물어보면 대답을 잘 못한다 하하…</p>
-</li>
-<li><p>이제 하루 들었지만 강사님의 스타일은 나의 스타일이랑은 잘 맞는거같아서 다행인거같다. 부가적인 설명을(지루함을 깨기 위한 수업 외 딴 얘기?)하시다가도 말 한마디로 금새 다시 수업 흐름으로 돌아오시고 학생들을 많이 가르쳐본 느낌이 확실히 들었던거 같다.</p>
-</li>
+<p>오늘은 그중에 aria-hidden에 대해 알아보려고 한다.</p>
+<h2 id="aria-hidden"><a href="#aria-hidden" class="headerlink" title="aria-hidden"></a>aria-hidden</h2><ul>
+<li>기존 hidden속성이 요소를 완전히 숨긴다고 생각하면 aria가 붙은 aria-hidden은 장애를 가진 사용자가 스크린리더(음성낭독기)에서 요소를 숨겨준다고 생각하면 된다.</li>
 </ul>
-<h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
-<li>오늘 오전과 동일하게 CSS인강 듣기(딱 파트를 정해서 쓰고싶지만 시간이 날때마다 조금씩 들어서 달라질 수 있어서..)</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/seulbinim">김데레사</a> 강사님 강의 듣고 정리 및 복습</li>
-<li>강의중 과제로 <a target="_blank" rel="noopener" href="https://seulbinim.github.io/exHTML5/">웹카페</a> 클론코딩이 있는데 코딩과정에서 시맨틱 태그들과 구조를 주의깊게 살펴보기</li>
-</ul>
-<p>하루 일과가 보통 학원 집 잠 학원이다보니 아마 내일 할 일에 적는 내용은 동일한 커리큘럼이 진행될때는 크게 변화가 없을것같다… 현강내용이 짧은시간에 워낙 많은 내용을 알려주시려는게 느껴지기때문에 복습을 많이해서 내것으로 만드는게 가장 중요하다고 생각한다!</p>
+<p>대표적으로 꼭 제공해야하는 정보외에 구분선들을 스크린리더가 인식하여 읽어주는 문제를 해결하는데 쓰인다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- span태그안에 있는 요소는 &lt;a&gt;태그의 요소들을 시각적으로 구분해주려고 한글 ㅣ(이)를</span></span><br><span class="line"><span class="comment">사용해줬는데 arid-hidden 속성을 사용해주지 않으면 장애를 가진 사용자들에게 필요없는 정보까지 읽어주게된다. --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>로그인<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span>ㅣ<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>회원가입<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span>ㅣ<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>장바구니<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+
+<h2 id="스크린리더에서-축약어를-읽는방법"><a href="#스크린리더에서-축약어를-읽는방법" class="headerlink" title="스크린리더에서 축약어를 읽는방법"></a>스크린리더에서 축약어를 읽는방법</h2><ul>
+<li>추가로 이미지 태그등에서 쓰는 alt속성에도 스크린리더를 사용하는 사용자입장에서 축약어등을 읽어줄때 정보전달이 잘못되는 경우도 자주 있다.</li>
+</ul>
+<p>예를 들어 UN이라는 정보를 전달하고싶은데 스크린리더가 읽는 속성에 그냥 UN이라고 적으면 하나의 단어로 인식해 붙혀서 읽어버린다. 한글로 발음을 써보면 ‘언’ 이나 ‘운’ 으로 발음될거같다.<br>이럴땐 중간에 . 을 붙혀주어 따로따로 읽게끔 해줘야한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 실제 있는 url이 아니라 예시로 든--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://d2v9ipibika81v.cloudfront.net/uploads/sites/75/2016/02/UN.jpg&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">alt</span>=<span class="string">&quot;U.N&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 보통 화면에는 UN이라고 많이 표시하지만 스크린리더에서는 U.N으로 표기해줘야</span></span><br><span class="line"><span class="comment">유 엔 으로 띄워서 발음한다. --&gt;</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -233,9 +218,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/TIL/" rel="tag"># TIL</a>
-          </div>
 
         
 
@@ -243,12 +225,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/18/%5Bcreate%20hexo-blog%5Dhexo%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="prev" title="Hexo블로그 만들기">
-      <i class="fa fa-chevron-left"></i> Hexo블로그 만들기
+    <a href="/2020/10/21/HTML/%5Bhtml%5Dabbr/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/20/TIL/20201020-TIL/" rel="next" title="20201020-TIL">
-      20201020-TIL <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/21/HTML/%5Bhtml%5DHTML%20markup/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -308,7 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%9B%94%EC%9A%94%EC%9D%BC"><span class="nav-number">1.</span> <span class="nav-text">월요일</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="nav-number">1.1.</span> <span class="nav-text">오늘 한 일</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80-%EC%A0%90"><span class="nav-number">1.2.</span> <span class="nav-text">오늘 느낀 점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="nav-number">1.3.</span> <span class="nav-text">내일 할 일</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ARIA-Accessible-Rich-Internet-Applications"><span class="nav-number">1.</span> <span class="nav-text">ARIA(Accessible Rich Internet Applications)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#aria-hidden"><span class="nav-number">1.1.</span> <span class="nav-text">aria-hidden</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EB%A6%AC%EB%8D%94%EC%97%90%EC%84%9C-%EC%B6%95%EC%95%BD%EC%96%B4%EB%A5%BC-%EC%9D%BD%EB%8A%94%EB%B0%A9%EB%B2%95"><span class="nav-number">1.2.</span> <span class="nav-text">스크린리더에서 축약어를 읽는방법</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
