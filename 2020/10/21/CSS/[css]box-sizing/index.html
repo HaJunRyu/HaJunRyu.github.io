@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="box-sizing box-sizing은 요소의 크기를 계산하는 기준(화면에 표시되는 방식)을 지정해주는 속성이다. 3가지 속성이 있지만 호환성의 문제때문에 대표적으로는 2가지가 쓰인다.  아래에서 설명하겠지만 defalut값인 content-box를 쓸 경우 padding과 border를 줬을때 컨텐츠의 크기를 계산하는데 실수를 하는 경우가 있어 *{bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="box-sizing">
+<meta property="og:url" content="https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/index.html">
+<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:description" content="box-sizing box-sizing은 요소의 크기를 계산하는 기준(화면에 표시되는 방식)을 지정해주는 속성이다. 3가지 속성이 있지만 호환성의 문제때문에 대표적으로는 2가지가 쓰인다.  아래에서 설명하겠지만 defalut값인 content-box를 쓸 경우 padding과 border를 줬을때 컨텐츠의 크기를 계산하는데 실수를 하는 경우가 있어 *{bo">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-21T11:42:42.000Z">
+<meta property="article:modified_time" content="2020-10-21T12:50:08.263Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>box-sizing</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/10/21/TIL/20201021-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&text=box-sizing"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&is_video=false&description=box-sizing"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=box-sizing&body=Check out this article: https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&name=box-sizing&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&t=box-sizing"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#box-sizing"><span class="toc-number">1.</span> <span class="toc-text">box-sizing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#content-box"><span class="toc-number">1.1.</span> <span class="toc-text">content-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border-box"><span class="toc-number">1.2.</span> <span class="toc-text">border-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#padding-box"><span class="toc-number">1.3.</span> <span class="toc-text">padding-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-%ED%83%9C%EA%B7%B8%EC%9D%98-type-%E2%80%9Dtext%E2%80%9D%EC%99%80-type-%E2%80%9Dbutton%E2%80%9D-%ED%83%9C%EA%B7%B8%EC%9D%98-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.4.</span> <span class="toc-text">input 태그의 type&#x3D;”text”와 type&#x3D;”button” 태그의 차이</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        box-sizing
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">hj 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-10-21T11:42:42.000Z" itemprop="datePublished">2020-10-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/CSS/">CSS</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/css/" rel="tag">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h1><ul>
+<li><p>box-sizing은 요소의 크기를 계산하는 기준(화면에 표시되는 방식)을 지정해주는 속성이다. 3가지 속성이 있지만 호환성의 문제때문에 대표적으로는 2가지가 쓰인다.</p>
+</li>
+<li><p>아래에서 설명하겠지만 defalut값인 content-box를 쓸 경우 padding과 border를 줬을때 컨텐츠의 크기를 계산하는데 실수를 하는 경우가 있어 *{box-sizing: border-box;}로 선언하고 쓰는 경우가 많아졌다.(<em>을 쓰는 이유는 box-sizing은 상속이 되는 속성이 아니기때문에 모든 요소(</em>)를 선택자로 쓰는것이다.)</p>
+</li>
+</ul>
+<h2 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h2><ul>
+<li>width와 height값으로 정의한 너비만으로 요소의 크기를 계산하고 padding(안쪽여백)과 border(테두리)의 속성이 추가됐을때 요소의 크기가 늘어난다.</li>
+</ul>
+<p>아래의 경우처럼 콘텐츠 요소(.content-box)의 속성을 width와 height를 300px씩으로 만들었을때 padding 20px, border 10px의 속성을 추가해 줄 경우 요소의 가로, 세로의 총 너비는 360px이 된다.<br>((콘텐츠 요소)300px + (padding)20px<em>2 + (border)10px</em>2)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.content-box</span>&#123;</span></span><br><span class="line">    box-sizing: content-box;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    padding: 20px;</span><br><span class="line">    border: 10px solid red;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content-box&quot;</span>&gt;</span>content-box는 대부분 요소들의 기본값입니다.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h2><ul>
+<li>width와 height값으로 지정한 너비가 padding(안쪽여백)과 border(테두리)의 너비까지 포함해서 요소의 크기를 결정한다.(margin은 포함되지 않는다.)</li>
+</ul>
+<p>아래의 경우처럼 콘텐츠 요소(.border-box)의 속성을 width와 height를 300px씩으로 만들었을때 padding 20px, border 10px의 속성을 추가해 줄 경우 padding의 너비와 border의 너비만큼 콘텐츠 영역의 너비가 줄어들고 결국 콘텐츠 요소의 가로, 세로의 총 너비는 width와 height에서 지정해준 300px이 된다. (영역과 요소는 다른것을 가르킴)<br>((콘텐츠 영역)240px + (padding)20px<em>2 + (border)10px</em>2)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.border-box</span>&#123;</span></span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    padding: 20px;</span><br><span class="line">    border: 10px solid red;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;border-box&quot;</span>&gt;</span>border-box는 요소의 총 크기를 계산하기 아주 편리합니다.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="padding-box"><a href="#padding-box" class="headerlink" title="padding-box"></a>padding-box</h2><ul>
+<li>패딩박스는 border-box의 개념에서 border를 제외하고 padding영역까지만 요소의 너비를 계산한다고 생각하면 된다.<br>하지만 브라우저 호환성이 좋지 않아 현재는 실제로 못쓴다고 생각하면 된다.</li>
+</ul>
+<h2 id="input-태그의-type-”text”와-type-”button”-태그의-차이"><a href="#input-태그의-type-”text”와-type-”button”-태그의-차이" class="headerlink" title="input 태그의 type=”text”와 type=”button” 태그의 차이"></a>input 태그의 type=”text”와 type=”button” 태그의 차이</h2><ul>
+<li>위에서 content-box는 대부분의 요소에서 default값으로 작용한다고 했다. 하지만 특정 속성에 의해서 box-sizing: boder-box를 명시하지 않아도 default값이 boder-box가 되는 경우가 있는데 <a target="_blank" rel="noopener" href="https://codepen.io/pen/">codepen</a>에서  input태그는 같은 태그에서도 속성에 따라 box-sizing이 변경되는걸 발견했다.</li>
+</ul>
+<p>아래처럼 input태그의 text와 button타입에 같은 속성을 주었다. box-sizing은 명시를 하지 않았고 결과를 개발자메뉴에서 확인해보니 text타입은 요소의 총 크기가 360px이 나왔고 button타입은 width와 height에서 명시된 300px로 나왔다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  input&#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    padding: 20px;</span><br><span class="line">    border: 10px solid red;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span> <span class="comment">&lt;!-- box-sizing: content-box --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span> <span class="comment">&lt;!-- box-sizing: border-box --&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#box-sizing"><span class="toc-number">1.</span> <span class="toc-text">box-sizing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#content-box"><span class="toc-number">1.1.</span> <span class="toc-text">content-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border-box"><span class="toc-number">1.2.</span> <span class="toc-text">border-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#padding-box"><span class="toc-number">1.3.</span> <span class="toc-text">padding-box</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-%ED%83%9C%EA%B7%B8%EC%9D%98-type-%E2%80%9Dtext%E2%80%9D%EC%99%80-type-%E2%80%9Dbutton%E2%80%9D-%ED%83%9C%EA%B7%B8%EC%9D%98-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.4.</span> <span class="toc-text">input 태그의 type&#x3D;”text”와 type&#x3D;”button” 태그의 차이</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&text=box-sizing"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&is_video=false&description=box-sizing"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=box-sizing&body=Check out this article: https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&title=box-sizing"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&name=box-sizing&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/21/CSS/[css]box-sizing/&t=box-sizing"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
