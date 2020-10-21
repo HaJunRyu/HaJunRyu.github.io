@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="floatfloat의 정의와 사용 방법 요소를 좌우 방향으로 띄우는 속성(수평 정렬)  요소를 부유시키는(띄우는)용도이지만 수평 정렬을 하는 용도로 더 많이 새용해왔다.  float의 작동원리는 인접요소에 linebox가 생성되는데 left값을 줬을때 그 linebox의 왼쪽으로 붙어서 배치가 되는것이다.  선언 방식 123div &amp;#123;  float:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="float의 정의와 사용 방법">
+<meta property="og:url" content="https://hajunryu.github.io/2020/10/20/CSS/[css]float/index.html">
+<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:description" content="floatfloat의 정의와 사용 방법 요소를 좌우 방향으로 띄우는 속성(수평 정렬)  요소를 부유시키는(띄우는)용도이지만 수평 정렬을 하는 용도로 더 많이 새용해왔다.  float의 작동원리는 인접요소에 linebox가 생성되는데 left값을 줬을때 그 linebox의 왼쪽으로 붙어서 배치가 되는것이다.  선언 방식 123div &amp;#123;  float:">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-20T11:54:09.000Z">
+<meta property="article:modified_time" content="2020-10-21T01:07:53.602Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>float의 정의와 사용 방법</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/projects_url">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/20/HTML/%5Bhtml%5Dabbr/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/10/20/TIL/20201020-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/20/CSS/[css]float/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&text=float의 정의와 사용 방법"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&is_video=false&description=float의 정의와 사용 방법"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=float의 정의와 사용 방법&body=Check out this article: https://hajunryu.github.io/2020/10/20/CSS/[css]float/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&name=float의 정의와 사용 방법&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&t=float의 정의와 사용 방법"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#float"><span class="toc-number">1.</span> <span class="toc-text">float</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#float%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.1.</span> <span class="toc-text">float의 정의와 사용 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#float%EC%9D%98-%ED%95%B4%EC%A0%9C"><span class="toc-number">1.2.</span> <span class="toc-text">float의 해제</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8B%A4%EC%9D%8C-%ED%98%95%EC%A0%9C%EC%9A%94%EC%86%8C%EC%97%90%EC%84%9C-clear%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">다음 형제요소에서 clear시키는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%80%EB%AA%A8%EC%9A%94%EC%86%8C%EC%97%90%EC%84%9C-%EA%B0%80%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4-after-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">부모요소에서 가상클래스(after)를 사용하는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%80%EB%AA%A8%EC%9A%94%EC%86%8C%EC%97%90-overflow%EC%86%8D%EC%84%B1%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%ED%95%B4%EC%A0%9C%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">부모요소에 overflow속성을 사용하여 해제하는 방법</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        float의 정의와 사용 방법
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">hj 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-10-20T11:54:09.000Z" itemprop="datePublished">2020-10-20</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/CSS/">CSS</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/css/" rel="tag">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="float"><a href="#float" class="headerlink" title="float"></a>float</h1><h2 id="float의-정의와-사용-방법"><a href="#float의-정의와-사용-방법" class="headerlink" title="float의 정의와 사용 방법"></a>float의 정의와 사용 방법</h2><ul>
+<li>요소를 좌우 방향으로 띄우는 속성(수평 정렬)</li>
+</ul>
+<p>요소를 부유시키는(띄우는)용도이지만 수평 정렬을 하는 용도로 더 많이 새용해왔다.</p>
+<ul>
+<li><p>float의 작동원리는 인접요소에 linebox가 생성되는데 left값을 줬을때 그 linebox의 왼쪽으로 붙어서 배치가 되는것이다.</p>
+</li>
+<li><p>선언 방식</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left; <span class="comment">/*요소를 왼쪽으로 띄움 (또는 왼쪽으로 정렬)*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>display속성이 수정된다.</p>
+</li>
+</ul>
+<p>float속성이 추가된 요소는 display속성의 값이 대부분 block으로 수정된다.(flex, flex-inline등의 요소는 수정되지 않는다.)</p>
+<p>예를 들어 span태그에 float속성을 주면 block요소로 바뀌어 width와 height, margin등의 속성값도 적용이 가능해진다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.float-left</span> &#123;</span></span><br><span class="line">    float: left;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;float-left&quot;</span>&gt;</span></span><br><span class="line">현재 이 요소는 block요소의 상태가 되었습니다.</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="float의-해제"><a href="#float의-해제" class="headerlink" title="float의 해제"></a>float의 해제</h2><ul>
+<li>float의 해제방법에는 대표적으로 3가지가 있다.</li>
+</ul>
+<h3 id="다음-형제요소에서-clear시키는-방법"><a href="#다음-형제요소에서-clear시키는-방법" class="headerlink" title="다음 형제요소에서 clear시키는 방법"></a>다음 형제요소에서 clear시키는 방법</h3><ul>
+<li>간단하게 float이 적용된 요소의 다음 형제요소에서 claer를 해주면된다.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.float-left</span> &#123;</span></span><br><span class="line">    float: left;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.clearfix</span>&#123;</span></span><br><span class="line">    clear: both;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;float-left&quot;</span>&gt;</span>float영역입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;clearfix&quot;</span>&gt;</span>그 다음 형제 요소입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="부모요소에서-가상클래스-after-를-사용하는-방법"><a href="#부모요소에서-가상클래스-after-를-사용하는-방법" class="headerlink" title="부모요소에서 가상클래스(after)를 사용하는 방법"></a>부모요소에서 가상클래스(after)를 사용하는 방법</h3><p>위와 개념은 비슷하지만 가상요소선택자로 markup을 더 효율적으로 작성할 수 있는 장점이 있고 만약 float영역 다음에 형제요소가 존재하지 않을때도 자유롭게 쓸 수 있는 방법이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.float-left</span> &#123;</span></span><br><span class="line">    float: left;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">content</span>: &quot;&quot;; <span class="comment">/*가상요소선택자는 content속성이 없으면 작동하지 않는다.*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">clear</span>: <span class="selector-tag">both</span>; <span class="comment">/*left, right 모두 float을 해제해주는 값이다.*/</span></span></span><br><span class="line">    display: block; /*가상요소선택자로 생성된 요소는 기본적으로 inline속성을 가졌기 때문에 </span><br><span class="line">    원치않는 레이아웃 구조로 표시될수도 있으므로 block속성을 추가해준다.*/</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;float-left clearfix&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>float영역1 입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>float영역2 입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>float영역3 입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>단 이 방법으로 float을 해제했을때 일어날 수 있는 현상은 원치않는 요소가 생기기때문에 flex등의 방법으로 레이아웃을 짜려고할때 개발자가 원치않는 구조로 결과가 나올수도 있다.</li>
+</ul>
+<h3 id="부모요소에-overflow속성을-사용하여-해제하는-방법"><a href="#부모요소에-overflow속성을-사용하여-해제하는-방법" class="headerlink" title="부모요소에 overflow속성을 사용하여 해제하는 방법"></a>부모요소에 overflow속성을 사용하여 해제하는 방법</h3><ul>
+<li>overflow라는 속성이 float와는 관련없는 속성이지만 <a target="_blank" rel="noopener" href="https://blueshw.github.io/2020/05/17/know-css-block-formatting-context/">BFC</a>(block formatting context) (출처 : bobo’s blog)에 의하여 부모요소가 float의 너비를 인식하게끔 할 수있다.<br>overflow의 값으로는 visible을 제외한값은 모두 가능하다.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.overflow</span> &#123;</span></span><br><span class="line">    overflow: hidden;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.float-left</span> &#123;</span></span><br><span class="line">    float: left;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;overflow&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;float-left&quot;</span>&gt;</span>float영역 입니다.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/projects_url">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#float"><span class="toc-number">1.</span> <span class="toc-text">float</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#float%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.1.</span> <span class="toc-text">float의 정의와 사용 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#float%EC%9D%98-%ED%95%B4%EC%A0%9C"><span class="toc-number">1.2.</span> <span class="toc-text">float의 해제</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8B%A4%EC%9D%8C-%ED%98%95%EC%A0%9C%EC%9A%94%EC%86%8C%EC%97%90%EC%84%9C-clear%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">다음 형제요소에서 clear시키는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%80%EB%AA%A8%EC%9A%94%EC%86%8C%EC%97%90%EC%84%9C-%EA%B0%80%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4-after-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">부모요소에서 가상클래스(after)를 사용하는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%80%EB%AA%A8%EC%9A%94%EC%86%8C%EC%97%90-overflow%EC%86%8D%EC%84%B1%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%ED%95%B4%EC%A0%9C%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">부모요소에 overflow속성을 사용하여 해제하는 방법</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/20/CSS/[css]float/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&text=float의 정의와 사용 방법"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&is_video=false&description=float의 정의와 사용 방법"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=float의 정의와 사용 방법&body=Check out this article: https://hajunryu.github.io/2020/10/20/CSS/[css]float/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&title=float의 정의와 사용 방법"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&name=float의 정의와 사용 방법&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/20/CSS/[css]float/&t=float의 정의와 사용 방법"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/projects_url">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
