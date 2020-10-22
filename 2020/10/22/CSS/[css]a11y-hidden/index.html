@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="a11y-hidden 접근성을 위해 스크린리더가 읽을수 있게끔 해당 요소의 위치의 변경은 없지만 화면에서 감출때 사용하는 방법이다.  a11y는 accessibility 를 의미한다. a11y-hidden은 html이나 css에서 정해진 특정 요소는 아니지만 말 그대로 접근은 가능하지만 숨기겠다는 의미로 class이름에 명시적으로 사용중이다.  h1~6,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="a11y-hidden">
+<meta property="og:url" content="https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/index.html">
+<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:description" content="a11y-hidden 접근성을 위해 스크린리더가 읽을수 있게끔 해당 요소의 위치의 변경은 없지만 화면에서 감출때 사용하는 방법이다.  a11y는 accessibility 를 의미한다. a11y-hidden은 html이나 css에서 정해진 특정 요소는 아니지만 말 그대로 접근은 가능하지만 숨기겠다는 의미로 class이름에 명시적으로 사용중이다.  h1~6,">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-22T11:11:14.000Z">
+<meta property="article:modified_time" content="2020-10-22T13:41:07.611Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>a11y-hidden</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/10/22/HTML/%5Bhtml%5Dform%ED%83%9C%EA%B7%B8%20%EB%82%B4%EB%B6%80%EC%9D%98%20%EC%A0%91%EA%B7%BC%EC%84%B1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&text=a11y-hidden"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&is_video=false&description=a11y-hidden"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=a11y-hidden&body=Check out this article: https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&name=a11y-hidden&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&t=a11y-hidden"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#a11y-hidden"><span class="toc-number">1.</span> <span class="toc-text">a11y-hidden</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#display-none"><span class="toc-number">1.1.</span> <span class="toc-text">display: none;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#visibility-hidden"><span class="toc-number">1.2.</span> <span class="toc-text">visibility: hidden;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-indent-9999px"><span class="toc-number">1.3.</span> <span class="toc-text">text-indent: -9999px;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#width-height-font-size-0%EC%9C%BC%EB%A1%9C-%EC%84%A4%EC%A0%95"><span class="toc-number">1.4.</span> <span class="toc-text">width, height, font-size 0으로 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opacity-0"><span class="toc-number">1.5.</span> <span class="toc-text">opacity: 0;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#positioning-screen-out"><span class="toc-number">1.6.</span> <span class="toc-text">positioning screen out</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a11y-hidden-1"><span class="toc-number">1.7.</span> <span class="toc-text">a11y-hidden</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        a11y-hidden
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">hj 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-10-22T11:11:14.000Z" itemprop="datePublished">2020-10-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/HTML/">HTML</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/html/" rel="tag">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="a11y-hidden"><a href="#a11y-hidden" class="headerlink" title="a11y-hidden"></a>a11y-hidden</h1><ul>
+<li><p>접근성을 위해 스크린리더가 읽을수 있게끔 해당 요소의 위치의 변경은 없지만 화면에서 감출때 사용하는 방법이다.</p>
+</li>
+<li><p>a11y는 accessibility 를 의미한다. a11y-hidden은 html이나 css에서 정해진 특정 요소는 아니지만 말 그대로 접근은 가능하지만 숨기겠다는 의미로 class이름에 명시적으로 사용중이다.</p>
+</li>
+<li><p>h1~6, label, legend 등등 접근성과 문서의 논리적인 구조를 위해 작성해놓은 텍스트들을 화면에서만 숨길때 사용하게 되는데 잘못 사용되고 있는 예를 몇가지 살펴보자.</p>
+</li>
+</ul>
+<h2 id="display-none"><a href="#display-none" class="headerlink" title="display: none;"></a>display: none;</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>display값을 조정하여 숨김처리를 하는경우가 실제로 많다. 아마 접근성을 아예 고려하지않았을때 쓰는 속성이 아닐까 싶다. 요소 자체를 없애버리기 때문에 스크린리더 및 검색엔진에도 정보를 제공하지 못하게된다.</li>
+</ul>
+<h2 id="visibility-hidden"><a href="#visibility-hidden" class="headerlink" title="visibility: hidden;"></a>visibility: hidden;</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>투명처리를 한것처럼 자리는 차지하고 눈으로 보이는 요소만 숨김을 했지만 이 속성도 동일하게 스크린리더와 검색엔진에 정보를 제공하지 못한다.</li>
+</ul>
+<h2 id="text-indent-9999px"><a href="#text-indent-9999px" class="headerlink" title="text-indent: -9999px;"></a>text-indent: -9999px;</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span> &#123;</span><br><span class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>text를 화면밖으로 이탈시켜 눈에 보이지 않게 하는것이다.<br>물론 이 방법을 사용하면 스크린리더가  읽을수는 있게된다.<br>하지만 focus가 일어났을때 화면이 바깥으로 튕겨나가는 현상이 발생하기도 하고 <a target="_blank" rel="noopener" href="https://support.google.com/webmasters/answer/66353">구글 검색엔진 가이드라인</a>에서는 CSS를 사용하여 텍스트를 화면에 보이지 않도록 배치하는것을 <a target="_blank" rel="noopener" href="https://support.google.com/webmasters/answer/35769">웹마스터 가이드라인</a>에 위반되는것이라고 명시해놨다.</li>
+</ul>
+<h2 id="width-height-font-size-0으로-설정"><a href="#width-height-font-size-0으로-설정" class="headerlink" title="width, height, font-size 0으로 설정"></a>width, height, font-size 0으로 설정</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>이 방법은 환경(브라우저 및 디바이스)에 따라 display:none; 처럼 아예 인식이 안되는 경우가 있다.</li>
+</ul>
+<h2 id="opacity-0"><a href="#opacity-0" class="headerlink" title="opacity: 0;"></a>opacity: 0;</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>요소를 투명하게 만드는방법인데 이 방법도 동일하게 환경에 따라서 스크린리더가 읽지 못하는문제가 발생한다.</li>
+</ul>
+<h2 id="positioning-screen-out"><a href="#positioning-screen-out" class="headerlink" title="positioning screen out"></a>positioning screen out</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">9999px</span>;</span><br><span class="line">  <span class="attribute">left</span>: -<span class="number">9999px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>아마 가장 많이 사용되는 방법일거 같다. 이 방법은 실제 이슈가 됐었는데 문서의 가장 하단의 요소를 위와 같은 방법으로 숨기려고 했을때 스크린리더의 오버를 받았을때 top: 9999px;이란 값 때문에 문서의 위쪽으로 화면이 튕겨 올라가버리는 현상이 발생한다. 그리고 text-indent에서 설명했듯이 <a target="_blank" rel="noopener" href="https://support.google.com/webmasters/answer/35769">웹마스터 가이드라인</a>에 위반되는 사항이다.</li>
+</ul>
+<h2 id="a11y-hidden-1"><a href="#a11y-hidden-1" class="headerlink" title="a11y-hidden"></a>a11y-hidden</h2><ul>
+<li><p>이렇게 많은 속성들이 숨김처리를 할 수 있지만 접근성을 고려했을때 사용할 수 없는 속성들이다.<br>단일로 지원하는 속성은 아니지만 a11y-hidden이라고 알려진 방법을 통해 해결할 수 있는 방법이 있다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a11y-hidden</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute; <span class="comment">/*공간을 차지않게 해주며 요소의 display속성을 block으로</span></span><br><span class="line"><span class="comment">   변경해준다.(width와 height값 등을 조절할수 있다)*/</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden; <span class="comment">/*container밖으로 빠져나가는 내부 요소들을 숨김처리 해준다.*/</span></span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>; <span class="comment">/*테두리 삭제*/</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>; <span class="comment">/*바깥 여백 삭제*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>; <span class="comment">/*box의 가로너비를 최소한의 크기로 줄여줌*/</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>; <span class="comment">/*box의 세로너비를 최소한의 크기로 줄여줌*/</span></span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">0</span> <span class="number">0</span>, <span class="number">0</span> <span class="number">0</span>, <span class="number">0</span> <span class="number">0</span>);<span class="comment">/*polygon의 값을 3개로 주어 삼각형 세 꼭지점의</span></span><br><span class="line"><span class="comment">   xy축의 값을 0으로 지정해 각 축은 생성되어 요소는 실제로 있지만 보이지않는 요소로 만들어준다. */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 구형 브라우저를 위해서 아래 코드를 추가해줘도 좋다. */</span></span><br><span class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>);</span><br><span class="line">  <span class="attribute">clip</span>: <span class="built_in">rect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>위의 코드처럼 a11y-hidden으로 불리는 방법도 공식적으로 의미가있는 요소를 숨기기위해 나온것은 아니다.<br>나중에는 접근성을 위해 숨기는 요소를 위해 사용할 수 있는 속성이 지원되면 좋겠다는 생각을 한다.</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#a11y-hidden"><span class="toc-number">1.</span> <span class="toc-text">a11y-hidden</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#display-none"><span class="toc-number">1.1.</span> <span class="toc-text">display: none;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#visibility-hidden"><span class="toc-number">1.2.</span> <span class="toc-text">visibility: hidden;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-indent-9999px"><span class="toc-number">1.3.</span> <span class="toc-text">text-indent: -9999px;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#width-height-font-size-0%EC%9C%BC%EB%A1%9C-%EC%84%A4%EC%A0%95"><span class="toc-number">1.4.</span> <span class="toc-text">width, height, font-size 0으로 설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opacity-0"><span class="toc-number">1.5.</span> <span class="toc-text">opacity: 0;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#positioning-screen-out"><span class="toc-number">1.6.</span> <span class="toc-text">positioning screen out</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a11y-hidden-1"><span class="toc-number">1.7.</span> <span class="toc-text">a11y-hidden</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&text=a11y-hidden"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&is_video=false&description=a11y-hidden"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=a11y-hidden&body=Check out this article: https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&title=a11y-hidden"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&name=a11y-hidden&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/22/CSS/[css]a11y-hidden/&t=a11y-hidden"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
