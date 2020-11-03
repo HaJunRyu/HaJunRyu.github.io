@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="화요일오늘 한 일 모기에게 괴롭힘을 당하고 새벽 4시반에 깨서 피곤에 쩔어 오전에는 인강을 조금밖에 못들었다.  계속해서 웹카페 클론코딩으로 HTML의 구조를 논리적인 순서에 맞게 짜는법과 그 구조를 유지하며 CSS스타일링을 반복하고 있다.   오늘 느낀점 컨디션 조절은 정말 중요하다…  계속 다른 구조들을 그림을 그리며 설계하면서 코드를 짜니까 이제 나름">
+    <meta name="description" content="화요일오늘 한 일 vertical-align의 middle속성이 linebox의 중앙이 아닌 baseline + x-height &#x2F; 2 라는 공식을 이해했다!  반응형 웹의 설계방법과 iframe의 비율을 정하는 공식과 방법등에 대해 배웠다.  position absolute가 특정 상황에서 자동으로 크기가 조정되는것을 알았다.   오늘 느낀점 HTML도">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20201027-TIL">
-<meta property="og:url" content="https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/index.html">
+<meta property="og:title" content="20201103-TIL">
+<meta property="og:url" content="https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/index.html">
 <meta property="og:site_name" content="hj 개발노트">
-<meta property="og:description" content="화요일오늘 한 일 모기에게 괴롭힘을 당하고 새벽 4시반에 깨서 피곤에 쩔어 오전에는 인강을 조금밖에 못들었다.  계속해서 웹카페 클론코딩으로 HTML의 구조를 논리적인 순서에 맞게 짜는법과 그 구조를 유지하며 CSS스타일링을 반복하고 있다.   오늘 느낀점 컨디션 조절은 정말 중요하다…  계속 다른 구조들을 그림을 그리며 설계하면서 코드를 짜니까 이제 나름">
+<meta property="og:description" content="화요일오늘 한 일 vertical-align의 middle속성이 linebox의 중앙이 아닌 baseline + x-height &#x2F; 2 라는 공식을 이해했다!  반응형 웹의 설계방법과 iframe의 비율을 정하는 공식과 방법등에 대해 배웠다.  position absolute가 특정 상황에서 자동으로 크기가 조정되는것을 알았다.   오늘 느낀점 HTML도">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-10-27T09:43:57.000Z">
-<meta property="article:modified_time" content="2020-10-27T11:20:51.802Z">
+<meta property="article:published_time" content="2020-11-03T13:22:12.000Z">
+<meta property="article:modified_time" content="2020-11-03T13:54:05.489Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>20201027-TIL</title>
+    <title>20201103-TIL</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -79,10 +79,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2020/10/28/CSS/%5Bcss%5Dvertical-align/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" href="/2020/10/26/TIL/20201026-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/11/02/TIL/20201102-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -95,17 +93,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&text=20201027-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&is_video=false&description=20201027-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20201027-TIL&body=Check out this article: https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&name=20201027-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&t=20201027-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&text=20201103-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&is_video=false&description=20201103-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20201103-TIL&body=Check out this article: https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&name=20201103-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&t=20201103-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -122,7 +120,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        20201027-TIL
+        20201103-TIL
     </h1>
 
 
@@ -134,7 +132,7 @@
       
     <div class="postdate">
       
-        <time datetime="2020-10-27T09:43:57.000Z" itemprop="datePublished">2020-10-27</time>
+        <time datetime="2020-11-03T13:22:12.000Z" itemprop="datePublished">2020-11-03</time>
         
       
     </div>
@@ -160,22 +158,22 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="화요일"><a href="#화요일" class="headerlink" title="화요일"></a>화요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
-<li><p>모기에게 괴롭힘을 당하고 새벽 4시반에 깨서 피곤에 쩔어 오전에는 인강을 조금밖에 못들었다.</p>
+<li><p>vertical-align의 middle속성이 linebox의 중앙이 아닌 baseline + x-height / 2 라는 공식을 이해했다!</p>
 </li>
-<li><p>계속해서 웹카페 클론코딩으로 HTML의 구조를 논리적인 순서에 맞게 짜는법과 그 구조를 유지하며 CSS스타일링을 반복하고 있다.</p>
+<li><p>반응형 웹의 설계방법과 iframe의 비율을 정하는 공식과 방법등에 대해 배웠다.</p>
+</li>
+<li><p>position absolute가 특정 상황에서 자동으로 크기가 조정되는것을 알았다.</p>
 </li>
 </ul>
 <h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
-<li><p>컨디션 조절은 정말 중요하다…</p>
+<li><p>HTML도 그렇고 CSS도 깊이있게 들어가면 예상치 못한 변수들과 알려지지않는 W3C의 레퍼런스의 일부내용들까지 공부해야 된다는걸 느꼈다.</p>
 </li>
-<li><p>계속 다른 구조들을 그림을 그리며 설계하면서 코드를 짜니까 이제 나름 논리적으로 구조를 짜는법을 알게된거 같고 CSS는 아직 많이 약하지만 그래도 정말 많이 늘었다고 생각이 든다. 하지만 float에 대해서는 더욱 더 공부하고 여러가지 속성들의 상관관계를 이해하며 연계해서 쓰는법도 터득하고 싶다.</p>
+<li><p>생각보다 반응형을 작업하는게 어렵진 않지만 설계 및 코딩부분에서 노가다 인거 같다.</p>
 </li>
 </ul>
 <h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
-<li><p>내일 수업내용에서 짯던 코드를 복습해보기 (아침에 수업 전 파일 백업해놓기)</p>
-</li>
-<li><p>알고리즘 사이트 알아보기</p>
-</li>
+<li>git branch에 대해 공부하기! (프로젝트 대비)</li>
+<li>개인 프로젝트 조금이라도 진행해보기</li>
 </ul>
 
   </div>
@@ -209,17 +207,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&text=20201027-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&is_video=false&description=20201027-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20201027-TIL&body=Check out this article: https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&title=20201027-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&name=20201027-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/27/TIL/20201027-TIL/&t=20201027-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&text=20201103-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&is_video=false&description=20201103-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20201103-TIL&body=Check out this article: https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&title=20201103-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&name=20201103-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/03/TIL/20201103-TIL/&t=20201103-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

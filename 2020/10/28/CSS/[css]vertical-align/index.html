@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Vertical-align이란?ver">
+    <meta name="description" content="Vertical-align사용법 및 정의 vertical-align은 inline요소 또는 table-cell에서의 수직정렬을 위해 사용한다.  inline level과 table-cell 요소외에는 적용되지 않는 속성이다.(block level은 적용 안됨)  수직정렬 하고싶은 inline요소를 선택 후 vertical-align : baseline 이렇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vertical-align">
 <meta property="og:url" content="https://hajunryu.github.io/2020/10/28/CSS/[css]vertical-align/index.html">
 <meta property="og:site_name" content="hj 개발노트">
-<meta property="og:description" content="Vertical-align이란?ver">
+<meta property="og:description" content="Vertical-align사용법 및 정의 vertical-align은 inline요소 또는 table-cell에서의 수직정렬을 위해 사용한다.  inline level과 table-cell 요소외에는 적용되지 않는 속성이다.(block level은 적용 안됨)  수직정렬 하고싶은 inline요소를 선택 후 vertical-align : baseline 이렇">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2020-10-28T01:01:34.000Z">
-<meta property="article:modified_time" content="2020-10-29T12:27:04.412Z">
+<meta property="article:modified_time" content="2020-11-03T13:21:54.611Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -63,15 +63,15 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Inicio</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Acerca de</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Articulos</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </span>
@@ -88,8 +88,8 @@
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
-      <span id="i-next" class="info" style="display:none;">Post Siguiente</span>
-      <span id="i-top" class="info" style="display:none;">Arriba</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
       <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
@@ -110,7 +110,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vertical-align%EC%9D%B4%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">Vertical-align이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">1.2.</span> <span class="toc-text"></span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vertical-align"><span class="toc-number">1.</span> <span class="toc-text">Vertical-align</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%B0%8F-%EC%A0%95%EC%9D%98"><span class="toc-number">1.1.</span> <span class="toc-text">사용법 및 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vertical-align%EC%9D%98-%EA%B0%92%EB%93%A4"><span class="toc-number">1.2.</span> <span class="toc-text">vertical-align의 값들</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -159,8 +159,25 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Vertical-align이란"><a href="#Vertical-align이란" class="headerlink" title="Vertical-align이란?"></a>Vertical-align이란?</h1><p>ver</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2>
+    <h1 id="Vertical-align"><a href="#Vertical-align" class="headerlink" title="Vertical-align"></a>Vertical-align</h1><h2 id="사용법-및-정의"><a href="#사용법-및-정의" class="headerlink" title="사용법 및 정의"></a>사용법 및 정의</h2><ul>
+<li><p>vertical-align은 inline요소 또는 table-cell에서의 수직정렬을 위해 사용한다.</p>
+</li>
+<li><p>inline level과 table-cell 요소외에는 적용되지 않는 속성이다.(block level은 적용 안됨)</p>
+</li>
+<li><p>수직정렬 하고싶은 inline요소를 선택 후 <code>vertical-align : baseline</code> 이렇게 선언해준다. (값은 유동적으로)</p>
+</li>
+</ul>
+<h2 id="vertical-align의-값들"><a href="#vertical-align의-값들" class="headerlink" title="vertical-align의 값들"></a>vertical-align의 값들</h2><ul>
+<li><p><code>baseline</code><br>부모의 baseline에 맞추어 해당 요소의 baseline을 정렬한다. 예외가 있는데 재정의된 요소들(iframe, video, img등)의 baseline은 브라우저마다 다르게 작동할 수 있다.</p>
+</li>
+<li><p>top<br>해당 요소의 top과 이것의 자손들의 top을 linebox의 top으로 정렬한다.</p>
+</li>
+<li><p>bottom<br>해당 요소의 bottom과 이것의 자손들의 bottom을 linebox의 bottom으로 정렬한다.</p>
+</li>
+<li><p>middle<br>아마 middle속성을 쓰다보면 많이 헷갈릴것이다. middle은 flex의 center속성과는 다르게 linebox의 가운데 정렬이 아니다. 공식이 따로 존재한다.<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/CSS/vertical-align">MDN</a>의 명세에 따르면 middle값은 부모의 baseline + x-height / 2 의 위치에 정렬된다고 되어있다.</p>
+</li>
+</ul>
+
   </div>
 </article>
 
@@ -173,21 +190,21 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Inicio</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Acerca de</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Articulos</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vertical-align%EC%9D%B4%EB%9E%80"><span class="toc-number">1.</span> <span class="toc-text">Vertical-align이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">1.2.</span> <span class="toc-text"></span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vertical-align"><span class="toc-number">1.</span> <span class="toc-text">Vertical-align</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%B0%8F-%EC%A0%95%EC%9D%98"><span class="toc-number">1.1.</span> <span class="toc-text">사용법 및 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vertical-align%EC%9D%98-%EA%B0%92%EB%93%A4"><span class="toc-number">1.2.</span> <span class="toc-text">vertical-align의 값들</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -208,10 +225,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -230,15 +247,15 @@
     <nav>
       <ul>
          
-          <li><a href="/">Inicio</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Acerca de</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Articulos</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </nav>
@@ -269,7 +286,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -280,7 +297,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
