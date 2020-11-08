@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="일요일오늘 한 일 figma에 대해 간략하게나마 더 알아봤다.  header와 footer의 markup을 했고 팀원들과도 공유하며 각자의 구조에 대해 간략하게 얘기를 나눴다.  button태그의 하위 요소로는 대화형을 제외한 구문콘텐츠만을 가질 수 있다는걸 알았다. h1, figure, p 등의 플로우콘텐츠들이 하위요소로 오는건 문법상 오류이다! 오늘 느">
+    <meta name="description" content="일요일오늘 한 일 figma에 대해 간략하게나마 더 알아봤다.  header와 footer의 markup을 했고 팀원들과도 공유하며 각자의 구조에 대해 간략하게 얘기를 나눴다.  button태그의 하위 요소로는 대화형을 제외한 구문콘텐츠만을 가질 수 있다는걸 알았다. h1, figure, p 등의 플로우콘텐츠들이 하위요소로 오는건 문법상 오류이다!   오늘">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20201108-TIL">
 <meta property="og:url" content="https://hajunryu.github.io/2020/11/08/TIL/20201108-TIL/index.html">
 <meta property="og:site_name" content="hj 개발노트">
-<meta property="og:description" content="일요일오늘 한 일 figma에 대해 간략하게나마 더 알아봤다.  header와 footer의 markup을 했고 팀원들과도 공유하며 각자의 구조에 대해 간략하게 얘기를 나눴다.  button태그의 하위 요소로는 대화형을 제외한 구문콘텐츠만을 가질 수 있다는걸 알았다. h1, figure, p 등의 플로우콘텐츠들이 하위요소로 오는건 문법상 오류이다! 오늘 느">
+<meta property="og:description" content="일요일오늘 한 일 figma에 대해 간략하게나마 더 알아봤다.  header와 footer의 markup을 했고 팀원들과도 공유하며 각자의 구조에 대해 간략하게 얘기를 나눴다.  button태그의 하위 요소로는 대화형을 제외한 구문콘텐츠만을 가질 수 있다는걸 알았다. h1, figure, p 등의 플로우콘텐츠들이 하위요소로 오는건 문법상 오류이다!   오늘">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2020-11-08T14:03:48.000Z">
-<meta property="article:modified_time" content="2020-11-08T14:13:34.836Z">
+<meta property="article:modified_time" content="2020-11-08T14:17:58.580Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -163,7 +163,9 @@
 <li><p>header와 footer의 markup을 했고 팀원들과도 공유하며 각자의 구조에 대해 간략하게 얘기를 나눴다.</p>
 </li>
 <li><p><code>button</code>태그의 하위 요소로는 대화형을 제외한 구문콘텐츠만을 가질 수 있다는걸 알았다. h1, figure, p 등의 플로우콘텐츠들이 하위요소로 오는건 문법상 오류이다!</p>
-<h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2></li>
+</li>
+</ul>
+<h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
 <li><p>확실히 논리적구조를 생각한 markup이 어느정도의 정해진 틀은 있지만 정말 사소하게라도 각자가 생각하는 부분이 다른거같다.(태그의 사용 및 위치)</p>
 </li>
 <li><p>구조를 짜며 타사이트들은 어떻게 구조가 되는지 알아봤는데 확실히 김데레사님의 강의에서처럼 구조를 짜는곳은 안보이는거같다. HTML, CSS에 비중을 크게 두지 않는다는걸 다시 한번 느꼇고 나중에 가능하다면 내가 일하는곳은 HTML구조를 누가봐도 납득할만한 구조로 만들고싶다.</p>
@@ -286,7 +288,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -297,7 +299,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.trigger.setAttribute('aria-label', "Copied!");
       e.clearSelection();
     })
   })
