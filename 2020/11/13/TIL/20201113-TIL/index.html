@@ -14,7 +14,7 @@
 <meta property="og:description" content="금요일오늘 한 일과 느낀점 한달간 슬비쌤(데레사 강사님)의 HTML&amp;CSS강의를 기반으로 일주일간 프로젝트를 진행하였고 오늘 발표가 있었다. 지혜님, 태윤님과 같이 고생한 결과물을 잘 소개했고 다른팀들의 발표도 집중해서 들었다. 대부분 비슷했지만 마지막 성백님, 재운님, 진호님의 발표에서 좀 인상깊었던것 같다. 정확히는 성백님의 개발자에 대한 철학.">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2020-11-13T09:26:51.000Z">
-<meta property="article:modified_time" content="2020-11-14T13:13:29.267Z">
+<meta property="article:modified_time" content="2020-11-14T13:14:54.312Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -63,15 +63,15 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </span>
@@ -79,16 +79,18 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2020/11/14/TIL/20201114-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2020/11/12/TIL/20201112-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
-      <span id="i-next" class="info" style="display:none;">Post Següent</span>
-      <span id="i-top" class="info" style="display:none;">Adalt</span>
-      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -170,7 +172,7 @@
 </li>
 <li><p>학원와서 모니터 설치하기</p>
 </li>
-<li><p>javascript강의 시청</p>
+<li><p>시간때문에 챙기지 못했던 프로젝트 마무리 및 파일 정리하기</p>
 </li>
 </ul>
 
@@ -186,15 +188,15 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </div>
@@ -221,10 +223,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
     </div>
 
   </div>
@@ -243,15 +245,15 @@
     <nav>
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </nav>
@@ -282,7 +284,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -293,7 +295,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
