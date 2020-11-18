@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="데이터 타입데이터 타입의 종류 자바스크립트(ES6)는 7개의 데이터 타입을 제공한다. 7개의 데이터 타입은 원시 타입과 객체 타입으로 분류 할 수 있다.    원시 타입  숫자(number)타입 : 숫자, 정수와 실수 구분 없이 없음 문자열(string) 타입 : 문자열 불리언(boolean) : 논리적 참(true) 혹은 거짓(false) undefine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="데이터 타입">
+<meta property="og:url" content="https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/index.html">
+<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:description" content="데이터 타입데이터 타입의 종류 자바스크립트(ES6)는 7개의 데이터 타입을 제공한다. 7개의 데이터 타입은 원시 타입과 객체 타입으로 분류 할 수 있다.    원시 타입  숫자(number)타입 : 숫자, 정수와 실수 구분 없이 없음 문자열(string) 타입 : 문자열 불리언(boolean) : 논리적 참(true) 혹은 거짓(false) undefine">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-11-18T10:46:42.000Z">
+<meta property="article:modified_time" content="2020-11-18T11:29:25.055Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>데이터 타입</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/18/JavaScript/%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC%20%EB%AC%B8/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&text=데이터 타입"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&is_video=false&description=데이터 타입"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=데이터 타입&body=Check out this article: https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&name=데이터 타입&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&t=데이터 타입"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85"><span class="toc-number">1.</span> <span class="toc-text">데이터 타입</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85%EC%9D%98-%EC%A2%85%EB%A5%98"><span class="toc-number">1.1.</span> <span class="toc-text">데이터 타입의 종류</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%88%AB%EC%9E%90-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">숫자 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">문자열 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%88%EB%A6%AC%EC%96%B8-boolean-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">불리언(boolean) 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.4.</span> <span class="toc-text">undefined 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.5.</span> <span class="toc-text">null 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#symbol-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.6.</span> <span class="toc-text">symbol 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B0%9D%EC%B2%B4-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.7.</span> <span class="toc-text">객체 타입</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        데이터 타입
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">hj 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-18T10:46:42.000Z" itemprop="datePublished">2020-11-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h1><h2 id="데이터-타입의-종류"><a href="#데이터-타입의-종류" class="headerlink" title="데이터 타입의 종류"></a>데이터 타입의 종류</h2><ul>
+<li>자바스크립트(ES6)는 7개의 데이터 타입을 제공한다. 7개의 데이터 타입은 원시 타입과 객체 타입으로 분류 할 수 있다.</li>
+</ul>
+<hr>
+<ul>
+<li><p>원시 타입</p>
+<ul>
+<li>숫자(number)타입 : 숫자, 정수와 실수 구분 없이 없음</li>
+<li>문자열(string) 타입 : 문자열</li>
+<li>불리언(boolean) : 논리적 참(true) 혹은 거짓(false)</li>
+<li>undefined 타입 : var키워드로 선언된 변수에 암묵적으로 할당되는 값</li>
+<li>null 타입: 값이 없다는 것을 의도적으로 명시할 때 사용하는 값</li>
+<li>심벌(symbol 타입) : ES6에서 추가된 7번째 타입(추후에 정리 예정)</li>
+</ul>
+</li>
+<li><p>객체 타입(object/reference type) : 객체, 함수, 배열 등</p>
+</li>
+</ul>
+<p>예를 들어, 숫자(number)타입의 값 1과 문자열(string)타입의 값 ‘1’은 비슷해 보이지만 타입이 전혀 다른 값이다. 숫자타입의 값 1과 문자열 타입의 값 ‘1’은 값을 생성한 목적과 용도가 다르다. 숫자 타입의 값은 주로 산술 연산을 위해 생성하지만 문자열 타입의 값은 주로 텍스트를 화면에 출력하기 위해 생성한다. 두 타입은 생성해야 할 메모리 공간의 크기도 다르고 메모리에 저장되는 2진수도 가르며 읽어 들여 해석하는 방식도 다르다.</p>
+<h3 id="숫자-타입"><a href="#숫자-타입" class="headerlink" title="숫자 타입"></a>숫자 타입</h3><ul>
+<li><p>정적언어의 경우 정수와 실수를 구분하여 int, short, long, float, double등과 같은 다양한 숫자 타입이 있지만 자바스크립트는 독특하게 하나의 숫자 타입만 존재한다.</p>
+</li>
+<li><p>ECMAScript 사양에 따르면 숫자 타입의 값은 배정밀도 64비트 부동소수점 형식(double-precision 64-bit floationg-point format)을 따른다. 이는 모든 수를 실수로 처리하고 정수만 표현하기 위한 데이터 타입은 존재하지 않는다는 말이다. 아직 부동 소수점 형식이 뭔지 자세히는 모르기때문에 추후에 포스팅 하며 공부해볼 예정이다.</p>
+</li>
+</ul>
+<h3 id="문자열-타입"><a href="#문자열-타입" class="headerlink" title="문자열 타입"></a>문자열 타입</h3><ul>
+<li><p>문자열(string)타입은 텍스트 데이터를 나타내는 데 사용한다. 문자열은 0개 이상의 16비트 유니코드 문자(UTF-16)들의 집합으로 전 세게 대부분의 문자를 표현 할 수 있다.</p>
+</li>
+<li><p>자바스크립트에서 문자열은 작은따옴표(‘’)와 큰 따옴표(‘’)로 텍스트를 감싸는데 어떤것을 사용해도 상관은 없지만 일반적으로는 작은 따옴표를 많이 사용한다.</p>
+</li>
+<li><p>백틱(``)도 문자열에 사용하지만 일반적인 문자열에 사용하기보다는 ES6부터 도입된 텝플릿 리터럴이라고 하는 문자열 표기법에 사용된다. 일반 문자열 내에서는 줄바꿈(개행)이 허용되지 않지만 템플릿 리터럴에선 이스케이프 시퀀스를 사용하여 줄바꿈등의 공백을 포함시킬 수 있다.</p>
+</li>
+</ul>
+<h3 id="불리언-boolean-타입"><a href="#불리언-boolean-타입" class="headerlink" title="불리언(boolean) 타입"></a>불리언(boolean) 타입</h3><ul>
+<li>boolean타입은 참과 거짓으로 구분되는 조건에 의해 프로그램을 제어하는 조건문에서 자주 사용한다. 말 그대로 참과 거짓을 구분하는 <code>true</code>와 <code>false</code> 두 가지 값으로 나뉜다.</li>
+</ul>
+<h3 id="undefined-타입"><a href="#undefined-타입" class="headerlink" title="undefined 타입"></a>undefined 타입</h3><ul>
+<li><p>undefined타입의 값으로는 undefined가 유일하다.</p>
+</li>
+<li><p>var키워드로 선언한 변수가 암묵적으로 undefined로 초기화 되는데 변수 선언에 의해 확보된 메모리 공간을 처음 할당이 이뤄질 때까지 빈 상태로 내버려두지 않고 자바스크립트 엔진이 undefined로 초기화할때 사용되는 타입이다.</p>
+</li>
+<li><p>그렇기 때문에 undefined타입의 사용목적은 개발자가 의도적으로 할당하기 위해 있는것이 아닌 자바스크립트 엔진이 변수를 초기화할 때 사용하는 값이다. 만약 개발자가 빈값을 주고 싶어 undefined라는 값을 임의로 할당해준다면 undefined타입의 본래 사용목적에 어긋날분더러 값이 할당되지 않고 선언만 됐다는 혼란을 줄 수 있으므로 권장하지 않는 방법이다.</p>
+</li>
+</ul>
+<h3 id="null-타입"><a href="#null-타입" class="headerlink" title="null 타입"></a>null 타입</h3><ul>
+<li><p>null타입의 값도 null이 유일하다. </p>
+</li>
+<li><p>null변수는 의도적으로 변수에 값이 없다는것을 명시할때 사용한다. 만약 할당된 값이 있었다면 그 값은 참조하지 않고 새로운 메모리영역에 null값을 가지고 변수는 그 주소값을 가르키기 되기 때문에 원래 있던 값의 메모리 영역은 참조하지 못하는 주소가 되며 쓰레기값이 되며 누구도 참조하지 않는 메모리 공간에 대해 가비지 콜렉션이 수행되며 기존의 값은 메모리에서 해제될것이다.</p>
+</li>
+</ul>
+<h3 id="symbol-타입"><a href="#symbol-타입" class="headerlink" title="symbol 타입"></a>symbol 타입</h3><ul>
+<li>symbol 타입에 대해서는 추후에 자세하게 포스팅 할 예정이다.</li>
+</ul>
+<h3 id="객체-타입"><a href="#객체-타입" class="headerlink" title="객체 타입"></a>객체 타입</h3><ul>
+<li>자바스크립트의 데이터 타입은 크게 원시 타입과 객체 타입으로 분류한다고 했는데 그 이유는 원시 타입의 값은 혼자서 변하지 않는 불변의 값이다. 하지만 객체타입은 그렇지 않다. 그거에 대해서는 추후에 자세히 살펴볼 예정이며 위에서 언급 된 6가지 타입을 제외한 모든것이 객체 타입이다.</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85"><span class="toc-number">1.</span> <span class="toc-text">데이터 타입</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85%EC%9D%98-%EC%A2%85%EB%A5%98"><span class="toc-number">1.1.</span> <span class="toc-text">데이터 타입의 종류</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%88%AB%EC%9E%90-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">숫자 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">문자열 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B6%88%EB%A6%AC%EC%96%B8-boolean-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">불리언(boolean) 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.4.</span> <span class="toc-text">undefined 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.5.</span> <span class="toc-text">null 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#symbol-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.6.</span> <span class="toc-text">symbol 타입</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B0%9D%EC%B2%B4-%ED%83%80%EC%9E%85"><span class="toc-number">1.1.7.</span> <span class="toc-text">객체 타입</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&text=데이터 타입"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&is_video=false&description=데이터 타입"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=데이터 타입&body=Check out this article: https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&title=데이터 타입"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&name=데이터 타입&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/18/JavaScript/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85/&t=데이터 타입"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
