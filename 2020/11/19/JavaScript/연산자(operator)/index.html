@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="연산자(operator)연산자란? 연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산등을 수행해 하나의 값을 만든다. 이때 연산의 대상을 피연산자라고 한다. 피연산자는 값으로 평가될 수 있는 표현식이어야 한다. 그리고 피연산자와 연산자의 조합으로 이뤄진 연산자 표현식도 값으로 평가될 수 있는 표현식이다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="연산자(operator)">
+<meta property="og:url" content="https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/index.html">
+<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:description" content="연산자(operator)연산자란? 연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산등을 수행해 하나의 값을 만든다. 이때 연산의 대상을 피연산자라고 한다. 피연산자는 값으로 평가될 수 있는 표현식이어야 한다. 그리고 피연산자와 연산자의 조합으로 이뤄진 연산자 표현식도 값으로 평가될 수 있는 표현식이다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-11-19T13:35:30.000Z">
+<meta property="article:modified_time" content="2020-11-19T13:56:40.013Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>연산자(operator)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/18/TIL/20201118-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&text=연산자(operator)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&is_video=false&description=연산자(operator)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=연산자(operator)&body=Check out this article: https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&name=연산자(operator)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&t=연산자(operator)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%97%B0%EC%82%B0%EC%9E%90-operator"><span class="toc-number">1.</span> <span class="toc-text">연산자(operator)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%97%B0%EC%82%B0%EC%9E%90%EB%9E%80"><span class="toc-number">1.1.</span> <span class="toc-text">연산자란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">산술 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B4%ED%95%AD-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">이항 산술 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8B%A8%ED%95%AD-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">단항 산술 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%97%B0%EA%B2%B0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">문자열 연결 연산자</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        연산자(operator)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">hj 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-19T13:35:30.000Z" itemprop="datePublished">2020-11-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="연산자-operator"><a href="#연산자-operator" class="headerlink" title="연산자(operator)"></a>연산자(operator)</h1><h2 id="연산자란"><a href="#연산자란" class="headerlink" title="연산자란?"></a>연산자란?</h2><ul>
+<li>연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산등을 수행해 하나의 값을 만든다. 이때 연산의 대상을 피연산자라고 한다. 피연산자는 값으로 평가될 수 있는 표현식이어야 한다. 그리고 피연산자와 연산자의 조합으로 이뤄진 연산자 표현식도 값으로 평가될 수 있는 표현식이다.</li>
+</ul>
+<h2 id="산술-연산자"><a href="#산술-연산자" class="headerlink" title="산술 연산자"></a>산술 연산자</h2><ul>
+<li><p>산술 연산자는 피연산자를 평가해 새로운 값을 만든다. 산술 연산이 불가능한 피연산자가 좌항이나 우항에 올 경우에는 NaN을 반환한다.</p>
+</li>
+<li><p>산술 연산자는 피연산자의 갯수에 따라 이항 산술 연산자와 단항 산술 연산자로 구분할 수 있다.</p>
+</li>
+</ul>
+<h3 id="이항-산술-연산자"><a href="#이항-산술-연산자" class="headerlink" title="이항 산술 연산자"></a>이항 산술 연산자</h3><ul>
+<li><p>이항 산술 연산자는 2개의 피연산자를 연산하여 number값을 만들어낸다.</p>
+</li>
+<li><p>산술 연산자는 새로운값을 만들어내지만 그 새로운값이 피연산자에 영향을 끼치진 않는다. 만약 피연산자에 영향을 끼치게 하려면 피연산자에 재할당을 해줘야한다.</p>
+</li>
+</ul>
+<h3 id="단항-산술-연산자"><a href="#단항-산술-연산자" class="headerlink" title="단항 산술 연산자"></a>단항 산술 연산자</h3><ul>
+<li><p>단항 산술 연산자는 1개의 피연산자를 연산하여 number값을 만든다. </p>
+</li>
+<li><p>단항 산술 연산자는 이항 산술연산자와는 다르게 피연산자의 값에 영향을 끼칠 수 있다.</p>
+</li>
+</ul>
+<h3 id="문자열-연결-연산자"><a href="#문자열-연결-연산자" class="headerlink" title="문자열 연결 연산자"></a>문자열 연결 연산자</h3>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%97%B0%EC%82%B0%EC%9E%90-operator"><span class="toc-number">1.</span> <span class="toc-text">연산자(operator)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%97%B0%EC%82%B0%EC%9E%90%EB%9E%80"><span class="toc-number">1.1.</span> <span class="toc-text">연산자란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">산술 연산자</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B4%ED%95%AD-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">이항 산술 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8B%A8%ED%95%AD-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">단항 산술 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%97%B0%EA%B2%B0-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">문자열 연결 연산자</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&text=연산자(operator)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&is_video=false&description=연산자(operator)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=연산자(operator)&body=Check out this article: https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&title=연산자(operator)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&name=연산자(operator)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/19/JavaScript/%EC%97%B0%EC%82%B0%EC%9E%90(operator)/&t=연산자(operator)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
