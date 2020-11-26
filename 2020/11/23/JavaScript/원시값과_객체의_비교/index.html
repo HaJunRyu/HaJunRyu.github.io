@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="원시값과 객체의 비교">
 <meta property="og:url" content="https://hajunryu.github.io/2020/11/23/JavaScript/%EC%9B%90%EC%8B%9C%EA%B0%92%EA%B3%BC_%EA%B0%9D%EC%B2%B4%EC%9D%98_%EB%B9%84%EA%B5%90/index.html">
-<meta property="og:site_name" content="hj 개발노트">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
 <meta property="og:description" content="원시값과 객체의 비교원시 타입과 객체 타입은 근복적으로 다른 의미이다. 원시 타입과 객체 타입은 크게 세 가지 측면에서 다르다.  원시 타입의 값, 즉 원시값은 변경 불가능한 값이다. 이에 비해 객체(참조)타입의 값, 즉 객체는 변경 가능한 값이다. 원시값을 변수에 할당하면 변수(확보된 메모리 공간)에는 실제 값이 저장된다. 이에 비해 객체를 변수에 할당하">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/71176945/99954552-4b989f00-2dc6-11eb-8a54-e372a2d6f386.PNG">
@@ -71,15 +71,15 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </span>
@@ -95,10 +95,10 @@
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
-      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
-      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
-      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -137,7 +137,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">hj 개발노트</span>
+        <span itemprop="name">Junn's 개발노트</span>
       </span>
       
     <div class="postdate">
@@ -294,15 +294,15 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </div>
@@ -329,10 +329,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -351,15 +351,15 @@
     <nav>
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </nav>
@@ -390,7 +390,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -401,7 +401,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.trigger.setAttribute('aria-label', "Copied!");
       e.clearSelection();
     })
   })
