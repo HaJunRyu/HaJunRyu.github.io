@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="let, const와 블록 레벨 스코프ES5까지의 변수선언 키워드 var변수 중복 선언 허용var 키워드로 선언한 변수는 중복 선언이 가능하다. 1234567891011var x &#x3D; 1;var y &#x3D; 1;&#x2F;&#x2F; var 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용한다.&#x2F;&#x2F; 초기화문이 있는 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let, const와 블록 레벨 스코프">
+<meta property="og:url" content="https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="let, const와 블록 레벨 스코프ES5까지의 변수선언 키워드 var변수 중복 선언 허용var 키워드로 선언한 변수는 중복 선언이 가능하다. 1234567891011var x &#x3D; 1;var y &#x3D; 1;&#x2F;&#x2F; var 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용한다.&#x2F;&#x2F; 초기화문이 있는 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/15-1.png">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/15-2.png">
+<meta property="article:published_time" content="2020-11-27T11:35:38.000Z">
+<meta property="article:modified_time" content="2020-11-27T12:50:04.996Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poiemaweb.com/assets/fs-images/15-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>let, const와 블록 레벨 스코프</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inicio</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Acerca de</a></li>
+         
+          <li><a href="/archives/">Articulos</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/27/TIL/20201127-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Siguiente</span>
+      <span id="i-top" class="info" style="display:none;">Arriba</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&text=let, const와 블록 레벨 스코프"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&is_video=false&description=let, const와 블록 레벨 스코프"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=let, const와 블록 레벨 스코프&body=Check out this article: https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&name=let, const와 블록 레벨 스코프&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&t=let, const와 블록 레벨 스코프"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.</span> <span class="toc-text">let, const와 블록 레벨 스코프</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES5%EA%B9%8C%EC%A7%80%EC%9D%98-%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8-%ED%82%A4%EC%9B%8C%EB%93%9C-var"><span class="toc-number">1.1.</span> <span class="toc-text">ES5까지의 변수선언 키워드 var</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%ED%97%88%EC%9A%A9"><span class="toc-number">1.1.1.</span> <span class="toc-text">변수 중복 선언 허용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%A8%EC%88%98-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">함수 레벨 스코프</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">변수 호이스팅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">let 키워드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%EA%B8%88%EC%A7%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">변수 중복 선언 금지</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">블록 레벨 스코프</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">변수 호이스팅</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        let, const와 블록 레벨 스코프
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-27T11:35:38.000Z" itemprop="datePublished">2020-11-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="let-const와-블록-레벨-스코프"><a href="#let-const와-블록-레벨-스코프" class="headerlink" title="let, const와 블록 레벨 스코프"></a>let, const와 블록 레벨 스코프</h1><h2 id="ES5까지의-변수선언-키워드-var"><a href="#ES5까지의-변수선언-키워드-var" class="headerlink" title="ES5까지의 변수선언 키워드 var"></a>ES5까지의 변수선언 키워드 var</h2><h3 id="변수-중복-선언-허용"><a href="#변수-중복-선언-허용" class="headerlink" title="변수 중복 선언 허용"></a>변수 중복 선언 허용</h3><p>var 키워드로 선언한 변수는 중복 선언이 가능하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// var 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용한다.</span></span><br><span class="line"><span class="comment">// 초기화문이 있는 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가 없는 것처럼 동작한다.</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">100</span>;</span><br><span class="line"><span class="comment">// 초기화문이 없는 변수 선언문은 무시된다.</span></span><br><span class="line"><span class="keyword">var</span> y;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// 100</span></span><br><span class="line"><span class="built_in">console</span>.log(y); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>위 예제의 var 키워드로 선언한 x 변수와 y변수는 중복 선언되었다. 이처럼 var 키워드로 선언한 변수를 중복 선언하면 초기화문(변수 선언과 동시에 초기값을 할당하는 문) 유무에 따라 다르게 동작한다. 초기화문이 있는 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가 없는 것처럼 동작하고 초기화문이 없는 변수 선언문은 무시된다. 이때 에러는 발생하지 않는다.</p>
+<p>위 예제와 같이 만약 동일한 이름의 변수가 이미 선언되어 있는 것을 모르고 변수를 중복 선언하면서 값까지 할당했다면 의도치 않게 먼저 선언된 변수 값이 변경되는 부작용이 발생한다.</p>
+<h3 id="함수-레벨-스코프"><a href="#함수-레벨-스코프" class="headerlink" title="함수 레벨 스코프"></a>함수 레벨 스코프</h3><p>var 키워드로 선언한 변수는 오로지 함수의 코드 블록만을 지역 스코프로 인정한다. 따라서 함수 외부에서 var 키워드로 선언한 변수는 코드 블록 내에서 선언해도 모두 전역 변수가 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="comment">// x는 전역 변수다. 이미 선언된 전역 변수 x가 있으므로 x 변수는 중복 선언된다.</span></span><br><span class="line">  <span class="comment">// 이는 의도치 않게 변수값이 변경되는 부작용을 발생시킨다.</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>for 문의 변수 선언문에서 var 키워드로 선언한 변수도 전역 변수가 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for문에서 선언한 i는 전역 변수이다. 이미 선언된 전역 변수 i가 있으므로 중복 선언된다.</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 0 1 2 3 4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 의도치 않게 i 변수의 값이 변경되었다.</span></span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>함수 레벨 스코프는 전역 변수를 남발할 가능성을 높인다. 이로 인해 의도치 않게 전역 변수가 중복 선언되는 경우가 발생한다.</p>
+<h3 id="변수-호이스팅"><a href="#변수-호이스팅" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><p>var 키워드로 변수를 선언하면 변수 호이스팅에 의해 선언문이 스코프의 선두로 끌어 올려진 것처럼 동작한다. 즉, 변수 호이스팅에 의해 var 키워드로 선언한 변수는 변수 선언문 이전에 참조할 수 있다. 단, 할당문이 이전에 변수를 참조하면 언제나 undefined를 반환한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 이 시점에는 변수 호이스팅에 의해 이미 foo 변수가 선언되었다(1. 선언 단계)</span></span><br><span class="line"><span class="comment">// 변수 foo는 undefined로 초기화된다. (2. 초기화 단계)</span></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 변수에 값을 할당(3. 할당 단계)</span></span><br><span class="line">foo = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 변수 선언은 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 실행된다.</span></span><br><span class="line"><span class="keyword">var</span> foo;</span><br></pre></td></tr></table></figure>
+
+<p>변수 선언문 이전에 변수를 참조하는 것은 변수 호이스팅에 의해 에러를 발생시키지는 않지만 프로그램의 흐름상 맞지 않을뿐더러 가독성을 떨어뜨리고 오류를 발생시킬 여지를 남긴다.</p>
+<h2 id="let-키워드"><a href="#let-키워드" class="headerlink" title="let 키워드"></a>let 키워드</h2><p>앞에서 살펴본 var키워드의 단점을 보완하기 위해서 ES6에서는 새로운 변수 선언 키워드인 let과 const를 도입했다. var키워드와의 차이점을 중심으로 let키워드를 살펴보자.</p>
+<h3 id="변수-중복-선언-금지"><a href="#변수-중복-선언-금지" class="headerlink" title="변수 중복 선언 금지"></a>변수 중복 선언 금지</h3><p>var 키워드로 이름이 동일한 변수를 중복 선언하면 아무런 에러가 발생하지 않는다. 이때 변수를 중복 선언하면서 값까지 할당했다면 의도치 않게 먼저 선언된 변수값이 재할당되어 변경되는 부작용이 발생한다.</p>
+<p>하지만 let키워드로 이름이 같은 변수를 중복 선언하면 문법 에러(SyntaxError)가 발생한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="number">123</span>;</span><br><span class="line"><span class="comment">// var 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용한다.</span></span><br><span class="line"><span class="comment">// 아래 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가 없는 것처럼 동작한다.</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="number">456</span>; <span class="comment">// 정상적으로 새로 foo변수가 선언되고 할당까지 된다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bar = <span class="number">123</span>;</span><br><span class="line"><span class="comment">// let이나 const 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용하지 않는다.</span></span><br><span class="line"><span class="keyword">let</span> bar = <span class="number">456</span>; <span class="comment">// SyntaxError: Identifier &#x27;bar&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="블록-레벨-스코프"><a href="#블록-레벨-스코프" class="headerlink" title="블록 레벨 스코프"></a>블록 레벨 스코프</h3><p>var 키워드로 선언한 변수는 오로지 함수의 코드 블록만을 지역 스코프로 인정하는 함수 레벨 스코프를 따른다. 하지만 let키워드로 선언한 변수는 모든 코드블록(함수, if문, for문, while문, switch문, try/catch문 등)을 지역 스코프로 인정하는 블록 레벨 스코프(block-level scope)를 따른다. 다음 예제를 살펴보자.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="number">1</span>; <span class="comment">// 전역 변수</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> foo = <span class="number">2</span>; <span class="comment">// 지역 변수</span></span><br><span class="line">  <span class="keyword">let</span> bar = <span class="number">3</span>; <span class="comment">// 지역 변수</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">// ReferenceError: bar is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>let 키워드로 선언된 변수는 블록 레벨 스코프를 따른다. 따라서 위 예제의 코드 블록내에서 선언된 foo 변수와 bar변수는 지역 변수다. 전역에서 선언된 foo 변수와 코드 블록 내에서 foo 변수는 다른 별개의 변수다. 또한 bar 변수도 블록 레벨 스코프를 갖는 지역 변수다. 따라서 젼역에서는 bar 변수를 참조할 수 없다.</p>
+<p>함수도 코드 블록이므로 스코프를 만든다. 이때 함수 내의 코드 블록은 함수 레벨 스코프에 중첩된다.</p>
+<p><img src="https://poiemaweb.com/assets/fs-images/15-1.png" alt="블록 레벨 스코프의 중첩을 나타낸 그림"><br><cite>사진 참조 - poiemaweb.com</cite></p>
+<h3 id="변수-호이스팅-1"><a href="#변수-호이스팅-1" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><p>var 키워드로 선언한 변수와 달리 let 키워드로 선언한 변수는 변수 호이스팅이 발생하지 않는 것처럼 동작한다. 다음 예제를 살펴보자.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// ReferenceError: foo is not defined</span></span><br><span class="line"><span class="keyword">let</span> foo;</span><br></pre></td></tr></table></figure>
+
+<p>이처럼 let 키워드로 선언한 변수를 변수 선언문 이전에 참조하면 참조 에러(ReferenceError)가 발생한다.</p>
+<p>var 키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 선언 단계와 초기화 단계가 한번에 진행되어 위 예제와 동일하게 실행했을때 undefined를 반환하게 된다.</p>
+<p>즉,  선언 단계에서 스코프에 변수 식별자를 등록해 자바스크립트 엔진에 변수의 존재를 알린다. 그리고 즉시 초기화 단계에서 undefined로 변수를 초기화한다. 따라서 변수 선언문 이전에 변수에 접근해도 스코프에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이 후 변수 할당문에 도달하면 그때 값이 할당된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var 키워드로 선언한 변수는 런타임 이전에 선언 단계와 초기화 단계가 실행된다.</span></span><br><span class="line"><span class="comment">// 따라서 변수 선언문 이전에 변수를 참조할 수 있다.</span></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo;</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">foo = <span class="number">1</span>; <span class="comment">// 할당문에서 할당 단계가 실행된다.</span></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poiemaweb.com/assets/fs-images/15-2.png" alt="var 키워드로 선언한 변수의 생명 주기를 표현한 그림"><br><cite>사진 참조 - poiemaweb.com</cite></p>
+<p>let 키워드로 선언한 변수는 선언단계와 초기화 단계가 분리되어 진행된다. 즉, 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 선언 단계가 먼저 실행되지만 초기화 단계는 변수 선언문에 도달했을 때 실행된다.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inicio</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Acerca de</a></li>
+         
+          <li><a href="/archives/">Articulos</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.</span> <span class="toc-text">let, const와 블록 레벨 스코프</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES5%EA%B9%8C%EC%A7%80%EC%9D%98-%EB%B3%80%EC%88%98%EC%84%A0%EC%96%B8-%ED%82%A4%EC%9B%8C%EB%93%9C-var"><span class="toc-number">1.1.</span> <span class="toc-text">ES5까지의 변수선언 키워드 var</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%ED%97%88%EC%9A%A9"><span class="toc-number">1.1.1.</span> <span class="toc-text">변수 중복 선언 허용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%A8%EC%88%98-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">함수 레벨 스코프</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">변수 호이스팅</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">let 키워드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%EA%B8%88%EC%A7%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">변수 중복 선언 금지</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">블록 레벨 스코프</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">변수 호이스팅</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&text=let, const와 블록 레벨 스코프"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&is_video=false&description=let, const와 블록 레벨 스코프"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=let, const와 블록 레벨 스코프&body=Check out this article: https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&title=let, const와 블록 레벨 스코프"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&name=let, const와 블록 레벨 스코프&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/27/JavaScript/let-const%EC%99%80-%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84/&t=let, const와 블록 레벨 스코프"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inicio</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Acerca de</a></li>
+         
+          <li><a href="/archives/">Articulos</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Proyectos</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
