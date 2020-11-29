@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="일요일오늘 한 일 오늘은 어제 계획했던대로 생각보다 일찍 나와서 미용실에 갔다가 학원을 왔다. 도착하니 2시?정도 된거같은데 벌써 세분이나 와서 공부하고 계셨고 바로 또 한분이 들어오셔서 주말인데도 5명이나 출석을 했다.   flexible box에 대한 인강을 들었다. 속성들은 container에 주는 속성과 items에 주는 속성으로 각각 상당히 많았다">
+    <meta name="description" content="일요일오늘 한 일 프로퍼티 어트리뷰트에 대해 알아보고 포스팅까지 완료하였다.  git강의때 진행하다 중단했던 if kakao페이지 클론코딩의 일부분을 추가 및 수정해주었다.  제어문 관련 연습문제(코딩) 1 ~ 10번까지 풀어보았다.   오늘 느낀점 프로퍼티 어트리뷰트는 객체의 상태를 제어하는데 중요한 역할을 하는 개념이었고 그만큼 복잡하고 어려웠던거 같다">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20201025-TIL">
-<meta property="og:url" content="https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/index.html">
+<meta property="og:title" content="20201129-TIL">
+<meta property="og:url" content="https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/index.html">
 <meta property="og:site_name" content="Junn&#39;s 개발노트">
-<meta property="og:description" content="일요일오늘 한 일 오늘은 어제 계획했던대로 생각보다 일찍 나와서 미용실에 갔다가 학원을 왔다. 도착하니 2시?정도 된거같은데 벌써 세분이나 와서 공부하고 계셨고 바로 또 한분이 들어오셔서 주말인데도 5명이나 출석을 했다.   flexible box에 대한 인강을 들었다. 속성들은 container에 주는 속성과 items에 주는 속성으로 각각 상당히 많았다">
+<meta property="og:description" content="일요일오늘 한 일 프로퍼티 어트리뷰트에 대해 알아보고 포스팅까지 완료하였다.  git강의때 진행하다 중단했던 if kakao페이지 클론코딩의 일부분을 추가 및 수정해주었다.  제어문 관련 연습문제(코딩) 1 ~ 10번까지 풀어보았다.   오늘 느낀점 프로퍼티 어트리뷰트는 객체의 상태를 제어하는데 중요한 역할을 하는 개념이었고 그만큼 복잡하고 어려웠던거 같다">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-10-25T13:06:59.000Z">
-<meta property="article:modified_time" content="2020-10-25T13:22:40.238Z">
+<meta property="article:published_time" content="2020-11-29T14:38:30.000Z">
+<meta property="article:modified_time" content="2020-11-29T15:15:35.650Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>20201025-TIL</title>
+    <title>20201129-TIL</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -79,10 +79,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2020/10/25/CSS/%5Bcss%5Dmargin%20collapse/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" href="/2020/10/24/TIL/20201024-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/11/29/JavaScript/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%8A%B8/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -95,17 +93,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&text=20201025-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&is_video=false&description=20201025-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20201025-TIL&body=Check out this article: https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&name=20201025-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&t=20201025-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&text=20201129-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&is_video=false&description=20201129-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20201129-TIL&body=Check out this article: https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&name=20201129-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&t=20201129-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -122,7 +120,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        20201025-TIL
+        20201129-TIL
     </h1>
 
 
@@ -134,7 +132,7 @@
       
     <div class="postdate">
       
-        <time datetime="2020-10-25T13:06:59.000Z" itemprop="datePublished">2020-10-25</time>
+        <time datetime="2020-11-29T14:38:30.000Z" itemprop="datePublished">2020-11-29</time>
         
       
     </div>
@@ -160,31 +158,29 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="일요일"><a href="#일요일" class="headerlink" title="일요일"></a>일요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
-<li><p>오늘은 어제 계획했던대로 생각보다 일찍 나와서 미용실에 갔다가 학원을 왔다. 도착하니 2시?정도 된거같은데 벌써 세분이나 와서 공부하고 계셨고 바로 또 한분이 들어오셔서 주말인데도 5명이나 출석을 했다. </p>
+<li><p>프로퍼티 어트리뷰트에 대해 알아보고 포스팅까지 완료하였다.</p>
 </li>
-<li><p>flexible box에 대한 인강을 들었다. 속성들은 container에 주는 속성과 items에 주는 속성으로 각각 상당히 많았다.</p>
+<li><p>git강의때 진행하다 중단했던 if kakao페이지 클론코딩의 일부분을 추가 및 수정해주었다.</p>
 </li>
-<li><p>같이 공부하던 세분(나 포함 4명)과 저녁으로 앞에 맛닭꼬에 가서 치킨을 먹었는데 나만 맥주를 못마셨다. 되게 시원해보였는데…</p>
+<li><p>제어문 관련 연습문제(코딩) 1 ~ 10번까지 풀어보았다.</p>
 </li>
 </ul>
 <h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
-<li><p>정말 다들 열심히 하시는거 같고 학원기간이 끝났을때는 동기분들이 다들 잘 됐으면 좋겠다.</p>
+<li><p>프로퍼티 어트리뷰트는 객체의 상태를 제어하는데 중요한 역할을 하는 개념이었고 그만큼 복잡하고 어려웠던거 같다. 자바스크립트의 객체는 원본까지 바뀔수 있다는점이 정말 관리하기 어렵다고 느껴지고 이 프로퍼티 어트리뷰트를 관리하는 메서드도 Object.get…이런 익숙치 않은 메서드들이라 한번에 이해가 되진 않은거 같다…</p>
 </li>
-<li><p>flex의 속성으로 container에 주는 속성들은 많이 알고 있었는데 item들에게 주는 속성은 거의 몰랐던거 같다. 처음 보는거라 그런가 조금 더 어려운거 같은 느낌이다.</p>
+<li><p>사람은 정말 반복이 중요하고 생각보다 배웠던걸 금방 까먹기 때문에 HTML, CSS를 주기적으로 꾸준히 해주고싶은데 javascript의 커리큘럼이 너무 빡빡해서 신경을 못써주는거 같다. 오늘 잠깐이지만 HTML, CSS를 다시 보니 시멘틱한 태그들과 논리적구조에 대해 다시 한번 생각해보는 시간을 가지게 되어 참 좋았다.</p>
 </li>
-<li><p>하루 12시간 넘게 학원에 있어도 사람들이랑 같이 어울리면서 있으니 나름 재밌는거 같다.</p>
+<li><p>for, while문은 많이 써서 이제 어느정도 익숙한거 같지만 나중에 filter같은걸로 대체할 수 있을때 사용하지 않는다고 하니 뭔가 섭섭한 느낌….</p>
 </li>
 </ul>
 <h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
-<li><p>다시 한주의 시작이니 잠 푹 자고 오기!</p>
+<li><p>함수의 개념에 대한 주제로 오전 조원들과 러버덕 하기(꼼꼼히)</p>
 </li>
-<li><p>슬리퍼 사기(집에 있으면 가져오기)</p>
+<li><p>프로퍼티 어트리뷰트에 대해 다시 꼼꼼히 보며 복습해보기</p>
 </li>
-<li><p>오전 인강!</p>
+<li><p>화살표함수(람다식 표기법)와 콜백에 대해 확실히 이해하기</p>
 </li>
-<li><p>타자 연습 꾸준히</p>
-</li>
-<li><p>영단어 5개 외우기</p>
+<li><p>현강을 통해 스코프의 개념과 전역변수가 쓰일때의 문제점에 대해 듣고 메모하고 복습하기</p>
 </li>
 </ul>
 
@@ -219,17 +215,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&text=20201025-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&is_video=false&description=20201025-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20201025-TIL&body=Check out this article: https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&title=20201025-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&name=20201025-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/25/TIL/20201025-TIL/&t=20201025-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&text=20201129-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&is_video=false&description=20201129-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20201129-TIL&body=Check out this article: https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&title=20201129-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&name=20201129-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/29/TIL/20201129-TIL/&t=20201129-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
