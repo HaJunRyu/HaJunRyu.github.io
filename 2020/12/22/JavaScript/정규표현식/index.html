@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="정규 표현식정규 표현식은 일정한 패턴을 가진 문자열의 집합을 표현하기 위해 사용하는 형식 언어(formal language)다. 정규 표현식은 문자열을 대상으로 패턴 매칭 기능을 제공한다. (특정 패턴과 일치하는 문자열을 검색하거나 추출 또는 치환할 수 있는 기능) 가장 대표적인 예시가 회원가입시 비밀번호 형식을 8자리 이상 특수문자와 숫자를 포함하여 작성">
+<meta property="og:type" content="article">
+<meta property="og:title" content="정규표현식">
+<meta property="og:url" content="https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="정규 표현식정규 표현식은 일정한 패턴을 가진 문자열의 집합을 표현하기 위해 사용하는 형식 언어(formal language)다. 정규 표현식은 문자열을 대상으로 패턴 매칭 기능을 제공한다. (특정 패턴과 일치하는 문자열을 검색하거나 추출 또는 치환할 수 있는 기능) 가장 대표적인 예시가 회원가입시 비밀번호 형식을 8자리 이상 특수문자와 숫자를 포함하여 작성">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/31-1.png">
+<meta property="article:published_time" content="2020-12-22T06:05:53.000Z">
+<meta property="article:modified_time" content="2020-12-22T10:55:30.650Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poiemaweb.com/assets/fs-images/31-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>정규표현식</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/12/21/TIL/20201221-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&text=정규표현식"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&is_video=false&description=정규표현식"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=정규표현식&body=Check out this article: https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&name=정규표현식&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&t=정규표현식"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D"><span class="toc-number">1.</span> <span class="toc-text">정규 표현식</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%EC%83%9D%EC%84%B1"><span class="toc-number">1.1.</span> <span class="toc-text">정규 표현식 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%EB%A6%AC%ED%84%B0%EB%9F%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">정규 표현식 리터럴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">RegExp 메서드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-prototype-exec"><span class="toc-number">1.2.1.</span> <span class="toc-text">RegExp.prototype.exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-prototype-test"><span class="toc-number">1.2.2.</span> <span class="toc-text">RegExp.prototype.test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-prototype-match"><span class="toc-number">1.2.3.</span> <span class="toc-text">String.prototype.match</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%8C%EB%9E%98%EA%B7%B8"><span class="toc-number">1.3.</span> <span class="toc-text">플래그</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%8C%A8%ED%84%B4"><span class="toc-number">1.4.</span> <span class="toc-text">패턴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">문자열 검색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%84%EC%9D%98%EC%9D%98-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">임의의 문자열 검색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B0%98%EB%B3%B5-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">반복 검색</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%EA%B2%80%EC%83%89"><span class="toc-number">1.5.</span> <span class="toc-text">OR 검색</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%EA%B2%80%EC%83%89"><span class="toc-number">1.6.</span> <span class="toc-text">NOT 검색</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%9C%EC%9E%91-%EC%9C%84%EC%B9%98%EB%A1%9C-%EA%B2%80%EC%83%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">시작 위치로 검색</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A7%88%EC%A7%80%EB%A7%89-%EC%9C%84%EC%B9%98%EB%A1%9C-%EA%B2%80%EC%83%89"><span class="toc-number">1.7.</span> <span class="toc-text">마지막 위치로 검색</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D"><span class="toc-number">1.8.</span> <span class="toc-text">자주 사용하는 정규표현식</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%A0%95-%EB%8B%A8%EC%96%B4%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.1.</span> <span class="toc-text">특정 단어로 시작하는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%A0%95-%EB%8B%A8%EC%96%B4%EB%A1%9C-%EB%81%9D%EB%82%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.2.</span> <span class="toc-text">특정 단어로 끝나는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%88%AB%EC%9E%90%EB%A1%9C%EB%A7%8C-%EC%9D%B4%EB%A3%A8%EC%96%B4%EC%A7%84-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B8%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.3.</span> <span class="toc-text">숫자로만 이루어진 문자열인지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%98%EB%82%98-%EC%9D%B4%EC%83%81%EC%9D%98-%EA%B3%B5%EB%B0%B1%EC%9C%BC%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.4.</span> <span class="toc-text">하나 이상의 공백으로 시작하는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%84%EC%9D%B4%EB%94%94%EB%A1%9C-%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.5.</span> <span class="toc-text">아이디로 사용 가능한지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A7%A4%EC%9D%BC-%EC%A3%BC%EC%86%8C-%ED%98%95%EC%8B%9D%EC%97%90-%EB%A7%9E%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.6.</span> <span class="toc-text">매일 주소 형식에 맞는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%B8%EB%93%9C%ED%8F%B0-%EB%B2%88%ED%98%B8-%ED%98%95%EC%8B%9D%EC%97%90-%EB%A7%9E%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.7.</span> <span class="toc-text">핸드폰 번호 형식에 맞는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%88%98-%EB%AC%B8%EC%9E%90-%ED%8F%AC%ED%95%A8-%EC%97%AC%EB%B6%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.8.</span> <span class="toc-text">특수 문자 포함 여부 검사</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        정규표현식
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-22T06:05:53.000Z" itemprop="datePublished">2020-12-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="정규-표현식"><a href="#정규-표현식" class="headerlink" title="정규 표현식"></a>정규 표현식</h1><p>정규 표현식은 일정한 패턴을 가진 문자열의 집합을 표현하기 위해 사용하는 형식 언어(formal language)다.</p>
+<p>정규 표현식은 문자열을 대상으로 패턴 매칭 기능을 제공한다. (특정 패턴과 일치하는 문자열을 검색하거나 추출 또는 치환할 수 있는 기능)</p>
+<p>가장 대표적인 예시가 회원가입시 비밀번호 형식을 8자리 이상 특수문자와 숫자를 포함하여 작성하라는 정규표현식이 있다.</p>
+<p>만약 정규표현식을 사용하지 않는다면 반복문과 조건문으로 개발자가 일일히 length가 8이상인지 특수문자와 숫자가 포함되어있는지 확인해주는 코드를 작성해주어야 할것이다.</p>
+<p>정규표현식을 사용하면 반복문이나 조건문 없이 간단하게 조건을 체크해줄 수 있다. 하지만 정규표현식은 주석이나 공백을 허용하지 않고 여러가지 기호를 혼합항 사용하기 때문에 한눈에 보고 알기 어려운 즉, 가독성이 떨어지게 된다.</p>
+<h2 id="정규-표현식-생성"><a href="#정규-표현식-생성" class="headerlink" title="정규 표현식 생성"></a>정규 표현식 생성</h2><p>정규 표현식을 생성하기 위한 방법</p>
+<ol>
+<li>정규 표현식 리터럴</li>
+<li>RegExp 생성자 함수</li>
+</ol>
+<h3 id="정규-표현식-리터럴"><a href="#정규-표현식-리터럴" class="headerlink" title="정규 표현식 리터럴"></a>정규 표현식 리터럴</h3><p>표현 방법</p>
+<p><img src="https://poiemaweb.com/assets/fs-images/31-1.png" alt="정규 표현식 리터럴"></p>
+<p>정규 표현식 리터럴은 패턴과 플래그로 구성된다.</p>
+<h2 id="RegExp-메서드"><a href="#RegExp-메서드" class="headerlink" title="RegExp 메서드"></a>RegExp 메서드</h2><p>정규표현식을 사용하는 메서드는 RegExp.prototype.exec, RegExp.prototype.test, String.prototype.match, String.prototype.replace, String.prototype.search, String.prototype.split 등이 있다.</p>
+<h3 id="RegExp-prototype-exec"><a href="#RegExp-prototype-exec" class="headerlink" title="RegExp.prototype.exec"></a>RegExp.prototype.exec</h3><p>exec 메서드는 인수로 전달받은 문자열에 대해 정규 표현식의 패턴을 검색하여 매칭 결과를 배열로 반환한다. 매칭 결과가 없는 경우 null을 반환한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target - <span class="string">&#x27;Is this all there is?&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/is/</span>;</span><br></pre></td></tr></table></figure>
+
+<p>exec 메서드는 문자열 내의 모든 패턴을 검색하는 g 플래그를 지정해도 첫 번째 매칭 결과만 반환한다.</p>
+<h3 id="RegExp-prototype-test"><a href="#RegExp-prototype-test" class="headerlink" title="RegExp.prototype.test"></a>RegExp.prototype.test</h3><p>test 메서드는 문자열에서 패턴을 검색하여 매칭 결과를 boolean 값으로 반환한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;Hi my name is Hajun&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/Hajun/</span>;</span><br><span class="line"></span><br><span class="line">regExp.test(target); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="String-prototype-match"><a href="#String-prototype-match" class="headerlink" title="String.prototype.match"></a>String.prototype.match</h3><p>String 표준 빌트인 객체가 제공하는 match 메서드는 문자열과 정규 표현식과의 매칭 정보를 배열로 반환한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;Is this all there is?&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/is/</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;is&quot;, index: 5, input: &quot;Is this all there is?&quot;, groups: undefined]</span></span><br></pre></td></tr></table></figure>
+
+<p>exec 메서드는 문자열 내의 모든 패턴을 검색하는 g 플래그를 지정해도 첫 번째 매칭 결과만 반환한다. 하지만 String.prototype.match 메서드는 g 플래그가 지정되면 모든 매칭 결과를 배열로 반환한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;Is this all there is?&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/is/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;is&quot;, &quot;is&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="플래그"><a href="#플래그" class="headerlink" title="플래그"></a>플래그</h2><p>패턴과 함께 정규 표현식을 구성하는 플래그는 정규 표현식의 검색 방식을 설정하기 위해 사용한다. 플래그는 총 6개가 있다.</p>
+<table>
+<thead>
+<tr>
+<th>플래그</th>
+<th>의미</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>Ignore</td>
+<td>대소문자를 구별하지 않고 패턴을 검색한다.</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Global</td>
+<td>대상 문자열 내에서 패턴과 일치하는 모든 문자열을 전역 검색한다.</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Multi line</td>
+<td>문자열의 행이 바뀌더라도 패턴 검색을 계속한다.</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>플래그는 옵션이다.</p>
+</li>
+<li><p>순서에 상관없이 하나 이상의 플래그를 동시에 설정할 수도 있다.</p>
+</li>
+<li><p>플래그를 하나도 사용하지 않았을 경우</p>
+<ul>
+<li>대소문자를 구별해서 패턴을 검색한다.</li>
+<li>문자열에 패턴 검색 매칭 대상이 1개 이상 존재해도 첫 번째 매칭한 대상만 검색하고 종료한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;Is this all there is?&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// target 문자열에서 is 문자열을 대소문자를 구별하여 한 번만 검색한다.</span></span><br><span class="line">target.match(<span class="regexp">/is/</span>);</span><br><span class="line"><span class="comment">// -&gt; [&quot;is&quot;, index: 5, input: &quot;Is this all there is?&quot;, groups: undefined]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// target 문자열에서 is 문자열을 대소문자를 구별하지 않고 한 번만 검색한다.</span></span><br><span class="line">target.match(<span class="regexp">/is/i</span>);</span><br><span class="line"><span class="comment">// -&gt; [&quot;Is&quot;, index: 0, input: &quot;Is this all there is?&quot;, groups: undefined]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// target 문자열에서 is 문자열을 대소문자를 구별하여 전역 검색한다.</span></span><br><span class="line">target.match(<span class="regexp">/is/g</span>);</span><br><span class="line"><span class="comment">// -&gt; [&quot;is&quot;, &quot;is&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// target 문자열에서 is 문자열을 대소문자를 구별하지 않고 전역 검색한다.</span></span><br><span class="line"><span class="comment">// 이때 i와 g의 순서는 바뀌어도 상관없다.</span></span><br><span class="line">target.match(<span class="regexp">/is/ig</span>);</span><br><span class="line"><span class="comment">// -&gt; [&quot;Is&quot;, &quot;is&quot;, &quot;is&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="패턴"><a href="#패턴" class="headerlink" title="패턴"></a>패턴</h2><p>정규 표현식의 패턴은 문자열이 일정한 규칙을 표현하기 위해 사용한다.</p>
+<p>패턴은 <code>/</code>으로 열고 닫으며 문자열의 따옴표는 생략한다. 따옴표를 포함하면 따옴표까지도 패턴에 포함된다.또한 패턴은 특별한 의미를 가지는 메타문자 또는 기호로 표현할 수 있다. 어떤 문자열 내에 패턴과 일치하는 문자열이 존재할 때 ‘정규 표현식고 매치(match)한다고 표현한다.</p>
+<h3 id="문자열-검색"><a href="#문자열-검색" class="headerlink" title="문자열 검색"></a>문자열 검색</h3><p>정규 표현식의 패턴에 문자 또는 문자열을 지정하면 검색 대상 문자열에서 패턴으로 지정한 문자 또는 문자열을 검색한다.</p>
+<p>검색을 할때는 RegExp 메서드를 사용하여 검색할 문자열과 정규 표현식의 매칭 결과를 구하면 검색이 수행된다.</p>
+<ul>
+<li><p>검색 대상 문자열과 플래그를 생략한 정규 표현식의 매칭 결과를 구하면 대소문자를 구별하여 정규 표현식과 매치한 첫 번째 결과만 반환한다.</p>
+</li>
+<li><p>대소문자를 구별하지 않고 검색하려면 플래그 i를 사용해야 한다.</p>
+</li>
+<li><p>대상 문자열 내에서 패턴과 매치하는 모든 문자열을 전역 검색하려면 플래그 g를 사용해야 한다.</p>
+</li>
+</ul>
+<h3 id="임의의-문자열-검색"><a href="#임의의-문자열-검색" class="headerlink" title="임의의 문자열 검색"></a>임의의 문자열 검색</h3><p>.은 임의의 문자 한 개를 의미한다. 문자의 내용은 무엇이든 상관없다. 다음 예제의 경우 .을 3개 연속하여 패턴을 생성했으므로 문자의 내용과 상관없이 3자리 문자열과 매치한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;Is this all there is?&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 임의의 3자리 문자열을 대소문자를 구별하여 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/.../g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;Is &quot;, &quot;thi&quot;, &quot;s a&quot;, &quot;ll &quot;, &quot;the&quot;, &quot;re &quot;, &quot;is?&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="반복-검색"><a href="#반복-검색" class="headerlink" title="반복 검색"></a>반복 검색</h3><p><code>&#123;m,n&#125;</code>은 앞선 패턴(다음 예제의 경우 A)이 최소 m번, 최대 n번 반복되는 문자열을 의미한다. 컴마 뒤에 공백이 있으면 정상 동작하지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;A AA B BB Aa Bb AAA&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;A&#x27;가 최소 1번, 최대 2번 반복되는 문자열을 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/A&#123;1,2&#125;/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;A&quot;, &quot;AA&quot;, &quot;A&quot;, &quot;AA&quot;, &quot;A&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;n&#125;</code>은 앞선 패턴이 n번 반복되는 문자열을 의미한다. 즉, <code>&#123;n&#125;</code>은 <code>&#123;n, n&#125;</code>과 같다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;A AA B BB Aa Bb AAA&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;A&#x27;가 2번 반복되는 문자열을 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/A&#123;2&#125;/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;AA&quot;, &quot;AA&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>n,</code>은 앞선 패턴이 최소 n번 이상 반복되는 문자열을 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;A AA B BB Aa Bb AAA&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;A&#x27;가 최소 2번 이상 반복되는 문자열을 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/A&#123;2,&#125;/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;AA&quot;, &quot;AAA&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>+</code>는 앞선 패턴이 최소 한 번 이상 반복되는 문자열을 의미한다. 즉, <code>+</code>는 <code>&#123;1,&#125;</code>과 같다. 다음 예제의 경우 <code>A+</code>는 앞선 패턴 ‘A’가 한 번 이상 반복되는 문자열, 즉 ‘A’만으로 이루어진 문자열 ‘A’, ‘AA’, ‘AAA’, …와 매치한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;A AA B BB Aa Bb AAA&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;A&#x27;가 최소 한 번 이상 반복되는 문자열(&#x27;A, &#x27;AA&#x27;, &#x27;AAA&#x27;, ...)을 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/A+/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;A&quot;, &quot;AA&quot;, &quot;A&quot;, &quot;AAA&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>?는 앞선 패턴이 최대 한 번(0번 포함) 이상 반복되는 문자열을 의미한다. 즉, ?는 {0,1}과 같다. 다음 예제의 경우 /colou?r/는 ‘colo’ 다음 ‘u’가 최대 한 번(0번 포함) 이상 반복되고 ‘r’이 이어지는 문자열 ‘color’, ‘colour’와 매치한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;color colour&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;colo&#x27; 다음 &#x27;u&#x27;가 최대 한 번(0번 포함) 이상 반복되고 &#x27;r&#x27;이 이어지는 문자열 &#x27;color&#x27;, &#x27;colour&#x27;를 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/colou?r/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;color&quot;, &quot;colour&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="OR-검색"><a href="#OR-검색" class="headerlink" title="OR 검색"></a>OR 검색</h2><p>|은 or의 의미를 갖는다. 다음 예제의 /A|B/는 ‘A’ 또는 ‘B’를 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;A AA B BB Aa Bb&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;A&#x27; 또는 &#x27;B&#x27;를 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/A|B/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;, &quot;B&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="NOT-검색"><a href="#NOT-검색" class="headerlink" title="NOT 검색"></a>NOT 검색</h2><p><code>[...]</code> 내의 <code>^</code>은 not의 의미를 갖는다. 예를 들어 <code>[^0-9]</code>는 숫자를 제외한 문자를 의미한다. 따라서 <code>[0-9]</code>와 같은 의미의 \d와 반대로 동작하는 \D는 <code>[^0-9]</code>와 같고, <code>[A-Za-z0-9_]</code>와 같은 의미의 \w와 반대로 동작하는 \W는 <code>[^A-Za-z0-9_]</code>와 같다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;AA BB Aa Bb 12&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 숫자를 제외한 문자열을 전역 검색한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/[^0-9]+/g</span>;</span><br><span class="line"></span><br><span class="line">target.match(regExp); <span class="comment">// -&gt; [&quot;AA BB &quot;, &quot; Aa Bb&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="시작-위치로-검색"><a href="#시작-위치로-검색" class="headerlink" title="시작 위치로 검색"></a>시작 위치로 검색</h3><p><code>[...]</code> 밖의 ^은 문자열의 시작을 의미한다. 위에서 살펴봤듯 <code>[...]</code> 내의 ^은 not의 의미를 가진다</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;https://poiemaweb.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;https&#x27;로 시작하는지 검사한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/^https/</span>;</span><br><span class="line"></span><br><span class="line">regExp.test(target); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="마지막-위치로-검색"><a href="#마지막-위치로-검색" class="headerlink" title="마지막 위치로 검색"></a>마지막 위치로 검색</h2><p><code>$</code>는 문자열의 마지막을 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;https://poiemaweb.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;com&#x27;으로 끝나는지 검사한다.</span></span><br><span class="line"><span class="keyword">const</span> regExp = <span class="regexp">/com$/</span>;</span><br><span class="line"></span><br><span class="line">regExp.test(target); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="자주-사용하는-정규표현식"><a href="#자주-사용하는-정규표현식" class="headerlink" title="자주 사용하는 정규표현식"></a>자주 사용하는 정규표현식</h2><h3 id="특정-단어로-시작하는지-검사"><a href="#특정-단어로-시작하는지-검사" class="headerlink" title="특정 단어로 시작하는지 검사"></a>특정 단어로 시작하는지 검사</h3><p><code>[...]</code> 바깥의 <code>^</code>은 문자열의 시작을 의미한다. <code>?</code>은 앞선 패턴이 최대 한 번(0번 포함)이상 반복되는지를 의미한다. 다시 말해, 검색 대상 문자열에 앞선 패턴이 있어도 없어도 매치된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://example.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;http://&#x27; 또는 &#x27;https://&#x27;로 시작하는지 검사한다.</span></span><br><span class="line">/^https?:\/\<span class="comment">//.test(url); // -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>다음 방법도 동일하게 동작한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(http|https):\/\<span class="comment">//.test(url); // -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="특정-단어로-끝나는지-검사"><a href="#특정-단어로-끝나는지-검사" class="headerlink" title="특정 단어로 끝나는지 검사"></a>특정 단어로 끝나는지 검사</h3><p>다음 예제는 검색 대상 문자열이 ‘html’로 끝나는지 검사한다. <code>$</code>는 문자열의 마지막을 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fileName = <span class="string">&#x27;index.html&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x27;html&#x27;로 끝나는지 검사한다.</span></span><br><span class="line">/html$/.test(fileName); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="숫자로만-이루어진-문자열인지-검사"><a href="#숫자로만-이루어진-문자열인지-검사" class="headerlink" title="숫자로만 이루어진 문자열인지 검사"></a>숫자로만 이루어진 문자열인지 검사</h3><p><code>[...]</code> 바깥의 <code>^</code>은 문자열의 시작을, <code>$</code>는 문자열의 마지막을 의미한다. <code>\d</code>는 숫자를 의미하고 <code>+</code>는 앞선 패턴이 최소 한 번 이상 반복되는 문자열을 의미한다. 즉, 처음과 끝이 숫자이고 최소 한 번 이상 반복되는 문자열과 매치한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;12345&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 숫자로만 이루어진 문자열인지 검사한다.</span></span><br><span class="line">/^\d+$/.test(target); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="하나-이상의-공백으로-시작하는지-검사"><a href="#하나-이상의-공백으로-시작하는지-검사" class="headerlink" title="하나 이상의 공백으로 시작하는지 검사"></a>하나 이상의 공백으로 시작하는지 검사</h3><p>\s는 여러 가지 공백 문자(스페이스, 탭 등)를 의미한다. 즉, \s는 [\t\r\n\v\f]와 같은 의미다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27; Hi!&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 하나 이상의 공백으로 시작하는지 검사한다.</span></span><br><span class="line">/^[\s]+<span class="regexp">/.test(target); /</span><span class="regexp">/ -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="아이디로-사용-가능한지-검사"><a href="#아이디로-사용-가능한지-검사" class="headerlink" title="아이디로 사용 가능한지 검사"></a>아이디로 사용 가능한지 검사</h3><p>{4,10}은 앞선 패턴(알파벳 대소문자 또는 숫자)이 최소 4번, 최대 10번 반복되는 문자열을 의미한다. 즉, 4 ~ 10자리로 이루어진 알파벳 대소문자 또는 숫자를 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="string">&#x27;abc123&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 알파벳 대소문자 또는 숫자로 시작하고 끝나며 4 ~10자리인지 검사한다.</span></span><br><span class="line">/^[A-Za-z0-<span class="number">9</span>]&#123;<span class="number">4</span>,<span class="number">10</span>&#125;$/.test(id); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="매일-주소-형식에-맞는지-검사"><a href="#매일-주소-형식에-맞는지-검사" class="headerlink" title="매일 주소 형식에 맞는지 검사"></a>매일 주소 형식에 맞는지 검사</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">&#x27;ungmo2@gmail.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line">/^[<span class="number">0</span>-<span class="number">9</span>a-zA-Z]([-_\.]?[<span class="number">0</span>-<span class="number">9</span>a-zA-Z])*@[<span class="number">0</span>-<span class="number">9</span>a-zA-Z]([-_\.]?[<span class="number">0</span>-<span class="number">9</span>a-zA-Z])*\.[a-zA-Z]&#123;<span class="number">2</span>,<span class="number">3</span>&#125;$/.test(email); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>위처럼 간단하게도 할 수 있지만 인터넷 메시지 형식 규약인 RFC 5322에 맞는 정교한 패턴 매칭이 필요하다면 매우 복잡한 패턴을 사용해야한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?:[a-z0-<span class="number">9</span>!#$%&amp;<span class="string">&#x27;*+/=?^_`&#123;|&#125;~-]+(?:\.[a-z0-9!#$%&amp;&#x27;</span>*+/=?^_<span class="string">`&#123;|&#125;~-]+)*|&quot;(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot;)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="핸드폰-번호-형식에-맞는지-검사"><a href="#핸드폰-번호-형식에-맞는지-검사" class="headerlink" title="핸드폰 번호 형식에 맞는지 검사"></a>핸드폰 번호 형식에 맞는지 검사</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cellphone = <span class="string">&#x27;010-1234-5678&#x27;</span>;</span><br><span class="line"></span><br><span class="line">/^\d&#123;<span class="number">3</span>&#125;-\d&#123;<span class="number">3</span>,<span class="number">4</span>&#125;-\d&#123;<span class="number">4</span>&#125;$/.test(cellphone); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="특수-문자-포함-여부-검사"><a href="#특수-문자-포함-여부-검사" class="headerlink" title="특수 문자 포함 여부 검사"></a>특수 문자 포함 여부 검사</h3><p>특수 문자는 A-Za-z0-9 이외의 문자다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="string">&#x27;abc#123&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A-Za-z0-9 이외의 문자가 있는지 검사한다.</span></span><br><span class="line">(<span class="regexp">/[^A-Za-z0-9]/gi</span>).test(target); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>특수 문자를 제거할때는 String.prototype.replace메서드를 사용한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target.replace(<span class="regexp">/[^A-Za-z0-9]/gi</span>, <span class="string">&#x27;&#x27;</span>); <span class="comment">// -&gt; abc123</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D"><span class="toc-number">1.</span> <span class="toc-text">정규 표현식</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%EC%83%9D%EC%84%B1"><span class="toc-number">1.1.</span> <span class="toc-text">정규 표현식 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%EB%A6%AC%ED%84%B0%EB%9F%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">정규 표현식 리터럴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">RegExp 메서드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-prototype-exec"><span class="toc-number">1.2.1.</span> <span class="toc-text">RegExp.prototype.exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-prototype-test"><span class="toc-number">1.2.2.</span> <span class="toc-text">RegExp.prototype.test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-prototype-match"><span class="toc-number">1.2.3.</span> <span class="toc-text">String.prototype.match</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%8C%EB%9E%98%EA%B7%B8"><span class="toc-number">1.3.</span> <span class="toc-text">플래그</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%8C%A8%ED%84%B4"><span class="toc-number">1.4.</span> <span class="toc-text">패턴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">문자열 검색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%84%EC%9D%98%EC%9D%98-%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">임의의 문자열 검색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B0%98%EB%B3%B5-%EA%B2%80%EC%83%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">반복 검색</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%EA%B2%80%EC%83%89"><span class="toc-number">1.5.</span> <span class="toc-text">OR 검색</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%EA%B2%80%EC%83%89"><span class="toc-number">1.6.</span> <span class="toc-text">NOT 검색</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%9C%EC%9E%91-%EC%9C%84%EC%B9%98%EB%A1%9C-%EA%B2%80%EC%83%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">시작 위치로 검색</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A7%88%EC%A7%80%EB%A7%89-%EC%9C%84%EC%B9%98%EB%A1%9C-%EA%B2%80%EC%83%89"><span class="toc-number">1.7.</span> <span class="toc-text">마지막 위치로 검색</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D"><span class="toc-number">1.8.</span> <span class="toc-text">자주 사용하는 정규표현식</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%A0%95-%EB%8B%A8%EC%96%B4%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.1.</span> <span class="toc-text">특정 단어로 시작하는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%A0%95-%EB%8B%A8%EC%96%B4%EB%A1%9C-%EB%81%9D%EB%82%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.2.</span> <span class="toc-text">특정 단어로 끝나는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%88%AB%EC%9E%90%EB%A1%9C%EB%A7%8C-%EC%9D%B4%EB%A3%A8%EC%96%B4%EC%A7%84-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B8%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.3.</span> <span class="toc-text">숫자로만 이루어진 문자열인지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%98%EB%82%98-%EC%9D%B4%EC%83%81%EC%9D%98-%EA%B3%B5%EB%B0%B1%EC%9C%BC%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.4.</span> <span class="toc-text">하나 이상의 공백으로 시작하는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%84%EC%9D%B4%EB%94%94%EB%A1%9C-%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.5.</span> <span class="toc-text">아이디로 사용 가능한지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A7%A4%EC%9D%BC-%EC%A3%BC%EC%86%8C-%ED%98%95%EC%8B%9D%EC%97%90-%EB%A7%9E%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.6.</span> <span class="toc-text">매일 주소 형식에 맞는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%B8%EB%93%9C%ED%8F%B0-%EB%B2%88%ED%98%B8-%ED%98%95%EC%8B%9D%EC%97%90-%EB%A7%9E%EB%8A%94%EC%A7%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.7.</span> <span class="toc-text">핸드폰 번호 형식에 맞는지 검사</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8A%B9%EC%88%98-%EB%AC%B8%EC%9E%90-%ED%8F%AC%ED%95%A8-%EC%97%AC%EB%B6%80-%EA%B2%80%EC%82%AC"><span class="toc-number">1.8.8.</span> <span class="toc-text">특수 문자 포함 여부 검사</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&text=정규표현식"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&is_video=false&description=정규표현식"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=정규표현식&body=Check out this article: https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&title=정규표현식"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&name=정규표현식&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/12/22/JavaScript/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/&t=정규표현식"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
