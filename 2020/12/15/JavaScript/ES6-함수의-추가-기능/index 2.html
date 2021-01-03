@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ES6 함수의 추가 기능함수의 구분ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다. 자바스크립트의 함수는 일반적인 함수로서 호출할 수도 있고, new 연산자와 함께 호출하여 인스턴스를 생성할 수 있는 생성자 함수로서 호출할 수도 있으며, 객체에 바인딩되어 메서드로서 호출할 수도 있다. 이는 언뜻 보면 편리한 것 같지만 실수">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 함수의 추가 기능">
+<meta property="og:url" content="https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="ES6 함수의 추가 기능함수의 구분ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다. 자바스크립트의 함수는 일반적인 함수로서 호출할 수도 있고, new 연산자와 함께 호출하여 인스턴스를 생성할 수 있는 생성자 함수로서 호출할 수도 있으며, 객체에 바인딩되어 메서드로서 호출할 수도 있다. 이는 언뜻 보면 편리한 것 같지만 실수">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-12-15T03:09:55.000Z">
+<meta property="article:modified_time" content="2020-12-15T17:27:37.574Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ES6 함수의 추가 기능</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/12/15/TIL/20201215-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/12/14/TIL/20201214-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&text=ES6 함수의 추가 기능"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&is_video=false&description=ES6 함수의 추가 기능"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 함수의 추가 기능&body=Check out this article: https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&name=ES6 함수의 추가 기능&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&t=ES6 함수의 추가 기능"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5"><span class="toc-number">1.</span> <span class="toc-text">ES6 함수의 추가 기능</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%95%A8%EC%88%98%EC%9D%98-%EA%B5%AC%EB%B6%84"><span class="toc-number">1.1.</span> <span class="toc-text">함수의 구분</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">메서드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98"><span class="toc-number">1.3.</span> <span class="toc-text">화살표 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">화살표 함수 정의</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EC%99%80-%EC%9D%BC%EB%B0%98-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.3.2.</span> <span class="toc-text">화살표 함수와 일반 함수의 차이</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this"><span class="toc-number">1.3.3.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super"><span class="toc-number">1.3.4.</span> <span class="toc-text">super</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arguments"><span class="toc-number">1.3.5.</span> <span class="toc-text">arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rest-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0"><span class="toc-number">1.4.</span> <span class="toc-text">Rest 파라미터</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">기본 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rest-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EC%99%80-arguments-%EA%B0%9D%EC%B2%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text">Rest 파라미터와 arguments 객체</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%EA%B8%B0%EB%B3%B8%EA%B0%92"><span class="toc-number">1.5.</span> <span class="toc-text">매개변수 기본값</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ES6 함수의 추가 기능
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-15T03:09:55.000Z" itemprop="datePublished">2020-12-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="ES6-함수의-추가-기능"><a href="#ES6-함수의-추가-기능" class="headerlink" title="ES6 함수의 추가 기능"></a>ES6 함수의 추가 기능</h1><h2 id="함수의-구분"><a href="#함수의-구분" class="headerlink" title="함수의 구분"></a>함수의 구분</h2><p>ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다. 자바스크립트의 함수는 일반적인 함수로서 호출할 수도 있고, new 연산자와 함께 호출하여 인스턴스를 생성할 수 있는 생성자 함수로서 호출할 수도 있으며, 객체에 바인딩되어 메서드로서 호출할 수도 있다. 이는 언뜻 보면 편리한 것 같지만 실수를 유발시킬 수 있으며 성능 면에서도 손해다.</p>
+<p>ES6 이전의 함수는 동일한 함수도 다양한 형태로 호출할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반적인 함수로서 호출</span></span><br><span class="line">foo(); <span class="comment">// -&gt; 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 생성자 함수로서 호출</span></span><br><span class="line"><span class="keyword">new</span> foo(); <span class="comment">// -&gt; foo &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 메서드로서 호출</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">foo</span>: foo &#125;;</span><br><span class="line">obj.foo(); <span class="comment">// -&gt; 1</span></span><br></pre></td></tr></table></figure>
+
+<p>이렇게 ES6 이전의 함수는 사용 목적에 따라 명확히 구분되지 않는다. 즉, ES6 이전의 모든 함수는 일반 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. 다시 말해, ES6 이전의 모든 함수는 callable이면서 constructor다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 이전의 모든 함수는 callable이면서 constructor다.</span></span><br><span class="line">foo(); <span class="comment">// -&gt; undefined</span></span><br><span class="line"><span class="keyword">new</span> foo(); <span class="comment">// -&gt; foo &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 이전에 일반적으로 메서드라고 부르던 객체에 바인딩된 함수도 callable이며 constructor라는 것이다. 따라서 객체에 바인딩된 함수도 일반 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수도 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 프로퍼티 f에 바인딩된 함수는 callable이며 constructor다.</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  x: <span class="number">10</span>,</span><br><span class="line">  f: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">this</span>.x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 f에 바인딩된 함수를 메서드로서 호출</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.f()); <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 f에 바인딩된 함수를 일반 함수로서 호출</span></span><br><span class="line"><span class="keyword">var</span> bar = obj.f;</span><br><span class="line"><span class="comment">// 전역객체의 x를 찾게되기 때문에 undefined를 반환</span></span><br><span class="line"><span class="built_in">console</span>.log(bar()); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 f에 바인딩된 함수를 생성자 함수로서 호출</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> obj.f()); <span class="comment">// f &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>객체에 바인딩된 함수를 생성자 함수로 호출하는 경우가 흔치는 않겠지만 문법상 가능하다는 것은 문제가 있다. 그리고 이는 성능 면에서도 문제가 있다. 객체에 바인딩된 함수가 constructor라는 것은 객체에 바인딩된 함수가 prototype 프로퍼티를 가지며, 프로토타입 객체도 생성한다는 것을 의미하기 때문이다.</p>
+<p>함수에 전달되어 보조 함수의 역할을 수행하는 콜백 함수도 마찬가지다. 콜백 함수도 constructor이기 때문에 불필요한 프로토타입 객체를 생성한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 콜백 함수를 사용하는 고차 함수 map. 콜백 함수도 constructor이며 프로토타입을 생성한다.</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;); <span class="comment">// -&gt; [ 2, 4, 6 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>이처럼 ES6 이전의 모든 함수는 사용 목적에 따라 명확한 구분이 없으므로 호출 방식에 특별한 제약이 없고 생성자 함수로 호출되지 않아도 프로토타입 객체를 생성한다. 이는 혼란스러우며 실수를 유발할 가능성이 있고 성능에도 좋지 않다.</p>
+<p>이러한 문제를 해결하기 위해 ES6에서는 함수를 사용 목적에 따라 세 가지 종류로 명확히 구분했다. (사실 이 세 가지 종류의 함수 외에도 제너레이터 함수와 async 함수가 존재한다.)</p>
+<table>
+<thead>
+<tr>
+<th>ES6 함수의 구분</th>
+<th>constructor</th>
+<th>prototype</th>
+<th>super</th>
+<th>arguments</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>일반 함수</td>
+<td>○</td>
+<td>○</td>
+<td>✗</td>
+<td>○</td>
+</tr>
+<tr>
+<td>메서드</td>
+<td>✗</td>
+<td>✗</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>화살표 함수</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody></table>
+<p>일반 함수는 함수 선언문이나 함수 표현식으로 정의한 함수를 말하며, ES6 이전의 함수와 차이가 없다. 하지만 ES6의 메서드와 화살표 함수는 ES6 이전의 함수와 명확한 차이가 있다.</p>
+<p>일반 함수는 constructor이지만 ES6의 메서드와 화살표 함수는 non-constructor다.</p>
+<h2 id="메서드"><a href="#메서드" class="headerlink" title="메서드"></a>메서드</h2><p>ES6 이전 사양에는 메서드에 대한 명확한 정의가 없었다. 일반적으로 메서드는 객체에 바인딩된 함수를 일컫는 의미로 사용되었다. ES6 사양에서는 메서드에 대한 정의가 명확하게 규정되었다. ES6 사양에서 메서드는 메서드 축약 표현으로 정의된 함수만을 의미한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  x: <span class="number">1</span>,</span><br><span class="line">  <span class="comment">// foo는 메서드이다.</span></span><br><span class="line">  <span class="function"><span class="title">foo</span>(<span class="params"></span>)</span> &#123; <span class="keyword">return</span> <span class="built_in">this</span>.x; &#125;,</span><br><span class="line">  <span class="comment">// bar에 바인딩된 함수는 메서드가 아닌 일반 함수이다.</span></span><br><span class="line">  bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">this</span>.x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.foo()); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.bar()); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 사양에서 정의한 메서드(이하 ES6 메서드)는 인스턴스를 생성할 수 없는 non-constructor다. 따라서 ES6 메서드는 생성자 함수로서 호출할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> obj.foo(); <span class="comment">// -&gt; TypeError: obj.foo is not a constructor</span></span><br><span class="line"><span class="keyword">new</span> obj.bar(); <span class="comment">// -&gt; bar &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 메서드는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// obj.foo는 constructor가 아닌 ES6 메서드이므로 prototype 프로퍼티가 없다.</span></span><br><span class="line">obj.foo.hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// obj.bar는 constructor인 일반 함수이므로 prototype 프로퍼티가 있다.</span></span><br><span class="line">obj.bar.hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>표준 빌드인 객체가 제공하는 프로토타입 메서드와 정적 메서드는 모두 non-constructor다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.toUpperCase.prototype; <span class="comment">// -&gt; undefined</span></span><br><span class="line"><span class="built_in">String</span>.fromCharCode.prototype           <span class="comment">// -&gt; undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>.prototype.toFixed.prototype; <span class="comment">// -&gt; undefined</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite.prototype;          <span class="comment">// -&gt; undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.map.prototype; <span class="comment">// -&gt; undefined</span></span><br><span class="line"><span class="built_in">Array</span>.from.prototype;          <span class="comment">// -&gt; undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 메서드는 자신을 바인딩한 객체를 가리키는 내부 슬롯 <code>[[HomeObject]]</code>를 갖는다. super 참조는 내부 슬롯 <code>[[HomeObject]]</code>를 사용하여 수퍼클래스의 메서드를 참조하므로 내부 슬롯 <code>[[HomeObject]]</code>를 갖는 ES6 메서드는 super 키워드를 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> base = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi! <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> derived = &#123;</span><br><span class="line">  __proto__: base,</span><br><span class="line">  <span class="comment">// sayHi는 ES6 메서드다. ES6 메서드는 [[HomeObject]]를 갖는다.</span></span><br><span class="line">  <span class="comment">// sayHi의 [[HomeObject]]는 derived.prototype을 가리키고</span></span><br><span class="line">  <span class="comment">// super는 sayHi의 [[HomeObject]]의 프로토타입인 base.prototype을 가리킨다.</span></span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">super</span>.sayHi()&#125;</span>. how are you doing?`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(derived.sayHi()); <span class="comment">// Hi! Lee. how are you doing?</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 메서드가 아닌 함수는 super 키워드를 사용할 수 없다. ES6 메서드가 아닌 함수는 내부 슬롯 <code>[[HomeObject]]</code>를 갖지 않기 때문이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> derived = &#123;</span><br><span class="line">  __proto__: base,</span><br><span class="line">  <span class="comment">// sayHi는 ES6 메서드가 아니다.</span></span><br><span class="line">  <span class="comment">// 따라서 sayHi는 [[HomeObject]]를 갖지 않으므로 super 키워드를 사용할 수 없다.</span></span><br><span class="line">  sayHi: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// SyntaxError: &#x27;super&#x27; keyword unexpected here</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">super</span>.sayHi()&#125;</span>. how are you doing?`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>이처럼 ES6 메서드는 본연의 기능(super)을 추가하고 의미적으로 맞지 않는 기능(constructor)은 제거했다. 따라서 메서드를 정의할 때 프로퍼티 값으로 익명 함수 표현식을 할당하는 ES6 이전의 방식은 사용하지 않는 것이 좋다.</p>
+<h2 id="화살표-함수"><a href="#화살표-함수" class="headerlink" title="화살표 함수"></a>화살표 함수</h2><p>화살표 함수(arrow function)는 function 키워드 대신 화살표(=&gt;, fat arrow)를 사용하여 기존의 함수 정의 방식보다 간략하게 함수를 정의할 수 있다. 화살표 함수는 표현만 간략한 것이 아니라 내부 동작도 기존의 함수보다 간략하다. 특히 화살표 함수는 콜백 함수 내부에서 this가 전역 객체를 가리키는 문제를 해결하기 위한 대안으로 유용하다.</p>
+<h3 id="화살표-함수-정의"><a href="#화살표-함수-정의" class="headerlink" title="화살표 함수 정의"></a>화살표 함수 정의</h3><p>화살표 함수 정의 문법을 살펴보자.</p>
+<ol>
+<li>함수 정의</li>
+</ol>
+<p>화살표 함수는 함수 선언문으로 정의할 수 없고 함수 표현식으로 정의해야 한다. 호출 방식은 기존 함수와 동일하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x, y 두개의 매개변수를 받아 그 매개변수를 곱하여 반환해주는 함수</span></span><br><span class="line"><span class="keyword">const</span> multiply = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x * y;</span><br><span class="line">multiply(<span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>매개변수 선언</li>
+</ol>
+<p>매개변수가 여러 개인 경우 소괄호 ()안에 매개변수를 선언한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function">(<span class="params">x, y</span>) =&gt;</span> &#123; ... &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>매개변수가 한 개인 경우 소괄호 ()를 생략할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function"><span class="params">x</span> =&gt;</span> &#123; ... &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>매개변수가 없는 경우 소괄호 ()를 생략할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> &#123; ... &#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>함수 몸체 정의</li>
+</ol>
+<p>함수 몸체가 하나의 문으로 구성된다면 몸체를 감싸는 중괄호 {}를 생략할 수 있다. 이때 함수 몸체 내부의 문이 값으로 평가될 수 있는 표현식인 문이라면 암묵적으로 반환된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> power = <span class="function"><span class="params">x</span> =&gt;</span> x ** <span class="number">2</span>;</span><br><span class="line">power(<span class="number">2</span>); <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위 코드와 아래 코드가 동일하다.</span></span><br><span class="line"><span class="keyword">const</span> power2 = <span class="function"><span class="params">x</span> =&gt;</span> &#123;<span class="keyword">return</span> x ** <span class="number">2</span>; &#125;;</span><br><span class="line">power2(<span class="number">2</span>); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>함수 몸체를 감싸는 중괄호 {}를 생략한 경우 함소 몸체 내부의 문이 표현식이 아닌 문이라면 에러가 발생한다. 표현식이 아닌 문은 반환할 수 없기 때문이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> <span class="keyword">const</span> x = <span class="number">1</span>; <span class="comment">// SyntaxError: Unexpected token &#x27;const&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위 표현은 다음과 같이 해석된다.</span></span><br><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> &#123; <span class="keyword">return</span> <span class="keyword">const</span> x = <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>따라서 함수 몸체가 하나의 문으로 구성된다 해도 함수 몸체의 문이 표현식이 아닌 문이라면 중괄호를 생략할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> &#123; <span class="keyword">const</span> x = <span class="number">1</span>; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>객체 리터럴을 반환하는 경우 객체 리터럴을 소괄호 ()로 감싸 주어야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 이때 주의할것은 객체리터럴이라고 중괄호 뒤에 세미콜론 ; 을 붙혀주면 문법 에러가 난다.</span></span><br><span class="line"><span class="keyword">const</span> create = <span class="function">(<span class="params">id, content</span>) =&gt;</span> (&#123; id, content &#125;);</span><br><span class="line">create(<span class="number">1</span>, <span class="string">&#x27;JavaScript&#x27;</span>); <span class="comment">// -&gt; &#123;id: 1, content: &quot;JavaScript&quot;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위 표현은 다음과 동일하다.</span></span><br><span class="line"><span class="keyword">const</span> create2 = <span class="function">(<span class="params">id, content</span>) =&gt;</span> &#123; <span class="keyword">return</span> &#123; id, content &#125;; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 매개변수를 생략하고도 사용할 수 있다.</span></span><br><span class="line"><span class="keyword">const</span> create3 = <span class="function">() =&gt;</span> (&#123;<span class="attr">name</span>: <span class="string">&#x27;Ryu&#x27;</span>, <span class="attr">age</span>: <span class="number">24</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>객체 리터럴을 소괄호 ()로 감싸지 않으면 객체 리터럴의 중괄호 {}를 함수 몸체를 감싸는 중괄호 {}로 잘못 해석한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> create = <span class="function">(<span class="params">id, content</span>) =&gt;</span> &#123; id, content &#125;;</span><br><span class="line"><span class="comment">// return문이 없는것으로 해석되어 undefined가 반환된다.</span></span><br><span class="line">create(<span class="number">1</span>, <span class="string">&#x27;Javascript&#x27;</span>); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 위 코드는 아래코드와 같다.</span></span><br><span class="line"><span class="keyword">const</span> create2 = <span class="function"><span class="keyword">function</span> (<span class="params">id, content</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 식별자를 찾는 문이 된것임.</span></span><br><span class="line">  id,</span><br><span class="line">  content</span><br><span class="line">  <span class="comment">// 암묵적으로 return이 undefined를 반환</span></span><br><span class="line">  <span class="comment">// return undefined;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>함수 몸체가 여러 개의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 {}를 생략할 수 없다. 이때 반환값이 있다면 명시적으로 반환해야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> result = a + b;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수도 즉시 실행 함수(IIFE)로 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 객체 리터럴을 리턴하기때문에 ()로 &#123;&#125;를 감싸줬음</span></span><br><span class="line"><span class="keyword">const</span> person = (<span class="function"><span class="params">name</span> =&gt;</span> (&#123;</span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;<span class="keyword">return</span> <span class="string">`Hi My name is <span class="subst">$&#123;name&#125;</span>.`</span>; &#125;</span><br><span class="line">&#125;))(<span class="string">&#x27;Ryu&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.sayHi());</span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수도 일급 객체이므로 Array.prototype.map, Array.prototype.filter, Array.prototype.reduce 같은 고차 함수(Higher-Order Function, HOF)에 인수로 전달할 수 있다. 이 경우 일반적인 함수 표현식보다 표현이 간결하고 가독성이 좋다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="params">v</span> =&gt;</span> v * <span class="number">2</span>); <span class="comment">// -&gt; [ 2, 4, 6 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>이처럼 화살표 함수는 콜백 함수로서 정의할 때 유용하다. 화살표 함수는 표현만 간략한 것만이 아닌 일반 함수의 기능을 간략화하여 this도 편리하게 설계되었다. 일반 함수와 화살표 함수의 차이점을 살펴보자.</p>
+<h3 id="화살표-함수와-일반-함수의-차이"><a href="#화살표-함수와-일반-함수의-차이" class="headerlink" title="화살표 함수와 일반 함수의 차이"></a>화살표 함수와 일반 함수의 차이</h3><p>화살표 함수와 일반 함수의 차이는 다음과 같다.</p>
+<ol>
+<li>화살표 함수는 인스턴스를 생설할 수 없는 non-constructor이다.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="comment">// 화살표 함수는 생성자 함수로서 호출할 수 없다.</span></span><br><span class="line"><span class="keyword">new</span> Foo(); <span class="comment">// Uncaught TypeError: Foo is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="comment">// 화살표 함수는 prototype 프로퍼티가 없다.</span></span><br><span class="line">Foo.hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>중복된 매개변수 이름을 선언할 수 없다.</li>
+</ol>
+<p>일반 함수는 중복된 매개변수 이름을 선언해도 에러가 발생하지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normal</span>(<span class="params">a, a</span>) </span>&#123; <span class="keyword">return</span> a + a; &#125;</span><br><span class="line"><span class="comment">// a 매개변수가 마지막 인수값인 2로 초기화되면서 2 + 2의 결과가 나온다.</span></span><br><span class="line"><span class="built_in">console</span>.log(normal(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 strict mode에서는 중복된 매개변수 이름을 선언하면 에러가 발생한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normal</span>(<span class="params">a, a</span>) </span>&#123; <span class="keyword">return</span> a + a; &#125;</span><br><span class="line"><span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수에서도 중복된 매개변수 이름을 선언하면 에러가 발생한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrow = <span class="function">(<span class="params">a, a</span>) =&gt;</span> a + a;</span><br><span class="line"><span class="comment">// Uncaught SyntaxError: Duplicate parameter name not allowed in this context</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>화살표 함수는 함수 자체의 this, arguments, super, new.target 바인딩을 갖지 않는다.</li>
+</ol>
+<p>화살표 함수 내부에서 this, arguments, super, new.target을 참조하면 에러가 나는것이 아닌 스코프 체인을 통해 상위 스코프의 this, arguments, super, new.target을 참조한다.</p>
+<p>만약 화살표 함수와 화살표 함수가 중첩되어 있다면 상위 화살표 함수에도 this, arguments, super, new.target 바인딩이 없으므로 스코프 체인 상에서 가장 가까운 상위 함수 중에서 화살표 함수가 아닌 함수의 this, arguments, super, new.target을 참조한다.</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>화살표 함수가 일반 함수와 구별되는 가장 큰 특징은 바로 this다. 그리고 화살표 함수는 다른 함수의 인수로 전달되어 콜백 함수로 사용되는 경우가 많다.</p>
+<p>화살표 함수의 this는 일반 함수의 this와 다르게 동작한다. 이는 “콜백 함수 내부의 this 문제”, 즉 콜백 함수 내부의 this가 외부 함수의 this와 다르기 때문에 발생하는 문제를 해결하기 위해 의도적으로 설계된 것이다.</p>
+<p>this 바인딩은 함수의 호출 방식, 즉 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다. 다시 말해, 함수를 정의할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.</p>
+<p>이때 주의할 것은 일반 함수로서 호출되는 콜백 함수의 경우다. 고차 함수(Higher-Order Function, HOF)의 인수로 전달되어 고차 함수 내부에서 호출되는 콜백 함수도 중첩 함수라고 할 수 있다. 주어진 배열의 각 요소에 접두어를 추가하는 다음 예제를 살펴보자.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Prefixer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">prefix</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.prefix = prefix;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">add</span>(<span class="params">arr</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// add 메서드는 인수로 전달된 배열 arr을 순회하며 배열의 모든 요소에 prefix를 추가한다.</span></span><br><span class="line">    <span class="comment">// ①</span></span><br><span class="line">    <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.prefix + item; <span class="comment">// ②</span></span><br><span class="line">      <span class="comment">// -&gt; TypeError: Cannot read property &#x27;prefix&#x27; of undefined</span></span><br><span class="line">      <span class="comment">// 클래스내부에서는 strict mode가 적용되기 때문에 위 코드는 undefined.perfix라는 코드로 해석이된다.</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prefixer = <span class="keyword">new</span> Prefixer(<span class="string">&#x27;-webkit-&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(prefixer.add([<span class="string">&#x27;transition&#x27;</span>, <span class="string">&#x27;user-select&#x27;</span>]));</span><br></pre></td></tr></table></figure>
+
+<p>위 예제를 실행했을 때 기대하는 결과는 <code>[&#39;-webkit-transition&#39;, &#39;-webkit-user-select&#39;]</code>다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.</p>
+<p>프로토타입 메서드 내부인 ①에서 this는 메서드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 undefined를 가리킨다. 이는 Array.prototype.map 메서드가 콜백 함수를 일반 함수로서 호출하기 때문이다.</p>
+<ul>
+<li>Array.prototype.map 메서드<br>Array.prototype.map 메서드는 배열을 순회하며 배열의 각 요소에 대하여 인수로 전달된 콜백 함수를 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다. 위 예제에서 map 메서드는 매개변수 arr에 전달된 [‘transition’, ‘user-select’]를 순회하며 콜백 함수의 item 매개변수에게 arr의 요소값을 전달하면서 콜백 함수를 arr의 요소 개수만큼 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다</li>
+</ul>
+<p>일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다 그런데 클래스 내부의 모든 코드에는 strict mode가 암묵적으로 적용된다. 따라서 Array.prototype.map메서드의 콜백 함수에도 strict mode가 적용된다. strict mode에서 일반 함수로서 호출된 모든 함수 내부의 this에는 전역 객체가 아니라 undefined가 바인딩되므로 일반 함수로서 호출되는 Array.prototype.map 메서드의 콜백 함수 내부의 this에는 undefined가 바인딩된다.</p>
+<p>이때 발생하는 문제가 바로 “콜백 함수 내부의 this 문제”이다. 즉, 콜백 함수의 this와 외부 함수의 this가 서로 다른 값을 가리키고 있기 때문에 TypeError가 발생한 것이다. 이와 같은 “콜백 함수 내부의 this 문제”를 해결하기 위해 ES6 이전에는 다음과 같은 방법을 사용했다.</p>
+<ol>
+<li>add 메서드를 호출한 prefixer 객체를 가리키는 this를 일단 회피시킨 후에 콜백 함수 내부에서 사용한다.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="title">add</span>(<span class="params">arr</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// this를 일단 회피시킨다.</span></span><br><span class="line">  <span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">  <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// this 대신 that을 참조한다.</span></span><br><span class="line">    <span class="keyword">return</span> that.prefix + <span class="string">&#x27; &#x27;</span> + item;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Array.prototype.map의 두 번째 인수로 add 메서드를 호출한 prefixer 객체를 가리키는 this를 전달한다.</li>
+</ol>
+<p>ES5에서 도입된 Array.prototype.map은 “콜백 함수 내부의 this 문제”를 해결하기 위해 두 번째 인수로 콜백 함수 내부에서 this로 사용할 객체를 전달할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="title">add</span>(<span class="params">arr</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.prefix + <span class="string">&#x27; &#x27;</span> + item;</span><br><span class="line">  &#125;, <span class="built_in">this</span>); <span class="comment">// this에 바인딩된 값이 콜백 함수 내부의 this에 바인딩된다.</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Function.prototype.bind 메서드를 사용하여 add 메서드를 호출한 prefixer 객체를 가리키는 this를 바인딩한다.</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="title">add</span>(<span class="params">arr</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.prefix + <span class="string">&#x27; &#x27;</span> + item;</span><br><span class="line">  &#125;.bind(<span class="built_in">this</span>)); <span class="comment">// this에 바인딩된 값이 콜백 함수 내부의 this에 바인딩된다.</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>ES6에서는 화살표 함수를 사용하여 “콜백 함수 내부의 this 문제”를 해결할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Prefixer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">prefix</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.prefix = prefix;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">add</span>(<span class="params">arr</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">this</span>.prefix + item);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prefixer = <span class="keyword">new</span> Prefixer(<span class="string">&#x27;-webkit-&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(prefixer.add([<span class="string">&#x27;transition&#x27;</span>, <span class="string">&#x27;user-select&#x27;</span>]));</span><br><span class="line"><span class="comment">// [&#x27;-webkit-transition&#x27;, &#x27;-webkit-user-select&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수는 함수 자체의 this 바인딩을 갖지 않는다. 따라서 화살표 함수 내부에서 this를 참조하면 상위 스코프의 this를 그대로 참조한다. 이를 lexical this라 한다. 이는 마치 렉시컬 스코프와 같이 화살표 함수의 this가 함수가 정의된 위치에 의해 결정된다는 것을 의미한다.</p>
+<p>화살표 함수를 제외한 모든 함수에는 this 바인딩이 반드시 존재한다. 따라서 ES6에서 화살표 함수가 도입되기 이전에는 일반적인 식별자처럼 스코프 체인을 통해 this를 탐색할 필요가 없었다. 하지만 화살표 함수는 함수 자체의 this 바인딩이 존재하지 않는다. 따라서 화살표 함수 내부에서 this를 참조하면 일반적인 식별자처럼 스코프 체인을 통해 상위 스코프에서 this를 탐색한다. 화살표 함수를 Function.prototype.bind를 사용하여 표현하면 다음과 같다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 화살표 함수는 상위 스코프의 this를 참조한다.</span></span><br><span class="line">() =&gt; <span class="built_in">this</span>.x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 익명 함수에 상위 스코프의 this를 주입한다. 위 화살표 함수와 동일하게 동작한다.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">this</span>.x; &#125;).bind(<span class="built_in">this</span>);</span><br></pre></td></tr></table></figure>
+
+<p>만약 화살표 함수와 화살표 함수가 중첩되어 있다면 상위 화살표 함수에도 this 바인딩이 없으므로 스코프 체인 상에서 가장 가까운 상위 함수 중에서 화살표 함수가 아닌 함수의 this를 참조한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 중첩 함수 foo의 상위 스코프는 즉시 실행 함수다.</span></span><br><span class="line"><span class="comment">// 따라서 화살표 함수 foo의 this는 상위 스코프인 즉시 실행 함수의 this를 가리킨다.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> foo = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">  foo();</span><br><span class="line">&#125;).call(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;); <span class="comment">// &#123; a: 1 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bar 함수는 화살표 함수를 반환한다.</span></span><br><span class="line"><span class="comment">// bar 함수가 반환한 화살표 함수의 상위 스코프는 화살표 함수 bar다.</span></span><br><span class="line"><span class="comment">// 하지만 화살표 함수는 함수 자체의 this 바인딩을 갖지 않으므로 bar 함수가 반환한</span></span><br><span class="line"><span class="comment">// 화살표 함수 내부에서 참조하는 this는 화살표 함수가 아닌 즉시 실행 함수의 this를 가리킨다.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> bar = <span class="function">() =&gt;</span> <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">  bar()();</span><br><span class="line">&#125;).call(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;); <span class="comment">// &#123; a: 1 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>만약 화살표 함수가 전역 함수라면 화살표 함수의 this는 전역 객체를 가리킨다. 전역 함수의 상위 스코프는 전역이고 전역에서 this는 전역 객체를 가리키기 때문이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 전역 함수 foo의 상위 스코프는 전역이므로 화살표 함수 foo의 this는 전역 객체를 가리킨다.</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">foo(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+
+<p>프로퍼티에 할당한 화살표 함수도 스코프 체인 상에서 가장 가까운 상위 함수 중에서 화살표 함수가 아닌 함수의 this를 참조한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// increase 프로퍼티에 할당한 화살표 함수의 상위 스코프는 전역이다.</span></span><br><span class="line"><span class="comment">// 따라서 increase 프로퍼티에 할당한 화살표 함수의 this는 전역 객체를 가리킨다.</span></span><br><span class="line"><span class="keyword">const</span> counter = &#123;</span><br><span class="line">  num: <span class="number">1</span>,</span><br><span class="line">  increase: <span class="function">() =&gt;</span> ++<span class="built_in">this</span>.num</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(counter.increase()); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수는 함수 자체의 this 바인딩을 갖지 않기 때문에 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메서드를 사용해도 화살표 함수 내부의 this를 교체할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> normal = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">this</span>.x; &#125;;</span><br><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> <span class="built_in">this</span>.x;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(normal.call(&#123; <span class="attr">x</span>: <span class="number">10</span> &#125;)); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(arrow.call(&#123; <span class="attr">x</span>: <span class="number">10</span> &#125;));  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>화살표 함수가 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메서드를 호출할 수 없다는 의미는 아니다. 화살표 함수는 함수 자체의 this 바인딩을 갖지 않기 때문에 this를 교체할 수 없고 언제나 상위 스코프의 this 바인딩을 참조한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add.call(<span class="literal">null</span>, <span class="number">1</span>, <span class="number">2</span>));    <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(add.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(add.bind(<span class="literal">null</span>, <span class="number">1</span>, <span class="number">2</span>)());  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>메서드를 화살표 함수로 정의하는 것은 피해야 한다. 화살표 함수로 메서드를 정의하여 보자. 여기서 말하는 메서드는 ES6 메서드가 아닌 일반적인 의미의 메서드를 말한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span>,</span><br><span class="line">  sayHi: <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sayHi 프로퍼티에 할당된 화살표 함수 내부의 this는 상위 스코프인 전역의 this가 가리키는</span></span><br><span class="line"><span class="comment">// 전역 객체를 가리키므로 이 예제를 브라우저에서 실행하면 this.name은 빈 문자열을 갖는</span></span><br><span class="line"><span class="comment">// window.name과 같다. 전역 객체 window에는 빌트인 프로퍼티 name이 존재한다.</span></span><br><span class="line">person.sayHi(); <span class="comment">// Hi</span></span><br></pre></td></tr></table></figure>
+
+<p>위 예제의 경우 sayHi 프로퍼티에 할당한 화살표 함수 내부의 this는 메서드를 호출한 객체인 person을 가리키지 않고 상위 스코프인 전역의 this가 가리키는 전역 객체를 가리킨다. 따라서 화살표 함수로 메서드를 정의하는 것은 바람직하지 않다. 메서드를 정의할 때는 ES6 메서드 축약 표현으로 정의한 ES6 메서드를 사용하는 것이 좋다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Good</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); <span class="comment">// Hi Lee</span></span><br></pre></td></tr></table></figure>
+
+<p>프로토타입 객체의 프로퍼티에 화살표 함수를 할당하는 경우도 동일한 문제가 발생한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayHi = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Lee&#x27;</span>);</span><br><span class="line"><span class="comment">// 이 예제를 브라우저에서 실행하면 this.name은 빈 문자열을 갖는 window.name과 같다.</span></span><br><span class="line">person.sayHi(); <span class="comment">// Hi</span></span><br></pre></td></tr></table></figure>
+
+<p>프로퍼티를 동적 추가할 때는 ES6 메서드 정의를 사용할 수 없으므로 일반 함수를 할당한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Good</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayHi = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>); &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Lee&#x27;</span>);</span><br><span class="line">person.sayHi(); <span class="comment">// Hi Lee</span></span><br></pre></td></tr></table></figure>
+
+<p>일반 함수가 아닌 ES6 메서드를 동적 추가하고 싶다면 다음과 같이 객체 리터럴을 바인딩하고 프로토타입의 constructor 프로퍼티와 생성자 함수 간의 연결을 재설정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">  <span class="comment">// constructor 프로퍼티와 생성자 함수 간의 연결을 재설정</span></span><br><span class="line">  <span class="title">constructor</span>: <span class="title">Person</span>,</span><br><span class="line">  <span class="title">sayHi</span>(<span class="params"></span>) &#123; <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Lee&#x27;</span>);</span><br><span class="line">person.sayHi(); <span class="comment">// Hi Lee</span></span><br></pre></td></tr></table></figure>
+
+<p>클래스 필드 정의 제안을 사용하여 클래스 필드에 화살표 함수를 할당할 수도 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 클래스 필드 정의 제안</span></span><br><span class="line">  name = <span class="string">&#x27;Lee&#x27;</span>;</span><br><span class="line">  sayHi = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.sayHi(); <span class="comment">// Hi Lee</span></span><br></pre></td></tr></table></figure>
+
+<p>이때 sayHi 클래스 필드에 할당한 화살표 함수 내부에서 this를 참조하면 상위 스코프의 this 바인딩을 참조한다. 그렇다면 sayHi 클래스 필드에 할당한 화살표 함수의 상위 스코프는 무엇일까? sayHi 클래스 필드는 인스턴스 프로퍼티이므로 다음과 같은 의미다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&#x27;Lee&#x27;</span>;</span><br><span class="line">    <span class="comment">// 클래스가 생성한 인스턴스(this)의 sayHi 프로퍼티에 화살표 함수를 할당한다.</span></span><br><span class="line">    <span class="comment">// sayHi 프로퍼티는 인스턴스 프로퍼티이다.</span></span><br><span class="line">    <span class="built_in">this</span>.sayHi = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>sayHi 클래스 필드에 할당한 화살표 함수의 상위 스코프는 constructor다. 따라서 sayHi 클래스 필드에 할당한 화살표 함수 내부에서 참조한 this는 constructor 내부의 this 바인딩과 같다. constructor 내부의 this 바인딩은 클래스가 생성한 인스턴스를 가리키므로 sayHi 클래스 필드에 할당한 화살표 함수 내부의 this 또한 클래스가 생성한 인스턴스를 가리킨다.</p>
+<p>하지만 클래스 필드에 할당한 화살표 함수는 프로토타입 메서드가 아니라 인스턴스 메서드가 된다. 따라서 메서드를 정의할 때는 ES6 메서드 축약 표현으로 정의한 ES6 메서드를 사용하는 것이 좋다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Good</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 클래스 필드 정의</span></span><br><span class="line">  name = <span class="string">&#x27;Lee&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123; <span class="built_in">console</span>.log(<span class="string">`Hi <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>); &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.sayHi(); <span class="comment">// Hi Lee</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>화살표 함수는 함수 자체의 super 바인딩을 갖지 않는다. 따라서 화살표 함수 내부에서 super를 참조하면 this와 마찬가지로 상위 스코프의 super를 참조한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">sayHi</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi! <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 화살표 함수의 super는 상위 스코프인 constructor의 super를 가리킨다.</span></span><br><span class="line">  sayHi = <span class="function">() =&gt;</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">super</span>.sayHi()&#125;</span> how are you doing?`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> derived = <span class="keyword">new</span> Derived(<span class="string">&#x27;Lee&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(derived.sayHi()); <span class="comment">// Hi! Lee how are you doing?</span></span><br></pre></td></tr></table></figure>
+
+<p>super는 내부 슬롯 [[HomeObject]]를 갖는 ES6 메서드 내에서만 사용할 수 있는 키워드다. sayHi 클래스 필드에 할당한 화살표 함수는 ES6 메서드는 아니지만 함수 자체의 super 바인딩을 갖지 않으므로 super를 참조해도 에러가 발생하지 않고 상위 스코프인 constructor의 super 바인딩을 참조한다.</p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>화살표 함수는 함수 자체의 arguments 바인딩을 갖지 않는다. 따라서 화살표 함수 내부에서 arguments를 참조하면 this와 마찬가지로 상위 스코프의 arguments를 참조한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 화살표 함수 foo의 arguments는 상위 스코프인 즉시 실행 함수의 arguments를 가리킨다.</span></span><br><span class="line">  <span class="keyword">const</span> foo = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// [Arguments] &#123; &#x27;0&#x27;: 1, &#x27;1&#x27;: 2 &#125;</span></span><br><span class="line">  foo(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">&#125;(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 화살표 함수 foo의 arguments는 상위 스코프인 전역의 arguments를 가리킨다.</span></span><br><span class="line"><span class="comment">// 하지만 전역에는 arguments 객체가 존재하지 않는다. arguments 객체는 함수 내부에서만 유효하다.</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// ReferenceError: arguments is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>arguments 객체는 함수를 정의할 때 매개변수의 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 스코프의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없고 상위 함수에게 전달된 인수 목록을 참조하므로 그다지 도움이 되지 않는다.</p>
+<p>따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.</p>
+<h2 id="Rest-파라미터"><a href="#Rest-파라미터" class="headerlink" title="Rest 파라미터"></a>Rest 파라미터</h2><h3 id="기본-문법"><a href="#기본-문법" class="headerlink" title="기본 문법"></a>기본 문법</h3><p>Rest 파라미터(Rest parameter, 나머지 매개변수)는 매개변수 이름 앞에 세개의 점 …을 붙여서 정의한 매개변수를 의미한다. Rest 파라미터는 함수에 전달된 인수들의 목록을 배열로 전달받는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">...rest</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 매개변수 rest는 인수들의 목록을 배열로 전달받는 Rest 파라미터다.</span></span><br><span class="line">  <span class="built_in">console</span>.log(rest); <span class="comment">// [ 1, 2, 3, 4, 5 ]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>일반 매개변수와 Rest 파라미터는 함께 사용할 수 있다. 이때 함수에 전달된 인수들은 매개변수와 Rest 파라미터에 순차적으로 할당된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">param, ...rest</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(param); <span class="comment">// 1</span></span><br><span class="line">  <span class="built_in">console</span>.log(rest);  <span class="comment">// [ 2, 3, 4, 5 ]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">param1, param2, ...rest</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(param1); <span class="comment">// 1</span></span><br><span class="line">  <span class="built_in">console</span>.log(param2); <span class="comment">// 2</span></span><br><span class="line">  <span class="built_in">console</span>.log(rest);   <span class="comment">// [ 3, 4, 5 ]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Rest 파라미터는 이름 그대로 먼저 선언된 매개변수에 할당된 인수를 제외한 나머지 인수들로 구성된 배열이 할당된다. 따라서 Rest 파라미터는 반드시 마지막 파라미터이어야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">...rest, param1, param2</span>) </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// SyntaxError: Rest parameter must be last formal parameter</span></span><br></pre></td></tr></table></figure>
+
+<p>Rest 파라미터는 단 하나만 선언할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">...rest1, ...rest2</span>) </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// SyntaxError: Rest parameter must be last formal parameter</span></span><br></pre></td></tr></table></figure>
+
+<p>Rest 파라미터는 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티에 영향을 주지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">unction <span class="function"><span class="title">foo</span>(<span class="params">...rest</span>)</span> &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo.length); <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x, ...rest</span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bar.length); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">x, y, ...rest</span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(baz.length); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Rest-파라미터와-arguments-객체"><a href="#Rest-파라미터와-arguments-객체" class="headerlink" title="Rest 파라미터와 arguments 객체"></a>Rest 파라미터와 arguments 객체</h3><p>ES5에서는 함수를 정의할 때 매개변수의 개수를 확정할 수 없는 가변 인자 함수의 경우 매개변수를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받았다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체(array-like object)이며, 함수 내부에서 지역 변수처럼 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 매개변수의 개수를 사전에 알 수 없는 가변 인자 함수</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 가변 인자 함수는 arguments 객체를 통해 인수를 전달받는다.</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// &#123;length: 2, &#x27;0&#x27;: 1, &#x27;1&#x27;: 2&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 arguments 객체는 배열이 아닌 유사 배열 객체이므로 배열 메서드를 사용하려면 Function.prototype.call이나 Function.prototype.apply 메서드를 사용해 arguments 객체를 배열로 변환해야 하는 번거로움이 있었다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 유사 배열 객체인 arguments 객체를 배열로 변환한다.</span></span><br><span class="line">  <span class="keyword">var</span> array = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> array.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">pre, cur</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pre + cur;</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6에서는 rest 파라미터를 사용하여 가변 인자 함수의 인수 목록을 배열로 직접 전달받을 수 있다. 이를 통해 유사 배열 객체인 arguments 객체를 배열로 변환하는 번거로움을 피할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Rest 파라미터 args에는 배열 [1, 2, 3, 4, 5]가 할당된다.</span></span><br><span class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> pre + cur, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>함수와 ES6 메서드는 Rest 파라미터와 arguments 객체를 모두 사용할 수 있다. 하지만 화살표 함수는 함수 자체의 arguments 객체를 갖지 않는다. 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.</p>
+<h2 id="매개변수-기본값"><a href="#매개변수-기본값" class="headerlink" title="매개변수 기본값"></a>매개변수 기본값</h2><p>함수를 호출할 때 매개변수의 개수만큼 인수를 전달하는 것이 바람직하지만 그렇지 않은 경우에도 에러가 발생하지 않는다. 이는 자바스크립트 엔진이 매개변수의 개수와 인수의 개수를 체크하지 않기 때문이다.</p>
+<p>인수가 전달되지 않은 매개변수의 값은 undefined다. 이를 방치하면 다음 예제와 같이 의도치 않은 결과가 나올 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>)); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>따라서 다음 예제와 같이 매개변수에 인수가 전달되었는지 확인하여 인수가 전달되지 않은 경우 매개변수에 기본값을 할당할 필요가 있다. 즉, 방어 코드가 필요하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 인수가 전달되지 않아 매개변수의 값이 undefined인 경우 기본값을 할당한다.</span></span><br><span class="line">  x = x || <span class="number">0</span>;</span><br><span class="line">  y = y || <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>));    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6에서 도입된 매개변수 기본값을 사용하면 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>));    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>매개변수 기본값은 매개변수에 인수를 전달하지 않은 경우와 undefined를 전달한 경우에만 유효하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logName</span>(<span class="params">name = <span class="string">&#x27;Lee&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">logName();          <span class="comment">// Lee</span></span><br><span class="line">logName(<span class="literal">undefined</span>); <span class="comment">// Lee</span></span><br><span class="line">logName(<span class="literal">null</span>);      <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+
+<p>앞서 살펴본 Rest 파라미터에는 기본값을 지정할 수 없다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">...rest = []</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(rest);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// SyntaxError: Rest parameter may not have a default initializer</span></span><br></pre></td></tr></table></figure>
+
+<p>매개변수 기본값은 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티와 arguments 객체에 아무런 영향을 주지 않는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum.length); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>);    <span class="comment">// Arguments &#123; &#x27;0&#x27;: 1 &#125;</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// Arguments &#123; &#x27;0&#x27;: 1, &#x27;1&#x27;: 2 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 매개변수 기본값을 설정해 준 이후의 매개변수들은 length프로퍼티의 값에 영향을 끼치지 않는다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x = <span class="number">0</span>, y, z</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum.length); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5"><span class="toc-number">1.</span> <span class="toc-text">ES6 함수의 추가 기능</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%95%A8%EC%88%98%EC%9D%98-%EA%B5%AC%EB%B6%84"><span class="toc-number">1.1.</span> <span class="toc-text">함수의 구분</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">메서드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98"><span class="toc-number">1.3.</span> <span class="toc-text">화살표 함수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">화살표 함수 정의</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EC%99%80-%EC%9D%BC%EB%B0%98-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.3.2.</span> <span class="toc-text">화살표 함수와 일반 함수의 차이</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this"><span class="toc-number">1.3.3.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super"><span class="toc-number">1.3.4.</span> <span class="toc-text">super</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arguments"><span class="toc-number">1.3.5.</span> <span class="toc-text">arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rest-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0"><span class="toc-number">1.4.</span> <span class="toc-text">Rest 파라미터</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">기본 문법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rest-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EC%99%80-arguments-%EA%B0%9D%EC%B2%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text">Rest 파라미터와 arguments 객체</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%EA%B8%B0%EB%B3%B8%EA%B0%92"><span class="toc-number">1.5.</span> <span class="toc-text">매개변수 기본값</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&text=ES6 함수의 추가 기능"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&is_video=false&description=ES6 함수의 추가 기능"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ES6 함수의 추가 기능&body=Check out this article: https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&title=ES6 함수의 추가 기능"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&name=ES6 함수의 추가 기능&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/12/15/JavaScript/ES6-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B6%94%EA%B0%80-%EA%B8%B0%EB%8A%A5/&t=ES6 함수의 추가 기능"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

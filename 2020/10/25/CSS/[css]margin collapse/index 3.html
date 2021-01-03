@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="margin collapse(마진 병합, 상쇄) 특정 margin값들이 서로 만났을때 중복 되어지는 현상이다. 중복이라고 해서 서로의 값이 합쳐지는것이 아닌 하나의 margin으로 적용된다.  margin collapse는 버그나 오류가 아니다. IE8 이전 브라우저에서는 호환성 문제로 잘 작동하지 않는 사례도 있다고 하지만 레이아웃 흐름상 배치에 유리하게">
+<meta property="og:type" content="article">
+<meta property="og:title" content="margin collapse(마진 병합, 상쇄)">
+<meta property="og:url" content="https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="margin collapse(마진 병합, 상쇄) 특정 margin값들이 서로 만났을때 중복 되어지는 현상이다. 중복이라고 해서 서로의 값이 합쳐지는것이 아닌 하나의 margin으로 적용된다.  margin collapse는 버그나 오류가 아니다. IE8 이전 브라우저에서는 호환성 문제로 잘 작동하지 않는 사례도 있다고 하지만 레이아웃 흐름상 배치에 유리하게">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-25T13:25:34.000Z">
+<meta property="article:modified_time" content="2020-10-26T13:30:53.011Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>margin collapse(마진 병합, 상쇄)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/26/TIL/20201026-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/10/25/TIL/20201025-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&text=margin collapse(마진 병합, 상쇄)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&is_video=false&description=margin collapse(마진 병합, 상쇄)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=margin collapse(마진 병합, 상쇄)&body=Check out this article: https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&name=margin collapse(마진 병합, 상쇄)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&t=margin collapse(마진 병합, 상쇄)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#margin-collapse-%EB%A7%88%EC%A7%84-%EB%B3%91%ED%95%A9-%EC%83%81%EC%87%84"><span class="toc-number">1.</span> <span class="toc-text">margin collapse(마진 병합, 상쇄)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapse-why"><span class="toc-number">1.1.</span> <span class="toc-text">margin collapse, why?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing-%EB%A7%88%EC%A7%84%EB%B3%91%ED%95%A9-%EC%9D%B4-%EC%9D%BC%EC%96%B4%EB%82%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="toc-number">1.2.</span> <span class="toc-text">margin collapsing(마진병합)이 일어나는 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EC%9D%B8%EC%A0%91-%ED%98%95%EC%A0%9C-%EC%9A%94%EC%86%8C%EB%93%A4%EC%9D%98-%EC%83%81%ED%95%98-%EB%A7%88%EC%A7%84%EC%9D%B4-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 인접 형제 요소들의 상하 마진이 겹칠 때</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%EB%B6%80%EB%AA%A8-%EC%9A%94%EC%86%8C%EC%99%80-%EC%9E%90%EC%8B%9D-%EC%9A%94%EC%86%8C%EC%9D%98-margin-top%EC%9D%B4-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 부모 요소와 자식 요소의 margin-top이 겹칠 때</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EB%B6%80%EB%AA%A8-%EC%9A%94%EC%86%8C%EC%99%80-%EC%9E%90%EC%8B%9D-%EC%9A%94%EC%86%8C%EC%9D%98-margin-bottom%EC%9D%B4-%EA%B2%B9%EC%B9%A0%EB%95%8C-margin-top%EA%B3%BC-%EB%B0%98%EB%8C%80%EC%9D%98-%EA%B0%9C%EB%85%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 부모 요소와 자식 요소의 margin-bottom이 겹칠때(margin-top과 반대의 개념)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%EB%B9%88-%EC%9A%94%EC%86%8C%EC%9D%98-%EC%83%81%ED%95%98-margin%EC%9D%B4-%EC%9D%B8%EC%A0%91%EC%9A%94%EC%86%8C%EC%9D%98-margin%EA%B3%BC-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 빈 요소의 상하 margin이 인접요소의 margin과 겹칠 때</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84-%EC%98%88%EC%99%B8"><span class="toc-number">1.3.</span> <span class="toc-text">margin collapsing(마진 상쇄) 예외</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing%EC%97%90-%EB%8C%80%ED%95%B4-%ED%8F%AC%EC%8A%A4%ED%8C%85%ED%95%98%EB%A9%B0-%EC%95%8C%EC%95%84%EB%B3%B8-%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%95%BC%EA%B8%B0"><span class="toc-number">1.4.</span> <span class="toc-text">margin collapsing에 대해 포스팅하며 알아본 여러가지 이야기</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        margin collapse(마진 병합, 상쇄)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-10-25T13:25:34.000Z" itemprop="datePublished">2020-10-25</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/CSS/">CSS</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/css/" rel="tag">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="margin-collapse-마진-병합-상쇄"><a href="#margin-collapse-마진-병합-상쇄" class="headerlink" title="margin collapse(마진 병합, 상쇄)"></a>margin collapse(마진 병합, 상쇄)</h1><ul>
+<li><p>특정 margin값들이 서로 만났을때 중복 되어지는 현상이다. 중복이라고 해서 서로의 값이 합쳐지는것이 아닌 하나의 margin으로 적용된다.</p>
+</li>
+<li><p>margin collapse는 버그나 오류가 아니다. IE8 이전 브라우저에서는 호환성 문제로 잘 작동하지 않는 사례도 있다고 하지만 레이아웃 흐름상 배치에 유리하게 하려는 CSS모델 중 하나이다.</p>
+</li>
+</ul>
+<h2 id="margin-collapse-why"><a href="#margin-collapse-why" class="headerlink" title="margin collapse, why?"></a>margin collapse, why?</h2><ul>
+<li><p>margin collapse는 위에서 말했듯 레이아웃의 흐름상 배치에 유리하게 하려는 CSS모델인데 사실 엄청 대단한 이유는 없다.<br> 이 포스팅을 쓰려고 margin collapse에 대한 대단한 이유를 찾으려고 했지만… 어떻게 쓰는지에 대한 내용만 많이 나와있고 why에 대한 내용도 많이 없었을뿐더러 그냥 block요소가 일반 흐름에 따라 수직 방향으로 배치될 때 균일한 간격을 유지하기 위해 마진이 병합되도록 CSS박스모델을 설계한것이라고 이해했다.</p>
+</li>
+<li><p>위의 말이 와닿지 않을수 있다. 단적이지만 실제 한가지 예를 들어보자면 <code>*</code>이나 <code>div</code>태그 선택자로 margin을 준다고 가정해보자. 예시로는 div태그 전체에 margin을 주겠다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  div &#123;</span><br><span class="line">    margin: 20px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>box1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>box2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>box3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>box4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>위와 같은 경우 margin-collapsing(마진 병합)이 일어나지 않는다면 맨 처음과 마지막 div의 위아래 여백은 20px이지만 box2와 box3의 위아래 여백은 40px이 될것이다. 이러한 경우에 수직으로 정렬될시에 일정한 간격을 유지하기 위해 margin collapsing(마진 병합)이 일어난다고 생각하면 되겠다.</p>
+</li>
+</ul>
+<h2 id="margin-collapsing-마진병합-이-일어나는-경우"><a href="#margin-collapsing-마진병합-이-일어나는-경우" class="headerlink" title="margin collapsing(마진병합)이 일어나는 경우"></a>margin collapsing(마진병합)이 일어나는 경우</h2><ul>
+<li>maingin collapsing이 일어나는 경우는 3가지가 있다.</li>
+<li>기본적으로 margin collapsing은 인접한 두 요소가 block요소일 경우에만 적용이된다. 그러므로 아래의 설명은 모두 block요소들을 기준으로 보면 되겠다. (inline-block에서는 발생하지 않는다.)</li>
+<li>좌우 margin은 병합되지 않는다.</li>
+<li>빈 요소의 margin도 병합이 된다.(border나 padding등 중간 요소가 없을때)</li>
+</ul>
+<h3 id="1-인접-형제-요소들의-상하-마진이-겹칠-때"><a href="#1-인접-형제-요소들의-상하-마진이-겹칠-때" class="headerlink" title="1. 인접 형제 요소들의 상하 마진이 겹칠 때"></a>1. 인접 형제 요소들의 상하 마진이 겹칠 때</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">    margin: 30px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">    margin : 20px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span>margin값이 더 큰 box<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span>margin값이 더 작은 box<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>위와 같은 경우 두개의 margin이 합쳐져서 50px이 되는것이 아니라 더 큰 margin값으로 상쇄가 된다.</li>
+<li>두 요소의 margin이 같아도 합쳐지는게 아닌 하나의 값만 margin으로 적용이 된다.</li>
+</ul>
+<h3 id="2-부모-요소와-자식-요소의-margin-top이-겹칠-때"><a href="#2-부모-요소와-자식-요소의-margin-top이-겹칠-때" class="headerlink" title="2. 부모 요소와 자식 요소의 margin-top이 겹칠 때"></a>2. 부모 요소와 자식 요소의 margin-top이 겹칠 때</h3><ul>
+<li>부모요소에게 border나 padding 값이 없을때만 가능하다.(중간에 가로막는 속성이 없어야함.)</li>
+<li>마찬가지로 중간에 다른 inline 요소가 들어오면 안된다.(부모요소에 직접적으로 text를 적는다던지)</li>
+<li>이번에도 더 큰값으로 상쇄되지만 상쇄된 margin값은 무조건 부모요소의 바깥여백으로 적용이된다.<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.container</span>&#123;</span></span><br><span class="line">    margin: 50px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">    margin : 30px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span>부모요소의 margin-top과 만날 수 있는 자식요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span>두번째 요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>위와 같은 경우 부모요소의 margin-top(50px)과 자식요소의 상단margin-top(30px)이 만나며 더 큰값인 50px로 상쇄된다.</li>
+</ul>
+<h3 id="3-부모-요소와-자식-요소의-margin-bottom이-겹칠때-margin-top과-반대의-개념"><a href="#3-부모-요소와-자식-요소의-margin-bottom이-겹칠때-margin-top과-반대의-개념" class="headerlink" title="3. 부모 요소와 자식 요소의 margin-bottom이 겹칠때(margin-top과 반대의 개념)"></a>3. 부모 요소와 자식 요소의 margin-bottom이 겹칠때(margin-top과 반대의 개념)</h3><ul>
+<li><p>부모요소에게 border나 padding 값이 없을때만 가능하다.(중간에 가로막는 속성이 없어야함.)</p>
+</li>
+<li><p>마찬가지로 중간에 다른 inline 요소가 들어오면 안된다.(부모요소에 직접적으로 text를 적는다던지)</p>
+</li>
+<li><p>이번에도 더 큰값으로 상쇄되지만 상쇄된 margin값은 무조건 부모요소의 바깥여백으로 적용이된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.container</span>&#123;</span></span><br><span class="line">    margin: 50px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">    margin : 70px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span>첫번째 요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span>부모요소의 margin-bottom과 만날 수 있는 자식요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>위와 같은 경우 부모요소의 margin-bottom(50px)과 자식요소의 margin-bottom(70px)이 만나며 더 큰값인 70px로 상쇄된다. </p>
+</li>
+<li><p>하지만 위에서 얘기한대로 자식요소의 margin값으로 상쇄돼도 실제로는 부모의 바깥여백으로 70px이 적용된것처럼 보인다.</p>
+</li>
+<li><p>2번과 3번같은 경우 부모요소에 border나 padding중 하나라도 값이 생기면 마진상쇄가 일어나지 않는다.</p>
+</li>
+</ul>
+<h3 id="4-빈-요소의-상하-margin이-인접요소의-margin과-겹칠-때"><a href="#4-빈-요소의-상하-margin이-인접요소의-margin과-겹칠-때" class="headerlink" title="4. 빈 요소의 상하 margin이 인접요소의 margin과 겹칠 때"></a>4. 빈 요소의 상하 margin이 인접요소의 margin과 겹칠 때</h3><ul>
+<li><p>여기서 말하는 빈 요소란 높이(height)와 border, padding의 값이 0이고 내부에 inline콘텐츠 요소가 존재하지 않는 block요소를 말한다.</p>
+</li>
+<li><p>예를 들면 ::before나 ::after 가상요소 선택자로 <code>content: &quot;&quot;;</code> 빈 요소를 만들어 준다거나 markup과정에서 나중에 요소안에 콘텐츠를 append 하려고 빈 요소를 만들어놓고 margin값이 있다면 그 margin-top과 bottom이 상쇄되는 개념이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">    margin: 80px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.empty-box</span>&#123;</span></span><br><span class="line">    margin-top: 30px;</span><br><span class="line">    margin-bottom: 100px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">    margin : 120px;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span>빈 요소의 위에 있는 요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;empty-box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span>빈 요소의 아래에 있는 요소<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>위와 같은 경우 결국에는 3개의 margin값중 제일 큰 값으로 상쇄되어 적용이된다. 조금 복잡할 수 있으나 순서를 살펴보자.</p>
+</li>
+</ul>
+<ol>
+<li>빈 요소의 margin-top과 margin-bottom의 값 중 더 큰값으로 상쇄된다. 위의 예제의 경우 100px로 상쇄</li>
+<li>상쇄된 100px을 위쪽으로 맞닿아있는 요소의 margin-bottom중 더 큰 값으로 다시 한번 상쇄한다. 위의 경우 80 &lt; 100 이기 때문에 100px로 상쇄된다. </li>
+<li>이번엔 100px과 아래쪽으로 맞닿아있는 요소의 margin-top의 값 중 더 큰 값으로 상쇄된다. 위의 예제같은 경우 100 &lt;120 이기 때문에 결국 빈 요소를 사이에 두고 있는 box1 과 box2의 margin은 120px이 된다.</li>
+</ol>
+<ul>
+<li>만약 빈 요소에 존재하는 margin값이 젤 클 경우는 빈 요소에 있는 margin으로 적용되니 결국은 이 경우엔 복잡할 수 있지만 빈 요소에 있는 margin값으로도 레이아웃이 결정될 수 있다는것이다.</li>
+</ul>
+<h2 id="margin-collapsing-마진-상쇄-예외"><a href="#margin-collapsing-마진-상쇄-예외" class="headerlink" title="margin collapsing(마진 상쇄) 예외"></a>margin collapsing(마진 상쇄) 예외</h2><ul>
+<li>특정 속성을 가진 요소들간의 마진 상쇄는 일어나지 않는다.</li>
+<li><code>posion: absolute</code>속성이 적용된 요소</li>
+<li><code>float: left/right</code>속성이 적용된 요소</li>
+<li><code>display: flex</code>속성이 적용된 container내부의 items</li>
+<li><code>display: grid</code>속성이 적용된 container내부의 items</li>
+</ul>
+<h2 id="margin-collapsing에-대해-포스팅하며-알아본-여러가지-이야기"><a href="#margin-collapsing에-대해-포스팅하며-알아본-여러가지-이야기" class="headerlink" title="margin collapsing에 대해 포스팅하며 알아본 여러가지 이야기"></a>margin collapsing에 대해 포스팅하며 알아본 여러가지 이야기</h2><ul>
+<li><p>margin collapse는 까다로운 부분도 많고 이유에 대해 명확히 납득이 안되는 부분도 많아서 포스팅하는데 정말 많은 시간을 쓴 거 같은데… 어떤 외국인 블로그에서 본 글이다.</p>
+</li>
+<li><p>CSS사양은 거대하니 모든것을 알려고하지 말라고 한다^^.. 대신 기본기를 탄탄하게 한 후 필요할때 빠르게 찾아서 쓸 수 있으면 스스로 쉽게 할 수 있을것이라고 하는데…정말 맞는말밖에 안해서 아무말도 못하겠…</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#margin-collapse-%EB%A7%88%EC%A7%84-%EB%B3%91%ED%95%A9-%EC%83%81%EC%87%84"><span class="toc-number">1.</span> <span class="toc-text">margin collapse(마진 병합, 상쇄)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapse-why"><span class="toc-number">1.1.</span> <span class="toc-text">margin collapse, why?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing-%EB%A7%88%EC%A7%84%EB%B3%91%ED%95%A9-%EC%9D%B4-%EC%9D%BC%EC%96%B4%EB%82%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="toc-number">1.2.</span> <span class="toc-text">margin collapsing(마진병합)이 일어나는 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%EC%9D%B8%EC%A0%91-%ED%98%95%EC%A0%9C-%EC%9A%94%EC%86%8C%EB%93%A4%EC%9D%98-%EC%83%81%ED%95%98-%EB%A7%88%EC%A7%84%EC%9D%B4-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 인접 형제 요소들의 상하 마진이 겹칠 때</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%EB%B6%80%EB%AA%A8-%EC%9A%94%EC%86%8C%EC%99%80-%EC%9E%90%EC%8B%9D-%EC%9A%94%EC%86%8C%EC%9D%98-margin-top%EC%9D%B4-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 부모 요소와 자식 요소의 margin-top이 겹칠 때</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EB%B6%80%EB%AA%A8-%EC%9A%94%EC%86%8C%EC%99%80-%EC%9E%90%EC%8B%9D-%EC%9A%94%EC%86%8C%EC%9D%98-margin-bottom%EC%9D%B4-%EA%B2%B9%EC%B9%A0%EB%95%8C-margin-top%EA%B3%BC-%EB%B0%98%EB%8C%80%EC%9D%98-%EA%B0%9C%EB%85%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 부모 요소와 자식 요소의 margin-bottom이 겹칠때(margin-top과 반대의 개념)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%EB%B9%88-%EC%9A%94%EC%86%8C%EC%9D%98-%EC%83%81%ED%95%98-margin%EC%9D%B4-%EC%9D%B8%EC%A0%91%EC%9A%94%EC%86%8C%EC%9D%98-margin%EA%B3%BC-%EA%B2%B9%EC%B9%A0-%EB%95%8C"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 빈 요소의 상하 margin이 인접요소의 margin과 겹칠 때</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84-%EC%98%88%EC%99%B8"><span class="toc-number">1.3.</span> <span class="toc-text">margin collapsing(마진 상쇄) 예외</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-collapsing%EC%97%90-%EB%8C%80%ED%95%B4-%ED%8F%AC%EC%8A%A4%ED%8C%85%ED%95%98%EB%A9%B0-%EC%95%8C%EC%95%84%EB%B3%B8-%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%95%BC%EA%B8%B0"><span class="toc-number">1.4.</span> <span class="toc-text">margin collapsing에 대해 포스팅하며 알아본 여러가지 이야기</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&text=margin collapse(마진 병합, 상쇄)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&is_video=false&description=margin collapse(마진 병합, 상쇄)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=margin collapse(마진 병합, 상쇄)&body=Check out this article: https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&title=margin collapse(마진 병합, 상쇄)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&name=margin collapse(마진 병합, 상쇄)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/10/25/CSS/[css]margin%20collapse/&t=margin collapse(마진 병합, 상쇄)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
