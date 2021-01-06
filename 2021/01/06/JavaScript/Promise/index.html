@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Promise자바스크립트는 비동기 처리를 위한 하나의 패턴으로 콜백 함수를 사용한다. 하지만 전통적인 콜백 패턴은 콜백 헬로 인해 가독성이 나쁘고 비동기 처리 중 발생한 에러의 처리가 곤란하며 여러 개의 비동기 처리를 한번에 처리하는 데도 한계가 있다. ES6에서는 비동기 처리를 위한 또 다른 패턴으로 프로미스(Promise)를 도입했다. 프로미스는 전통적">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="https://hajunryu.github.io/2021/01/06/JavaScript/Promise/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="Promise자바스크립트는 비동기 처리를 위한 하나의 패턴으로 콜백 함수를 사용한다. 하지만 전통적인 콜백 패턴은 콜백 헬로 인해 가독성이 나쁘고 비동기 처리 중 발생한 에러의 처리가 곤란하며 여러 개의 비동기 처리를 한번에 처리하는 데도 한계가 있다. ES6에서는 비동기 처리를 위한 또 다른 패턴으로 프로미스(Promise)를 도입했다. 프로미스는 전통적">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/45-1.png">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/45-2.png">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/45-3.png">
+<meta property="article:published_time" content="2021-01-06T03:03:57.000Z">
+<meta property="article:modified_time" content="2021-01-06T14:24:41.590Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poiemaweb.com/assets/fs-images/45-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Promise</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/01/06/TIL/20210106-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/01/05/TIL/20210105-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&text=Promise"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&is_video=false&description=Promise"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Promise&body=Check out this article: https://hajunryu.github.io/2021/01/06/JavaScript/Promise/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&name=Promise&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&t=Promise"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-number">1.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%BD%9C%EB%B0%B1-%ED%8C%A8%ED%84%B4%EC%9D%98-%EB%8B%A8%EC%A0%90"><span class="toc-number">1.1.</span> <span class="toc-text">비동기 처리를 위한 콜백 패턴의 단점</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BD%9C%EB%B0%B1-%ED%97%AC-%EC%BD%9C%EB%B0%B1-%EC%A7%80%EC%98%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">콜백 헬(콜백 지옥)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%97%90%EB%9F%AC-%EC%B2%98%EB%A6%AC%EC%9D%98-%ED%95%9C%EA%B3%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">에러 처리의 한계</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4-%EC%83%9D%EC%84%B1"><span class="toc-number">1.2.</span> <span class="toc-text">프로미스 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4%EC%9D%98-%ED%9B%84%EC%86%8D-%EC%B2%98%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.3.</span> <span class="toc-text">프로미스의 후속 처리 메서드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-prototype-then"><span class="toc-number">1.3.1.</span> <span class="toc-text">Promise.prototype.then</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Promise
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-06T03:03:57.000Z" itemprop="datePublished">2021-01-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/js/">js</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>자바스크립트는 비동기 처리를 위한 하나의 패턴으로 콜백 함수를 사용한다. 하지만 전통적인 콜백 패턴은 콜백 헬로 인해 가독성이 나쁘고 비동기 처리 중 발생한 에러의 처리가 곤란하며 여러 개의 비동기 처리를 한번에 처리하는 데도 한계가 있다.</p>
+<p>ES6에서는 비동기 처리를 위한 또 다른 패턴으로 프로미스(Promise)를 도입했다. 프로미스는 전통적인 콜백 패턴이 가진 단점을 보완하며 비동기 처리 시점을 명확하게 표현할 수 있다는 장점이 있다.</p>
+<h2 id="비동기-처리를-위한-콜백-패턴의-단점"><a href="#비동기-처리를-위한-콜백-패턴의-단점" class="headerlink" title="비동기 처리를 위한 콜백 패턴의 단점"></a>비동기 처리를 위한 콜백 패턴의 단점</h2><h3 id="콜백-헬-콜백-지옥"><a href="#콜백-헬-콜백-지옥" class="headerlink" title="콜백 헬(콜백 지옥)"></a>콜백 헬(콜백 지옥)</h3><p>비동기 함수란 함수 내부에 비동기로 동작하는 코드를 포함한 함수를 말한다. 비동기 함수를 호출하면 함수 내부의 비동기로 동작하는 코드가 완료되지 않았다 해도 기다리지 않고 즉시 종료된다. 즉, 비동기 함수 내부의 비동기로 동작하는 코드는 비동기 함수가 종료된 이후에 완료된다. 따라서 비동기 함수 내부의 비동기로 동작하는 코드에서 처리 결과를 외부로 반환하거나 상위 스코프의 변수에 할당하면 기대한 대로 동작하지 않는다.</p>
+<p>예를 들어, setTimeout 함수는 비동기 함수다. setTimeout 함수가 비동기 함수인 이유는 콜백 함수의 호출이 비동기로 동작하기 때문이다. setTimeout 함수를 호출하면 콜백 함수를 호출 스케줄링한 다음, 타이머 id를 반환하고 즉시 종료된다. 즉, 비동기 함수인 setTimeout 함수의 콜백 함수는 setTimeout 함수가 종료된 이후에 호출된다. 따라서 setTimeout 함수 내부의 콜백 함수에서 처리 결과를 외부로 반환하거나 상위 스코프의 변수에 할당하면 기대한 대로 동작하지 않는다.</p>
+<p>setTimeout 함수의 콜백 함수에서 상위 스코프의 변수에 값을 할당해 보자. setTimeout 함수는 생성된 타이머를 식별할 수 있는 고유한 타이머 id를 반환하므로 콜백 함수에서 값을 반환하는 것은 무의미하다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> g = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 비동기 함수인 setTimeout 함수는 콜백 함수의 처리 결과를 외부로 반환하거나 상위 스코프의 변수에 할당하지 못한다.</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; g = <span class="number">100</span>; &#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(g); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<p>비동기 함수는 비동기 처리 결과를 외부에 반환할 수 없고, 상위 스코프의 변수에 할당할 수도 없다. 따라서 비동기 함수의 처리 결과(서버의 응답 등)에 대한 후속 처리는 비동기 함수 내부에서 수행해야 한다. 이때 비동기 함수를 범용적으로 사용하기 위해 비동기 함수에 비동기 처리 결과에 대한 후속 처리를 수행하는 콜백 함수를 전달하는 것이 일반적이다. 필요에 따라 비동기 처리가 성공하면 호출될 콜백 함수와 비동기 처리가 실패하면 호출될 콜백 함수를 전달할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GET 요청을 위한 비동기 함수</span></span><br><span class="line"><span class="keyword">const</span> get = <span class="function">(<span class="params">url, successCallback, failureCallback</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  xhr.open(<span class="string">&#x27;GET&#x27;</span>, url);</span><br><span class="line">  xhr.send();</span><br><span class="line"></span><br><span class="line">  xhr.onload = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="comment">// 서버의 응답을 콜백 함수에 인수로 전달하면서 호출하여 응답에 대한 후속 처리를 한다.</span></span><br><span class="line">      successCallback(<span class="built_in">JSON</span>.parse(xhr.response));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 에러 정보를 콜백 함수에 인수로 전달하면서 호출하여 에러 처리를 한다.</span></span><br><span class="line">      failureCallback(xhr.status);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// id가 1인 post를 취득</span></span><br><span class="line"><span class="comment">// 서버의 응답에 대한 후속 처리를 위한 콜백 함수를 비동기 함수인 get에 전달해야 한다.</span></span><br><span class="line">get(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts/1&#x27;</span>, <span class="built_in">console</span>.log, <span class="built_in">console</span>.error);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  &quot;userId&quot;: 1,</span></span><br><span class="line"><span class="comment">  &quot;id&quot;: 1,</span></span><br><span class="line"><span class="comment">  &quot;title&quot;: &quot;sunt aut facere ...&quot;,</span></span><br><span class="line"><span class="comment">  &quot;body&quot;: &quot;quia et suscipit ...&quot;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>이처럼 콜백 함수를 통해 비동기 처리 결과에 대한 후속 처리를 수행하는 비동기 함수가 비동기 처리 결과를 가지고 또 다시 비동기 함수를 호출해야 한다면 콜백 함수 호출이 중첩되어 복잡도가 높아지는 현상이 발생하는데, 이를 콜백 헬(callback hell)이라 한다.</p>
+<h3 id="에러-처리의-한계"><a href="#에러-처리의-한계" class="headerlink" title="에러 처리의 한계"></a>에러 처리의 한계</h3><p>비동기 처리를 위한 콜백 패턴의 문제점 중에서 가장 심각한 것은 에러 처리가 곤란하다는 것이다.</p>
+<p>에러는 호출자(caller) 방향으로 전파된다. 즉, 콜 스택의 아래 방향(실행 중인 실행 컨텍스트가 푸시되기 직전에 푸시된 실행 컨텍스트 방향)으로 전파된다. 하지만 setTimeout 같은 함수의 콜백 함수를 호출한 것은 setTimeout 함수가 아니다. 따라서 setTimeout 함수의 콜백 함수가 발생시킨 에러는 catch 블록에서 캐치되지 않는다.</p>
+<p>지금까지 살펴본 비동기 처리를 위한 콜백 패턴은 콜백 헬이나 에러 처리가 곤란하다는 문제가 있다. 이를 극복하기 위해 ES6에서 프로미스(Promise)가 도입되었다.</p>
+<h2 id="프로미스-생성"><a href="#프로미스-생성" class="headerlink" title="프로미스 생성"></a>프로미스 생성</h2><p>Promise 생성자 함수를 new 연산자와 함께 호출하면 프로미스(Promise 객체)를 생성한다. ES6에서 도입된 Promise는 호스트 객체가 아닌 ECMAScript 사양에 정의된 표준 빌트인 객체다.</p>
+<p>Promise 생성자 함수는 비동기 처리를 수행할 콜백 함수를 인수로 전달받는데 이 콜백 함수는 resolve와 reject 함수를 인수로 전달받는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 프로미스 생성</span></span><br><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Promise 함수의 콜백 함수 내부에서 비동기 처리를 수행한다.</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 비동기 처리 성공 */</span>) &#123;</span><br><span class="line">    resolve(<span class="string">&#x27;result&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">/* 비동기 처리 실패 */</span></span><br><span class="line">    reject(<span class="string">&#x27;failure reason&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Promise 생성자 함수가 인수로 전달받은 콜백 함수 내부에서 비동기 처리를 수행한다. 이때 비동기 처리가 성공하면 콜백 함수의 인수로 전달받은 resolve 함수를 호출하고, 비동기 처리가 실패하면 reject 함수를 호출한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GET 요청을 위한 비동기 함수</span></span><br><span class="line"><span class="keyword">const</span> promiseGet = <span class="function"><span class="params">url</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    xhr.open(<span class="string">&#x27;GET&#x27;</span>, url);</span><br><span class="line">    xhr.send();</span><br><span class="line"></span><br><span class="line">    xhr.onload = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="comment">// 성공적으로 응답을 전달받으면 resolve 함수를 호출한다.</span></span><br><span class="line">        resolve(<span class="built_in">JSON</span>.parse(xhr.response));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 에러 처리를 위해 reject 함수를 호출한다.</span></span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">Error</span>(xhr.status));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// promiseGet 함수는 프로미스를 반환한다.</span></span><br><span class="line">promiseGet(<span class="string">&#x27;https://jsonplaceholder.typicode.com/posts/1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>비동기 함수인 promiseGet은 함수 내부에서 프로미스를 생성하고 반환한다. 비동기 처리는 Promise 생성자 함수가 인수로 전달받은 콜백 함수 내부에서 수행한다. 만약 비동기 처리가 성공하면 비동기 처리 결과를 resolve 함수에 인수로 전달하면서 호출하고, 비동기 처리가 실패하면 에러를 reject 함수에 인수로 전달하면서 호출한다.</p>
+<p>프로미스는 다음과 같이 현재 비동기 처리가 어떻게 진행되고 있는지를 나타내는 상태(state) 정보를 갖는다.</p>
+<table>
+<thead>
+<tr>
+<th align="left">프로미스의 상태 정보</th>
+<th align="left">의미</th>
+<th align="left">상태 변경 조건</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pending</td>
+<td align="left">비동기 처리가 아직 수행되지 않은 상태</td>
+<td align="left">프로미스가 생성된 직후 기본 상태</td>
+</tr>
+<tr>
+<td align="left">fulfilled</td>
+<td align="left">비동기 처리가 수행된 상태( 성공)</td>
+<td align="left">resolve 함수 호출</td>
+</tr>
+<tr>
+<td align="left">rejected</td>
+<td align="left">비동기 처리가 수행된 상태 (실패)</td>
+<td align="left">reject 함수 호출</td>
+</tr>
+</tbody></table>
+<p>생성된 직후의 프로미스는 기본적으로 pending상태다. 이후 비동기 처리가 수행되면 비동기 처리 결과에 따라 다음과 같이 프로미스의 상태가 변경된다.</p>
+<ul>
+<li>비동기 처리 성공: resolve 함수를 호출하고 프로미스는 fulfilled 상태가 된다.</li>
+<li>비동기 처리 실패: reject 함수를 호출하고 프로미스는 rejected 상태가 된다.</li>
+</ul>
+<p>이처럼 프로미스의 상태는 resovle 또는 reject 함수를 호출하는 것으로 결정된다.</p>
+<p><img src="https://poiemaweb.com/assets/fs-images/45-1.png" alt="프로미스의 상태"></p>
+<center>프로미스의 상태</center>
+<cite>사진 출처 - poiemaweb.com</cite>
+
+<p>fulfilled또는 rejected 상태를 settled 상태라고 한다. settled 상태는 fulfilled 또는 rejected 상태와 상관 없이 pending이 아닌 상태로 비동기 처리가 수행된 상태를 말한다.</p>
+<p>프로미스는 pending 상태에서 fulfilled 또는 rejected 상태, 즉 settled 상태로 변화할 수 있다. 하지만 일단 settled 상태가 되면 더는 다른 상태로 변화할 수 없다.</p>
+<p>프로미스는 비동기 처리 상태와 더불어 비동기 처리 결과(위 그림의 result)도 상태로 갖는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fulfilled된 프로미스</span></span><br><span class="line"><span class="keyword">const</span> fulfilled = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poiemaweb.com/assets/fs-images/45-2.png" alt="fulfilled된 프로미스"></p>
+<center>fulfilled된 프로미스</center>
+<cite>사진 출처 - poiemaweb.com</cite>
+
+<p>비동기 처리가 성공하면 프로미스는 pending 상태에서 fulfilled 상태로 변화한다. 그리고 비동기 처리 결과인 1을 값으로 갖는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// rejected된 프로미스</span></span><br><span class="line"><span class="keyword">const</span> rejected = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">_, reject</span>) =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;error occurred&#x27;</span>)));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poiemaweb.com/assets/fs-images/45-3.png" alt="rejected된 프로미스"></p>
+<center>rejected된 프로미스</center>
+<cite>사진 출처 -poiemaweb.com</cite>
+
+<p>비동기 처리가 실패하면 프로미스는 pending 상태에서 rejected 상태로 변화한다. 그리고 비동기 처리 결과인 Error 객체를 값으로 갖는다. 즉, 프로미스는 비동기 처리 상태와 처리 결과를 관리하는 객체다.</p>
+<h2 id="프로미스의-후속-처리-메서드"><a href="#프로미스의-후속-처리-메서드" class="headerlink" title="프로미스의 후속 처리 메서드"></a>프로미스의 후속 처리 메서드</h2><p>프로미스의 비동기 처리 상태가 변화하면 이에 따른 후속 처리를 해야 한다. 예를 들어, 프로미스가 fulfilled 상태가 되면 프로미스의 처리 결과를 가지고 무언가를 해야 하고, 프로미스가 rejected 상태가 되면 프로미스의 처리 결과(에러)를 가지고 에러 처리를 해야 한다. 이를 위해 프로미스는 후속 처리 메서드 then, catch, finally를 제공한다.</p>
+<p>프로미스의 비동기 처리 상태가 변화하면 후속 처리 메서드에 인수로 전달한 콜백 함수가 선택적으로 호출된다. 이때 후속 처리 메서드의 콜백 함수에 프로미스의 처리 결과가 인수로 전달된다.</p>
+<p>모든 후속 처리 메서드는 프로미스를 반환하며, 비동기로 동작한다.</p>
+<h3 id="Promise-prototype-then"><a href="#Promise-prototype-then" class="headerlink" title="Promise.prototype.then"></a>Promise.prototype.then</h3><p>then 메서드는 두 개의 콜백 함수를 인수로 전달받는다.</p>
+<ul>
+<li>첫 번째 콜백 함수는 프로미스가 fulfilled 상태(resolve 함수가 호출된 상태)가 되면 호출된다. 이때 콜백 함수는 프로미스의 비동기 처리 결과를 인수로 전달받는다.</li>
+<li>두 번째 콜백 함수는 프로미스가 rejected 상태(reject 함수가 호출된 상태)가 되면 호출된다. 이때 콜백 함수는 프로미스의 에러를 인수로 전달받는다.</li>
+</ul>
+<p>즉, 첫 번째 콜백 함수는 비동기 처리가 성공했을 때 호출되는 성공 처리 콜백 함수이며, 두 번째 콜백 함수는 비동기 처리가 실패했을 때 호출되는 실패 처리 콜백 함수다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fulfilled</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="string">&#x27;fulfilled&#x27;</span>))</span><br><span class="line">  .then(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">console</span>.log(v), <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.error(e)); <span class="comment">// fulfilled</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// rejected</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">_, reject</span>) =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;rejected&#x27;</span>)))</span><br><span class="line">  .then(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">console</span>.log(v), <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.error(e)); <span class="comment">// Error: rejected</span></span><br></pre></td></tr></table></figure>
+
+<p>then 메서드는 언제나 프로미스를 반환한다. 만약 then 메서드의 콜백 함수가 프로미스를 반환하면 그 프로미스를 그대로 반환하고, 콜백 함수가 프로미스가 아닌 값을 반환하면 그 값을 암묵적으로 resolve 또는 reject하여 프로미스를 생성해 반환한다.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-number">1.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%BD%9C%EB%B0%B1-%ED%8C%A8%ED%84%B4%EC%9D%98-%EB%8B%A8%EC%A0%90"><span class="toc-number">1.1.</span> <span class="toc-text">비동기 처리를 위한 콜백 패턴의 단점</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BD%9C%EB%B0%B1-%ED%97%AC-%EC%BD%9C%EB%B0%B1-%EC%A7%80%EC%98%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">콜백 헬(콜백 지옥)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%97%90%EB%9F%AC-%EC%B2%98%EB%A6%AC%EC%9D%98-%ED%95%9C%EA%B3%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">에러 처리의 한계</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4-%EC%83%9D%EC%84%B1"><span class="toc-number">1.2.</span> <span class="toc-text">프로미스 생성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4%EC%9D%98-%ED%9B%84%EC%86%8D-%EC%B2%98%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="toc-number">1.3.</span> <span class="toc-text">프로미스의 후속 처리 메서드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-prototype-then"><span class="toc-number">1.3.1.</span> <span class="toc-text">Promise.prototype.then</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&text=Promise"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&is_video=false&description=Promise"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Promise&body=Check out this article: https://hajunryu.github.io/2021/01/06/JavaScript/Promise/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&title=Promise"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&name=Promise&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/06/JavaScript/Promise/&t=Promise"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
