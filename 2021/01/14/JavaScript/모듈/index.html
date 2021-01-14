@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="모듈모듈이란 애플리케이션을 구성하는 개별적 요소로서 재사용 가능한 코드 조각을 말한다. 보통 모듈은 기능을 기준으로 파일 단위로 분리한다. 이때 자신만의 모듈 스코프를 가질 수 있어야 모듈이라는것이 성립된다. 모듈 스코프를 갖기때문에 기본적으로 모듈의 자산은 캡슐화되어 다른 모듈에서 접근할 수 없다. 말 그대로 모듈 스코프이기 때문에 그 모듈내에서만 사용할">
+<meta property="og:type" content="article">
+<meta property="og:title" content="모듈">
+<meta property="og:url" content="https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="모듈모듈이란 애플리케이션을 구성하는 개별적 요소로서 재사용 가능한 코드 조각을 말한다. 보통 모듈은 기능을 기준으로 파일 단위로 분리한다. 이때 자신만의 모듈 스코프를 가질 수 있어야 모듈이라는것이 성립된다. 모듈 스코프를 갖기때문에 기본적으로 모듈의 자산은 캡슐화되어 다른 모듈에서 접근할 수 없다. 말 그대로 모듈 스코프이기 때문에 그 모듈내에서만 사용할">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-01-14T01:38:27.000Z">
+<meta property="article:modified_time" content="2021-01-14T03:21:15.267Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>모듈</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/01/13/TIL/20210113-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&text=모듈"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&is_video=false&description=모듈"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=모듈&body=Check out this article: https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&name=모듈&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&t=모듈"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%AA%A8%EB%93%88"><span class="toc-number">1.</span> <span class="toc-text">모듈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%99%80-%EB%AA%A8%EB%93%88"><span class="toc-number">1.1.</span> <span class="toc-text">자바스크립트와 모듈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%EB%AA%A8%EB%93%88-ESM"><span class="toc-number">1.2.</span> <span class="toc-text">ES6 모듈(ESM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#export"><span class="toc-number">1.3.</span> <span class="toc-text">export</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-number">1.3.1.</span> <span class="toc-text">import</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        모듈
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-14T01:38:27.000Z" itemprop="datePublished">2021-01-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/JS/">JS</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JS/" rel="tag">JS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="모듈"><a href="#모듈" class="headerlink" title="모듈"></a>모듈</h1><p>모듈이란 애플리케이션을 구성하는 개별적 요소로서 재사용 가능한 코드 조각을 말한다. 보통 모듈은 기능을 기준으로 파일 단위로 분리한다. 이때 자신만의 모듈 스코프를 가질 수 있어야 모듈이라는것이 성립된다.</p>
+<p>모듈 스코프를 갖기때문에 기본적으로 모듈의 자산은 캡슐화되어 다른 모듈에서 접근할 수 없다. 말 그대로 모듈 스코프이기 때문에 그 모듈내에서만 사용할 수 있는것이다. 이 말은 모듈이 애플리케이션과 분리되어 존재한다는것이다.</p>
+<p>그렇게 되면 애플리케이션과 분리된 모듈은 재사용이 불가능하기 때문에 존재의 의미가 없어지게 된다. 그래서 모듈은 애플리케이션이나 다른 모듈에 의해 재사용이 되어질 수 있어야한다. 그래서 export라는걸 하는데 그렇게 되면 모듈은 선택적으로 필요한 자산을 공개(export)할 수 있게된다.</p>
+<h2 id="자바스크립트와-모듈"><a href="#자바스크립트와-모듈" class="headerlink" title="자바스크립트와 모듈"></a>자바스크립트와 모듈</h2><p>자바스크립트의 탄생은 웹페이지의 단순한 보조 기능을 처리하기 위함이었다. 그래서 태생적 한계가 있는데 그 대표적인게 모듈 시스템을 지원하지 않는다는것이다. 예를 들어 Java를 보면 ArrayList를 사용한다고 해도 클래스에서 import를 시킨 후 사용을 할 수 있는데 자바스크립트는 그렇지 않다.</p>
+<p>자바스크립트는 script태그를 사용하여 외부의 자바스크립트 파일을 로드할 수 있지만 이것들이 각각 독립적인 스코프를 생성하지는 않는다. 여러가지 script태그들이 모두 하나의 전역 스코프를 공유한다는 말이다. 그래서 전역변수가 중복되는등의 문제때문에 혼자서 작업을 할때는 물론 협업을 할때 모듈화를 시키지 않고 작업을 하게 된다면 분명히 에러가 발생할것이다.</p>
+<p>하지만 지금에서는 자바스크립트의 활용도가 높아지고 브라우저 이외의 환경에서도 사용이 되고 있다. 그리하여 나온것이 CommonJS와 AMD(Asynchronous Module Definition)이다.</p>
+<p>그리하여 자바스크립트의 모듈 시스템은 크게 CommonJS와 AMD 진영으로 나뉘게 되었고 브라우저 환경에서 모듈을 사용하기 위해서는 그냥 사용하는것이 아니라 라이브러리를 사용해야 하게 됐다.</p>
+<p>Node.js는 CommonJS를 채택했고 독자적인 진화를 거쳤다. 그리하여 현재는 기본적으로 CommonJS의 사양을 따르고 있다. Node.js는 모듈 시스템을 지원하기때문에 Node.js 환경에서는 파일들이 독립적인 모듈 스코프를 갖는다.</p>
+<h2 id="ES6-모듈-ESM"><a href="#ES6-모듈-ESM" class="headerlink" title="ES6 모듈(ESM)"></a>ES6 모듈(ESM)</h2><p>ES6에서는 브라우저세도 동작하는 모듈 기능이 추가됐다. IE를 제외한 대부분의 모던한 브라우저에서는 사용이 가능하다.</p>
+<p>ES6모듈의 사용법은 script태그에 <code>type=&quot;module&quot;</code> 어트리뷰트만 추가해주면 로드된 자바스크립트 파일은 모듈로서 동작하게 된다. 이때 보통 일반적인 js파일과 구분하기 위해 확장자를 mjs를 사용하는 방법이 좋을것 같다.</p>
+<ul>
+<li>일반 자바스크립트 파일: app.js</li>
+<li>ESM 파일: app.mjs</li>
+</ul>
+<p>ESM에는 기본적으로 strict mode(엄격 모드)가 적용된다.</p>
+<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>당연히 ESM은 독자적인 모듈스코프를 갖는다. 즉, 모듈 내부에서 선언한 모든 식별자는 모듈 내부에서만 참조할 수 있다.<br>이때 모듈 내부에서 선언한 식별자를 외부에 공개하려면 export 키워드를 사용해야 한다.</p>
+<p>export 키워드는 선언문 앞에 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> hajun = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Ryu&#x27;</span>,</span><br><span class="line">  age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위의 방법처럼 선언문 앞에 매번 export 키워드를 붙히는 방법도 있지만 export할 대상을 하나의 객체로 구성하여 참조값을 export 시킬수도 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hajun = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Ryu&#x27;</span>,</span><br><span class="line">  age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name, age</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; hajun, foo, Person &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>다른 모듈에서 export한 식별자를 자신의 모듈 스코프 내부에서 로드하여 사용하려면 import 키워드를 사용해야 한다. 다른 모듈이 export한 식별자 이름으로 import해야 하며 ESM의 경우에는 파일 확장자를 생략할 수 없다.</p>
+<p>예제 코드는 위의 export에서 사용했던 코드가 다른 모듈 app.mjs에서 작성됐다는 가정하에 작성했다. 그리고 예제에서의 파일은 index.mjs이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; hajun, foo, Person &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.mjs&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>이때 index.mjs는 애플리케이션의 진입점이기 때문에 반드시 script태그로 로드해야 한다. 하지만 export를 해준 app.mjs는 index.mjs의 import 키워드에 의해 로드되기 때문에 app.mjs는 script 태그로 따로 로드하지 않아도 된다.</p>
+<p>모듈이 export한 식별자 이름을 일일히 변수에 담아 주지 않고도 한번에 객체로 import할 수도 있다. 이때 import되는 식별자는 as 뒤에 지정한 객체의 프로퍼티로 할당된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> app <span class="keyword">from</span> <span class="string">&#x27;./app.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(app.hajun); <span class="comment">// &#123; name: &#x27;Ryu&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(app.foo(<span class="number">10</span>, <span class="number">20</span>)); <span class="comment">// 30</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> app.Person(<span class="string">&#x27;Ryu&#x27;</span>, <span class="number">24</span>)); <span class="comment">// Person &#123; name: &#x27;Ryu&#x27;, age: 24 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>import할때 모듈이 export한 식별자의 이름을 변경할 수도 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; hajun <span class="keyword">as</span> Ryu, foo <span class="keyword">as</span> bar, Person <span class="keyword">as</span> P &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Ryu); <span class="comment">// &#123; name: &#x27;Ryu&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(bar(<span class="number">10</span>, <span class="number">20</span>)); <span class="comment">// 30</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> P(<span class="string">&#x27;Ryu&#x27;</span>, <span class="number">26</span>)); <span class="comment">// Person &#123; name: &#x27;Ryu&#x27;, age: 26 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>모듈에서 하나이 값만 export 한다면 default 키워드를 사용할 수 있다.</p>
+<p>default 키워드를 사용하는 경우 변수 선언 키워드인 var, let, const는 사용할 수 없다.</p>
+<p>default 키워드로 export한 모듈은 <code>&#123;&#125;</code>없이 임의의 이름으로 import해서 사용한다.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%AA%A8%EB%93%88"><span class="toc-number">1.</span> <span class="toc-text">모듈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%99%80-%EB%AA%A8%EB%93%88"><span class="toc-number">1.1.</span> <span class="toc-text">자바스크립트와 모듈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%EB%AA%A8%EB%93%88-ESM"><span class="toc-number">1.2.</span> <span class="toc-text">ES6 모듈(ESM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#export"><span class="toc-number">1.3.</span> <span class="toc-text">export</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-number">1.3.1.</span> <span class="toc-text">import</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&text=모듈"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&is_video=false&description=모듈"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=모듈&body=Check out this article: https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&title=모듈"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&name=모듈&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/&t=모듈"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
