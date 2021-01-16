@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="수요일오늘 한 일 알고리즘 연습 문제 25, 26, 27번 문제를 풀었다. 오늘은 25번은 간단한 배열내 정수들의 평균값을 구하는것이었고 26번은 정수들로 이루어져있는 배열에서 인접한 요소들의 차이가 가장 작은것들을 하나의 배열로 쌍으로 묶어 반환하는것이었다. 이 문제는 시간을 좀 많이 썻던것 같다. 그리고 27번은 배열내의 정수들을 음수는 내림차순 양수는">
+    <meta name="description" content="목요일오늘 한 일 알고리즘 연습 문제 25, 26, 27번 문제를 풀었다. 오늘은 25번은 간단한 배열내 정수들의 평균값을 구하는것이었고 26번은 정수들로 이루어져있는 배열에서 인접한 요소들의 차이가 가장 작은것들을 하나의 배열로 쌍으로 묶어 반환하는것이었다. 이 문제는 시간을 좀 많이 썻던것 같다. 그리고 27번은 배열내의 정수들을 음수는 내림차순 양수는">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20210114-TIL">
 <meta property="og:url" content="https://hajunryu.github.io/2021/01/14/TIL/20210114-TIL/index.html">
 <meta property="og:site_name" content="Junn&#39;s 개발노트">
-<meta property="og:description" content="수요일오늘 한 일 알고리즘 연습 문제 25, 26, 27번 문제를 풀었다. 오늘은 25번은 간단한 배열내 정수들의 평균값을 구하는것이었고 26번은 정수들로 이루어져있는 배열에서 인접한 요소들의 차이가 가장 작은것들을 하나의 배열로 쌍으로 묶어 반환하는것이었다. 이 문제는 시간을 좀 많이 썻던것 같다. 그리고 27번은 배열내의 정수들을 음수는 내림차순 양수는">
+<meta property="og:description" content="목요일오늘 한 일 알고리즘 연습 문제 25, 26, 27번 문제를 풀었다. 오늘은 25번은 간단한 배열내 정수들의 평균값을 구하는것이었고 26번은 정수들로 이루어져있는 배열에서 인접한 요소들의 차이가 가장 작은것들을 하나의 배열로 쌍으로 묶어 반환하는것이었다. 이 문제는 시간을 좀 많이 썻던것 같다. 그리고 27번은 배열내의 정수들을 음수는 내림차순 양수는">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-01-14T14:45:40.000Z">
-<meta property="article:modified_time" content="2021-01-14T14:59:30.604Z">
+<meta property="article:modified_time" content="2021-01-15T19:03:00.436Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -63,15 +63,15 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </span>
@@ -79,16 +79,18 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2021/01/15/TIL/20210115-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2021/01/14/JavaScript/%EB%AA%A8%EB%93%88/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
-      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
-      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
-      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -108,7 +110,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%88%98%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">수요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%AA%A9%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">목요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -157,7 +159,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="수요일"><a href="#수요일" class="headerlink" title="수요일"></a>수요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
+    <h1 id="목요일"><a href="#목요일" class="headerlink" title="목요일"></a>목요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
 <li><p>알고리즘 연습 문제 25, 26, 27번 문제를 풀었다. 오늘은 25번은 간단한 배열내 정수들의 평균값을 구하는것이었고 26번은 정수들로 이루어져있는 배열에서 인접한 요소들의 차이가 가장 작은것들을 하나의 배열로 쌍으로 묶어 반환하는것이었다. 이 문제는 시간을 좀 많이 썻던것 같다. 그리고 27번은 배열내의 정수들을 음수는 내림차순 양수는 오름차순으로 정렬하는 문제였는데 sort를 사용하면 간단하게 해결이 됐다.</p>
 </li>
 <li><p>모듈화에 대해 알아보았다. 간단하게 그냥 script태그로 js 파일을 여러개 불러오면 그 여러개의 파일들이 하나의 전역스코프를 공유하는 문제를 모듈화를 시킴으로써 각자의 모듈 스코프를 갖게끔 해주는방법이다. webpack과 parcel에 대해 알아보고 사용해보려 했으나 이건 아직 하지 못했다.</p>
@@ -194,21 +196,21 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%88%98%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">수요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%AA%A9%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">목요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -229,10 +231,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -251,15 +253,15 @@
     <nav>
       <ul>
          
-          <li><a href="/">Startseite</a></li>
+          <li><a href="/">Inici</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Über diese Webseite</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Artikel</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
         
       </ul>
     </nav>
