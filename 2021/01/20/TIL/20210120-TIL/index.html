@@ -14,7 +14,7 @@
 <meta property="og:description" content="수요일오늘 한 일 프로그래머스 알고리즘 Level_1 2문제를 풀었다. 하나는 배열내의 정수에서 각 인덱스들의 값이 합쳐서 나올 수 있는 모든 정수의 경우의 수를 구해 정렬까지 하여 반환하는 함수를 만드는것이었고 하나는 문자열을 인수로 줬을때 그 문자열의 중간에 있는 값을 반환하되 문자열의 길이가 짝수일때는 중간인 문자가 2개이므로 2개를 반환하는 함수를">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-01-20T13:56:08.000Z">
-<meta property="article:modified_time" content="2021-01-20T14:06:34.939Z">
+<meta property="article:modified_time" content="2021-01-20T14:09:31.500Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -63,15 +63,15 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </span>
@@ -85,10 +85,10 @@
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
-      <span id="i-next" class="info" style="display:none;">Post Següent</span>
-      <span id="i-top" class="info" style="display:none;">Adalt</span>
-      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -160,16 +160,17 @@
     <h1 id="수요일"><a href="#수요일" class="headerlink" title="수요일"></a>수요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
 <li><p>프로그래머스 알고리즘 Level_1 2문제를 풀었다. 하나는 배열내의 정수에서 각 인덱스들의 값이 합쳐서 나올 수 있는 모든 정수의 경우의 수를 구해 정렬까지 하여 반환하는 함수를 만드는것이었고 하나는 문자열을 인수로 줬을때 그 문자열의 중간에 있는 값을 반환하되 문자열의 길이가 짝수일때는 중간인 문자가 2개이므로 2개를 반환하는 함수를 만드는것이었다.</p>
 </li>
-<li><p>자바스크립트의 트렌드를 실제 개발자들이 생각하는데로 설문조사 하여 결과를 내는 stateOfJS에 대한 영상을 봤다.<br>각종 자바스크립트의 최신 문법과 각종 라이브러리들의 사용빈도 및 긍정도, 부정도에 대한 결과가 나와있었다. 2020년의 설문이었다. 확실히 지금 최신 문법까지 많이 배우고있다고 느낀게 null병합, 옵셔널체이닝도 ES2020사양인데 사용해본적이 있고 private field같은 아직 정식사양으로 등록되지 않은것도 설문조사에 나왔는데 현재 과정에서 배우고 있었다. 일단 그 이외에도 라이브러리에 대한 설문조사가 눈에 띄었는데 Angular.js는 사용빈도는 높지만 부정적인 의견이 많았고 vue도 그 정도는 더 적지만 크게 다르지 않았다. 반면에 눈에 띄게 사용률도 높으면서 긍정적인 의견이 나왔던게 TypeScript, 그리고 React였다. Express도 있었지만 지금은 프론트엔드 시점에서만 본다고 하면 아직은 React가 정말 많이 쓰이고 TypeScript는 그것보다도 더 많이 쓰이면서 긍정적인 의견이 많았던것 같다. </p>
+<li><p>자바스크립트의 트렌드를 실제 개발자들이 생각하는데로 설문조사 하여 결과를 내는 stateOfJS에 대한 영상을 봤다.<br>각종 자바스크립트의 최신 문법과 각종 라이브러리들의 사용빈도 및 긍정도, 부정도에 대한 결과가 나와있었다. 2020년의 설문이었다.</p>
 </li>
 </ul>
 <h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
 <li><p>지금 여행을 하며 코딩을 해보자는 시도를 해보고 있는데 사실은 엄청 길게 온것도 아니고 많이 여유로운게 아니라서 평소보다 코딩에 투자하는 시간 자체가 줄어든것도 맞고 오늘은 사실상 알고리즘 문제 2개 푼게 전부인거 같다. 지금 여행중에는… 목표를 코딩을 아예 놓치는 않지만 너무 무리해서 하려고 해도 잘 안되는것 같다. 돌아가서 2배로 열심히 하자!</p>
 </li>
-<li></li>
+<li><p>확실히 지금 최신 문법까지 많이 배우고있다고 느낀게 null병합, 옵셔널체이닝도 ES2020사양인데 사용해본적이 있고 private field같은 아직 정식사양으로 등록되지 않은것도 설문조사에 나왔는데 현재 과정에서 배우고 있었다. 일단 그 이외에도 라이브러리에 대한 설문조사가 눈에 띄었는데 Angular.js는 사용빈도는 높지만 부정적인 의견이 많았고 vue.js도 그 정도는 더 적지만 크게 다르지 않았다. 반면에 눈에 띄게 사용률도 높으면서 긍정적인 의견이 나왔던게 TypeScript, 그리고 React였다. Express도 있었지만 지금은 프론트엔드 시점에서만 본다고 하면 아직은 React가 정말 많이 쓰이고 TypeScript는 그것보다도 더 많이 쓰이면서 긍정적인 의견이 많았던것 같다. 확실히 프론트엔드는 새로운 기술들이 정말 빨리 등장하며 예전 기술들이 사라지고 이런 트렌드들에 민감하게 반응해줘야 하는것 같다. 지금은 100% 혼자서 모든 트렌드를 파악하고 공부하는 능력이 안되지만 앞으로 어떻게 알아보고 공부할지에 대해 생각하야 할 것 같다!</p>
+</li>
 </ul>
 <h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
-<li></li>
+<li>프로그래머스 JS 알고리즘 1문제 이상 풀기</li>
 </ul>
 
   </div>
@@ -184,15 +185,15 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </div>
@@ -219,10 +220,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
     </div>
 
   </div>
@@ -241,15 +242,15 @@
     <nav>
       <ul>
          
-          <li><a href="/">Inici</a></li>
+          <li><a href="/">Startseite</a></li>
          
           <li><a href="/categories/">categories</a></li>
          
-          <li><a href="/about/">Qui som</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projekte</a></li>
         
       </ul>
     </nav>
