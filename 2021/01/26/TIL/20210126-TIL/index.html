@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="화요일오늘 한 일 프로그래머스 JS 알고리즘 문제를 하나 풀었다. 오늘 주제는 내 마음대로 문자열 정렬하기 였는데 첫번째 인수로 배열에 문자열을 요소값으로 넣어서 넘겨주고 두번째 인수로 문자열 중 정렬할 index를 넘겨주는데 만약 2를 넘겨줬다면 문자열의 2번째 인덱스에 위치한 기준의 문자를 기준으로 정렬하는 문제였다.  Ajax와 REST API에 대해">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20210126-TIL">
+<meta property="og:url" content="https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="화요일오늘 한 일 프로그래머스 JS 알고리즘 문제를 하나 풀었다. 오늘 주제는 내 마음대로 문자열 정렬하기 였는데 첫번째 인수로 배열에 문자열을 요소값으로 넣어서 넘겨주고 두번째 인수로 문자열 중 정렬할 index를 넘겨주는데 만약 2를 넘겨줬다면 문자열의 2번째 인덱스에 위치한 기준의 문자를 기준으로 정렬하는 문제였다.  Ajax와 REST API에 대해">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-01-26T14:00:36.000Z">
+<meta property="article:modified_time" content="2021-01-26T14:12:57.531Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="TIL">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>20210126-TIL</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/01/25/TIL/20210125-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&text=20210126-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&is_video=false&description=20210126-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20210126-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&name=20210126-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&t=20210126-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%ED%99%94%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">화요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        20210126-TIL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-26T14:00:36.000Z" itemprop="datePublished">2021-01-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TIL/" rel="tag">TIL</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="화요일"><a href="#화요일" class="headerlink" title="화요일"></a>화요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
+<li><p>프로그래머스 JS 알고리즘 문제를 하나 풀었다. 오늘 주제는 내 마음대로 문자열 정렬하기 였는데 첫번째 인수로 배열에 문자열을 요소값으로 넣어서 넘겨주고 두번째 인수로 문자열 중 정렬할 index를 넘겨주는데 만약 2를 넘겨줬다면 문자열의 2번째 인덱스에 위치한 기준의 문자를 기준으로 정렬하는 문제였다.</p>
+</li>
+<li><p>Ajax와 REST API에 대해 복습하고 강의때 이에 대한 설명을 들었다. 그리고 서버의 상태를 확인하기 위해 PostMan이라는 애플리케이션도 설치해서 사용해봤다.</p>
+</li>
+<li><p>WebComponent가 표준객체이고 어떤것들로 이루어져있는지 간략하게 MDN 문서를 읽어만봤다.</p>
+</li>
+</ul>
+<h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
+<li><p>오늘 알고리즘은 처음에 지문을 읽을때는 그래도 좀 어렵겠는데? 생각했는데 막상 풀어보니 5분도 걸리지 않고 해결했다. 그래도 이제 문제 해결능력이 조금은 향상된것 같다.</p>
+</li>
+<li><p>Ajax는 그래도 많이 이해가 된것같은데 REST API는 하나의 약속이지만 아직은 어떤식으로 사용하는지가 익숙해지지 않았고 완벽히 아는것 같지는 않다. 특히 id값으로 데이터를 요청하는 부분이 어떻게 이루어지는것인지가 제일 와닿지 않는것 같다.</p>
+</li>
+<li><p>일단 WebComponent는 이름 그대로 기능들을 캡슐화하여 재사용 할 수 있게끔 해주는것었다. 아직 사용법까진 잘 모르지만 custom elements가 있고 shadow DOM이 있어 이것을 웹에서 활용하여 재사용 가능한 HTML엘리먼트들을 만드는것이라고 하는데 한번 직접 사용해봐야 알 것 같다.</p>
+</li>
+</ul>
+<h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
+<li><p>꾸준히 프로그래머스에서 JS 알고리즘 문제 1개 이상 풀기!</p>
+</li>
+<li><p>오전시간에 XMLHttpRequest로 요청을 했던 예제의 코드를 최대한 클린하게 바꿔보기</p>
+</li>
+<li><p>이터러블 다 읽지 못한 부분 마저 읽기</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%ED%99%94%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">화요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&text=20210126-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&is_video=false&description=20210126-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20210126-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&title=20210126-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&name=20210126-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/26/TIL/20210126-TIL/&t=20210126-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
