@@ -9,12 +9,12 @@
     <meta name="description" content="목요일오늘 한 일 프로그래머스 JS 알고리즘 문제를 2개 풀었다. 사실 의도한건 아니지만 어쩌다보니 엄청 간단한 문제를 풀었다. for문으로 별찍기, 단순한 규칙으로 연속되는 배열을 만드는 함수를 만드는 문제였다.  express예제로 서버단에서 error처리 하는 코드를 추가하고, 그것에 맞게 클라이언트단 코드를 수정해주는 작업을 했다.   오늘 느낀점">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20211028-TIL">
-<meta property="og:url" content="https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/index.html">
+<meta property="og:url" content="https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/index.html">
 <meta property="og:site_name" content="Junn&#39;s 개발노트">
 <meta property="og:description" content="목요일오늘 한 일 프로그래머스 JS 알고리즘 문제를 2개 풀었다. 사실 의도한건 아니지만 어쩌다보니 엄청 간단한 문제를 풀었다. for문으로 별찍기, 단순한 규칙으로 연속되는 배열을 만드는 함수를 만드는 문제였다.  express예제로 서버단에서 error처리 하는 코드를 추가하고, 그것에 맞게 클라이언트단 코드를 수정해주는 작업을 했다.   오늘 느낀점">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-01-28T14:27:09.000Z">
-<meta property="article:modified_time" content="2021-01-28T15:49:57.169Z">
+<meta property="article:modified_time" content="2021-01-29T16:35:46.508Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
@@ -79,6 +79,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2021/01/29/TIL/20210129-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2021/01/27/TIL/20210127-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -93,17 +95,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&text=20211028-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&is_video=false&description=20211028-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20211028-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&name=20211028-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&t=20211028-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&text=20211028-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&is_video=false&description=20211028-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20211028-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&name=20211028-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&t=20211028-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -211,17 +213,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&text=20211028-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&is_video=false&description=20211028-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=20211028-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&title=20211028-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&name=20211028-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/28/TIL/20211028-TIL/&t=20211028-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&text=20211028-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&is_video=false&description=20211028-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20211028-TIL&body=Check out this article: https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&title=20211028-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&name=20211028-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/01/28/TIL/20210128-TIL/&t=20211028-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
