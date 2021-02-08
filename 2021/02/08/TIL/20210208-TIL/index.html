@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="월요일오늘 한 일 오전에 UI Component 예제에서 사용자의 OS theme 정보를 가져와 dark, light 모드를 설정해주는 예제를 풀어봤는데 정말 이렇게 HTML, CSS를 JS에서 건드는 예제를 접하다보면 생전 처음 듣는 속성들을 많이 접하는것 같다. window.matchMedia(&#39;(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20210208-TIL">
+<meta property="og:url" content="https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="월요일오늘 한 일 오전에 UI Component 예제에서 사용자의 OS theme 정보를 가져와 dark, light 모드를 설정해주는 예제를 풀어봤는데 정말 이렇게 HTML, CSS를 JS에서 건드는 예제를 접하다보면 생전 처음 듣는 속성들을 많이 접하는것 같다. window.matchMedia(&#39;(prefers-color-scheme: dark)">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-02-08T14:03:34.000Z">
+<meta property="article:modified_time" content="2021-02-08T16:03:48.415Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="TIL">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>20210208-TIL</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/02/08/JavaScript/DOMContentLoaded,%20load%20%EC%9D%B4%EB%B2%A4%ED%8A%B8/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/02/07/TIL/20210207-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&text=20210208-TIL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&is_video=false&description=20210208-TIL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20210208-TIL&body=Check out this article: https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&name=20210208-TIL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&t=20210208-TIL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9B%94%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">월요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        20210208-TIL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-08T14:03:34.000Z" itemprop="datePublished">2021-02-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TIL/" rel="tag">TIL</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="월요일"><a href="#월요일" class="headerlink" title="월요일"></a>월요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
+<li><p>오전에 UI Component 예제에서 사용자의 OS theme 정보를 가져와 dark, light 모드를 설정해주는 예제를 풀어봤는데 정말 이렇게 HTML, CSS를 JS에서 건드는 예제를 접하다보면 생전 처음 듣는 속성들을 많이 접하는것 같다. <code>window.matchMedia(&#39;(prefers-color-scheme: dark)&#39;)</code>라는 window 내장 메서드를 사용하는것인데 저 코드는 dark모드인지 판별하여 boolean 값을 프로퍼티로 가지고 있는 객체를 반환해준다.</p>
+</li>
+<li><p>해커톤 프로젝트를 develop 브랜치에서 main 브랜치로 merge 한 후 아주… 간략하게 배포용 버전으로 만들어 준 후 netlify에 호스팅하였다. 사실 오늘도 강의에서 다루는 UI Component 예제를 만들어보느라 정신이 없어서 저녁시간에 조금 촉박하게 진행했더니 호스팅하는 레포의 구조가 전혀 마음에 들지 않았다.</p>
+</li>
+<li><p>프로그래머스 JS 알고리즘 1단계 중 정말 아주 기초적인 수준의 문제를 1개 풀었다.</p>
+</li>
+<li><p>DOMContentLoaded와 load 이벤트의 차이점을 간략한 예제와 함께 정리하여 블로그에 포스팅하였다.</p>
+</li>
+</ul>
+<h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
+<li><p>경험, 경력이 중요하다는말이 같은 코드를 여러번 반복하여 숙달하는 영역도 있지만 이렇게 새로운 속성들을 경험을 통해 알게되지 않으면 아예 존재의 유무조차 모르니 쓸 수도 없다는 부분에서도 맞는말인것 같다.</p>
+</li>
+<li><p>지금도 webpack과 babel에 대한 상세한 지식이 없고 번들링과 배포용 파일의 구조를 자세히 알지 못하지만 이렇게 경험하며 조금조금씩 깨닫고 있다는 느낌이 든다. 호스팅 서비스엔 대부분 npm 명령어를 함께 넣어줄 수 있는데 이것을 이용하여 JSON server를 활용한 TODOS 예제를 호스팅해봐야겠다.</p>
+</li>
+<li><p>지금 정말 중요한 시기고 배워야할것이 많을것같다. 한주의 목표에 하루에 1개 이상의 JS 알고리즘 풀기를 적어놨는데 너무 어려운것을 풀려고 노력하지 말고 로직을 생각하는것이 굳지 않을 정도로만 시간을 할애하고 나머지는 더 중요한 개념들을 익히는데 사용해야겠다.</p>
+</li>
+<li><p>TIL도 정말 그냥 편하게 일기 쓰는 형식으로만 작성을 해왔는데 시간이 날때, 혹은 시간을 내서라도 한가지 개념, 속성 등을 정하여 하나씩 포스팅 하는 습관을 들여야겠다. 이유는 내가 만들어놓은 자료는 내가 다시 봤을때 복습하기 정말 효율적이고 취업에도 유리할 수 있다고 생각한다. 모두 다 나의 재산이 되는것!</p>
+</li>
+</ul>
+<h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
+<li><p>UI Component 예제 2개 이상 (7, 8번 ~) 풀어보기</p>
+</li>
+<li><p>netlify에 npm 명령어를 이용하여 JSON server를 사용하는 Todos를 호스팅해보기</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9B%94%EC%9A%94%EC%9D%BC"><span class="toc-number">1.</span> <span class="toc-text">월요일</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">오늘 한 일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EB%8A%90%EB%82%80%EC%A0%90"><span class="toc-number">1.2.</span> <span class="toc-text">오늘 느낀점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="toc-number">1.3.</span> <span class="toc-text">내일 할 일</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&text=20210208-TIL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&is_video=false&description=20210208-TIL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=20210208-TIL&body=Check out this article: https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&title=20210208-TIL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&name=20210208-TIL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/02/08/TIL/20210208-TIL/&t=20210208-TIL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
