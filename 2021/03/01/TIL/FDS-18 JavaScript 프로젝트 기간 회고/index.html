@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="FDS-18 JavaScript 프로젝트 기간동안의 회고2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간) 자바스크립트 후반부에 들어가서 TypeScript, Sass가 갑자기 커리큘럼에 추가되고 그것을 이용해 프로젝트 준비를 하고 그 이외에도 webComponent를 사용하여 SPA를 만들어보려고 했으나 결국 w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FDS-18 JavaScript 프로젝트 기간 회고">
+<meta property="og:url" content="https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="FDS-18 JavaScript 프로젝트 기간동안의 회고2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간) 자바스크립트 후반부에 들어가서 TypeScript, Sass가 갑자기 커리큘럼에 추가되고 그것을 이용해 프로젝트 준비를 하고 그 이외에도 webComponent를 사용하여 SPA를 만들어보려고 했으나 결국 w">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-03-01T14:12:58.000Z">
+<meta property="article:modified_time" content="2021-03-01T15:36:26.198Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="TIL">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>FDS-18 JavaScript 프로젝트 기간 회고</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/03/02/TIL/20210301-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/02/15/TIL/20210215-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&text=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&is_video=false&description=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FDS-18 JavaScript 프로젝트 기간 회고&body=Check out this article: https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&name=FDS-18 JavaScript 프로젝트 기간 회고&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&t=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FDS-18-JavaScript-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B8%B0%EA%B0%84%EB%8F%99%EC%95%88%EC%9D%98-%ED%9A%8C%EA%B3%A0"><span class="toc-number">1.</span> <span class="toc-text">FDS-18 JavaScript 프로젝트 기간동안의 회고</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EC%9B%94-16%EC%9D%BC-2%EC%9B%94-28%EC%9D%BC%EC%9D%98-%ED%95%9C-%EC%9D%BC%EA%B3%BC-%EB%8A%90%EB%82%80%EC%A0%90-JavaScript-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A4%80%EB%B9%84%EC%99%80-%EC%A7%84%ED%96%89%EA%B8%B0%EA%B0%84"><span class="toc-number">1.1.</span> <span class="toc-text">2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간)</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        FDS-18 JavaScript 프로젝트 기간 회고
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Junn's 개발노트</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-01T14:12:58.000Z" itemprop="datePublished">2021-03-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TIL/" rel="tag">TIL</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="FDS-18-JavaScript-프로젝트-기간동안의-회고"><a href="#FDS-18-JavaScript-프로젝트-기간동안의-회고" class="headerlink" title="FDS-18 JavaScript 프로젝트 기간동안의 회고"></a>FDS-18 JavaScript 프로젝트 기간동안의 회고</h1><h2 id="2월-16일-2월-28일의-한-일과-느낀점-JavaScript-프로젝트-준비와-진행기간"><a href="#2월-16일-2월-28일의-한-일과-느낀점-JavaScript-프로젝트-준비와-진행기간" class="headerlink" title="2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간)"></a>2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간)</h2><ul>
+<li><p>자바스크립트 후반부에 들어가서 TypeScript, Sass가 갑자기 커리큘럼에 추가되고 그것을 이용해 프로젝트 준비를 하고 그 이외에도 webComponent를 사용하여 SPA를 만들어보려고 했으나 결국 webComponent를 갑작스럽게 팀원과 함께 사용하는것이 버겁다고 판단되어 TypeScript를 사용하며 바닐라 자바스크립트 코드를 베이스로 CSR로 SPA를 만드는 프로젝트를 진행했다.<br>TodoList라는 예제보다 좀 더 복잡하게 프레임워크를 연습하는것을 목적으로 한 realworld 오픈소스를 활용했고 SPA를 바닐라 자바스크립트로 만들려고 하다보니 라우팅을 하고 각각의 뷰를 라우팅에 따라 렌더링해주는 설계가 생각보다 어려웠던것 같다.<br>이번 프로젝트도 5일간의 시간에 만들어야하는 제한이 있었고 마음이 급해서 코드를 충분히 생각하고 작성하지 못한것에 대한 후회가 남는것 같다. 프로젝트의 시작과 진행중에도 항상 결과가 중요하지 않다고 계속 인지하고 있었지만 순간순간 결과에 대한 욕심때문에 프로젝트내에서 코드의 재활용성과 일관성을 지키지 못한것 같고 사실 준비하는 기간에도 충분히 공을 들이지 못한것 같다.</p>
+</li>
+<li><p>지금까지 정말 프로젝트의 팀빌딩 과정전에는 아무 생각없이 팀이 정해지고 나면 그때서야 주제를 생각해보고 프로젝트의 구조를 짯는데 파이널 프로젝트를 비롯해서 앞으로 일정에 예정되어있는 프로젝트를 진행하게 된다면 충분히 준비를 하고 설계를 마친 상태로 시작해야겠다는 생각이 들었다.<br>발표도 마찬가지다. 항상 그냥 별로 준비하지 않고 내가 하고싶은 얘기들을 애드리브로 풀어서 얘기를 했었는데 이게 좋은점도 있지만 발표의 흐름이 후반을 달려가면 이야기의 흐름이 방향을 잃고 흐지부지 된다는 느낌을 받았다. 그리고 같은 내용을 설명해도 정리가 되지 않아 있다보니 시간도 더 소요되는것 같았다. 물론 발표같은 경우는 목표가 프로젝트의 진행과는 조금 다른 영역이라 발표를 잘하는것이 나의 실력향상과 직결된다고 말할 순 없지만 정리를 하고 준비를 하는 과정만으로도 프로젝트 진행 중 놓쳤던 부분을 캐치하며 더욱 탄탄하게 나의 지식으로 자리 잡을 수 있을것 같다는 생각이 든다.</p>
+</li>
+<li><p>이번에 뭔가 되게 나만의 고집이 생겼다는 느낌을 받았다. 팀 프로젝트를 할 때 서로의 의견을 충분히 나누고 수용할 수 있는 의견은 수용해야 하는데 이번엔 뭔가 그런 부분이 잘 안됐던것 같은 느낌이 들었다… 인지하며 고쳐나가도록 하자</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FDS-18-JavaScript-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B8%B0%EA%B0%84%EB%8F%99%EC%95%88%EC%9D%98-%ED%9A%8C%EA%B3%A0"><span class="toc-number">1.</span> <span class="toc-text">FDS-18 JavaScript 프로젝트 기간동안의 회고</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EC%9B%94-16%EC%9D%BC-2%EC%9B%94-28%EC%9D%BC%EC%9D%98-%ED%95%9C-%EC%9D%BC%EA%B3%BC-%EB%8A%90%EB%82%80%EC%A0%90-JavaScript-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A4%80%EB%B9%84%EC%99%80-%EC%A7%84%ED%96%89%EA%B8%B0%EA%B0%84"><span class="toc-number">1.1.</span> <span class="toc-text">2월 16일 ~ 2월 28일의 한 일과 느낀점 (JavaScript 프로젝트 준비와 진행기간)</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&text=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&is_video=false&description=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FDS-18 JavaScript 프로젝트 기간 회고&body=Check out this article: https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&title=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&name=FDS-18 JavaScript 프로젝트 기간 회고&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2021/03/01/TIL/FDS-18%20JavaScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EA%B0%84%20%ED%9A%8C%EA%B3%A0/&t=FDS-18 JavaScript 프로젝트 기간 회고"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    HaJun Ryu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
