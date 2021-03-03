@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html lang=ko>
+<html lang="ko">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="인용문(q, blockquote)사용법 및 정의 인용문임을 나타내는 태그이다.  &lt;q&gt;태그는 문단 안에서 인용할 때 사용하는 inline 요소이다.  &lt;blockquote&gt;태그는 새로운 문단에서 인용하는 block 요소이다.  보통 3줄 이내로 짧게 인용할 경우 q태그를 사용하고 3줄 이상의 문단 전체를 인용할때  blockquote를">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hajunryu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="인용문(q, blockquote)사용법 및 정의 인용문임을 나타내는 태그이다.  &lt;q&gt;태그는 문단 안에서 인용할 때 사용하는 inline 요소이다.  &lt;blockquote&gt;태그는 새로운 문단에서 인용하는 block 요소이다.  보통 3줄 이내로 짧게 인용할 경우 q태그를 사용하고 3줄 이상의 문단 전체를 인용할때  blockquote를">
 <meta property="og:type" content="article">
 <meta property="og:title" content="인용문(q, blockquote)">
 <meta property="og:url" content="https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/index.html">
@@ -18,148 +32,174 @@
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="html">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>인용문(q, blockquote)</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
-    <!-- rss -->
-    
-    
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">Inici</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/about/">Qui som</a></li>
-         
-          <li><a href="/archives/">Articles</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2020/11/01/TIL/20201101-TIL/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/2020/10/31/TIL/20201031-TIL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
-      <span id="i-next" class="info" style="display:none;">Post Següent</span>
-      <span id="i-top" class="info" style="display:none;">Adalt</span>
-      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&text=인용문(q, blockquote)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&is_video=false&description=인용문(q, blockquote)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=인용문(q, blockquote)&body=Check out this article: https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&name=인용문(q, blockquote)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&t=인용문(q, blockquote)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9D%B8%EC%9A%A9%EB%AC%B8-q-blockquote"><span class="toc-number">1.</span> <span class="toc-text">인용문(q, blockquote)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%B0%8F-%EC%A0%95%EC%9D%98"><span class="toc-number">1.1.</span> <span class="toc-text">사용법 및 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q%ED%83%9C%EA%B7%B8-lt-q-gt-lt-q-gt"><span class="toc-number">1.2.</span> <span class="toc-text">q태그&lt;q&gt;&lt;&#x2F;q&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#q%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">q태그를 사용한 인용문의 예시</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blockquote%ED%83%9C%EA%B7%B8-lt-blockquote-gt-lt-blockquote-gt"><span class="toc-number">1.3.</span> <span class="toc-text">blockquote태그 &lt;blockquote&gt;&lt;&#x2F;blockquote&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#blockquote%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">blockquote태그를 사용한 인용문의 예시</span></a></li></ol></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        인용문(q, blockquote)
-    </h1>
+<link rel="canonical" href="https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/">
 
 
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Junn's 개발노트</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-11-01T09:40:23.000Z" itemprop="datePublished">2020-11-01</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/HTML/">HTML</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/html/" rel="tag">html</a>
-    </div>
-
-
-    </div>
-  </header>
+  <title>인용문(q, blockquote) | Junn's 개발노트</title>
   
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="인용문-q-blockquote"><a href="#인용문-q-blockquote" class="headerlink" title="인용문(q, blockquote)"></a>인용문(q, blockquote)</h1><h2 id="사용법-및-정의"><a href="#사용법-및-정의" class="headerlink" title="사용법 및 정의"></a>사용법 및 정의</h2><ul>
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Junn's 개발노트</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">My github blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HaJun Ryu">
+      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junn's 개발노트">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          인용문(q, blockquote)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-01 18:40:23 / Updated at: 23:07:00" itemprop="dateCreated datePublished" datetime="2020-11-01T18:40:23+09:00">2020-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="인용문-q-blockquote"><a href="#인용문-q-blockquote" class="headerlink" title="인용문(q, blockquote)"></a>인용문(q, blockquote)</h1><h2 id="사용법-및-정의"><a href="#사용법-및-정의" class="headerlink" title="사용법 및 정의"></a>사용법 및 정의</h2><ul>
 <li><p><a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%9D%B8%EC%9A%A9">인용문</a>임을 나타내는 태그이다.</p>
 </li>
 <li><p><code>&lt;q&gt;</code>태그는 문단 안에서 인용할 때 사용하는 inline 요소이다.</p>
@@ -191,144 +231,197 @@
 </li>
 </ul>
 <h3 id="blockquote태그를-사용한-인용문의-예시"><a href="#blockquote태그를-사용한-인용문의-예시" class="headerlink" title="blockquote태그를 사용한 인용문의 예시"></a>blockquote태그를 사용한 인용문의 예시</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>백범 김구 선생님<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">&quot;https://namu.wiki/w/%EA%B9%80%EA%B5%AC#s-1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      한국의 독립운동가, 정치인. 일제강점기 시절 독립운동가 중에서도 순위권에 손꼽히는 인지도와 영향력을 가진 정치인으로 평가받는다. 동학농민운동과 교육계몽운동에 참여했고, 1919년에는 중국 상하이로 건너가 대한민국 임시정부 수립에 참여하여 의정원 의원, 내무총장, 국무총리 대리, 내무총장 겸 노동국 총판, 국무령, 의정원 의원, 국무위원 겸 내무장, 재무장, 군무장을 거쳐 1940년 임시정부 주석에 선출됐다.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cite</span>&gt;</span>나무위키<span class="tag">&lt;/<span class="name">cite</span>&gt;</span> <span class="comment">&lt;!-- cite속성과 다른 cite태그 - URL이 아닌 출처를 표기해줄때 사용한다. --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/html/" rel="tag"># html</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/31/TIL/20201031-TIL/" rel="prev" title="20201031-TIL">
+      <i class="fa fa-chevron-left"></i> 20201031-TIL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/01/TIL/20201101-TIL/" rel="next" title="20201101-TIL">
+      20201101-TIL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
-</article>
 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Inici</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/about/">Qui som</a></li>
-         
-          <li><a href="/archives/">Articles</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
-        
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
       </ul>
-    </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9D%B8%EC%9A%A9%EB%AC%B8-q-blockquote"><span class="toc-number">1.</span> <span class="toc-text">인용문(q, blockquote)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%B0%8F-%EC%A0%95%EC%9D%98"><span class="toc-number">1.1.</span> <span class="toc-text">사용법 및 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q%ED%83%9C%EA%B7%B8-lt-q-gt-lt-q-gt"><span class="toc-number">1.2.</span> <span class="toc-text">q태그&lt;q&gt;&lt;&#x2F;q&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#q%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">q태그를 사용한 인용문의 예시</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blockquote%ED%83%9C%EA%B7%B8-lt-blockquote-gt-lt-blockquote-gt"><span class="toc-number">1.3.</span> <span class="toc-text">blockquote태그 &lt;blockquote&gt;&lt;&#x2F;blockquote&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#blockquote%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">blockquote태그를 사용한 인용문의 예시</span></a></li></ol></li></ol></li></ol>
-    </div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%9D%B8%EC%9A%A9%EB%AC%B8-q-blockquote"><span class="nav-number">1.</span> <span class="nav-text">인용문(q, blockquote)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%B0%8F-%EC%A0%95%EC%9D%98"><span class="nav-number">1.1.</span> <span class="nav-text">사용법 및 정의</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q%ED%83%9C%EA%B7%B8-lt-q-gt-lt-q-gt"><span class="nav-number">1.2.</span> <span class="nav-text">q태그&lt;q&gt;&lt;&#x2F;q&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">q태그를 사용한 인용문의 예시</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blockquote%ED%83%9C%EA%B7%B8-lt-blockquote-gt-lt-blockquote-gt"><span class="nav-number">1.3.</span> <span class="nav-text">blockquote태그 &lt;blockquote&gt;&lt;&#x2F;blockquote&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#blockquote%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B8%EC%9A%A9%EB%AC%B8%EC%9D%98-%EC%98%88%EC%8B%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">blockquote태그를 사용한 인용문의 예시</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
 
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&text=인용문(q, blockquote)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&is_video=false&description=인용문(q, blockquote)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=인용문(q, blockquote)&body=Check out this article: https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&title=인용문(q, blockquote)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&name=인용문(q, blockquote)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hajunryu.github.io/2020/11/01/HTML/[html]%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%AE%E1%86%AB%20(q,%20blockquote)/&t=인용문(q, blockquote)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
-    </div>
-
-  </div>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HaJun Ryu</p>
+  <div class="site-description" itemprop="description">All stories about HTML, CSS, JavaScript, node, java</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2020-2021
-    HaJun Ryu
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Inici</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/about/">Qui som</a></li>
-         
-          <li><a href="/archives/">Articles</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HaJunRyu">Projectes</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
+
+
+      </div>
 
     </div>
-    <!-- styles -->
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-    <!-- jquery -->
+      </div>
+    </main>
 
-<script src="/lib/jquery/jquery.min.js"></script>
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HaJun Ryu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
-<!-- clipboard -->
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Kopiert!");
-      e.clearSelection();
-    })
-  })
-  </script>
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-<script src="/js/main.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
-<!-- search -->
 
-<!-- Google Analytics -->
+<script src="/js/next-boot.js"></script>
 
-<!-- Baidu Analytics -->
 
-<!-- Umami Analytics -->
 
-<!-- Disqus Comments -->
 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
