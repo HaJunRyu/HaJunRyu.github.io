@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/71176945/109744816-42fe0300-7c16-11eb-85b8-2018a9ec2d0f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/71176945/109746686-24e5d200-7c19-11eb-8e21-25a840c366a7.png">
 <meta property="article:published_time" content="2021-03-03T01:31:02.000Z">
-<meta property="article:modified_time" content="2021-03-03T03:59:31.137Z">
+<meta property="article:modified_time" content="2021-03-03T04:07:58.319Z">
 <meta property="article:author" content="HaJun Ryu">
 <meta property="article:tag" content="VSCode">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2021-03-03 10:31:02 / Updated at: 12:59:31" itemprop="dateCreated datePublished" datetime="2021-03-03T10:31:02+09:00">2021-03-03</time>
+              <time title="Post created: 2021-03-03 10:31:02 / Updated at: 13:07:58" itemprop="dateCreated datePublished" datetime="2021-03-03T10:31:02+09:00">2021-03-03</time>
             </span>
 
           
@@ -246,23 +246,23 @@
 </li>
 </ol>
 <p>그래서 결국은 root/Users/hajun/Application/ 경로에 있는 Visual Studio Code.app 파일을 <code>mv</code> 명령어를 이용하여 root/Application/ 경로로 이동시켜주었고 다시 VS Code에서 명령 팔레트를 켜고 PATH에 code 명령어를 설치해주니 재부팅을 해도 git commit 메세지를 VS Code로 작성할 수 있게 되었다.</p>
+<center>⬇ commit 메세지를 작성하고 editor(commit message파일)가 종료 될때까지 대기 ⬇</center>
+
 <p><img src="https://user-images.githubusercontent.com/71176945/109744619-f5819600-7c15-11eb-86a3-86c01c04c5b0.png" alt="image"></p>
-<center>↑ commit 메세지를 작성하고 editor(commit message파일)가 종료 될때까지 대기 ↑</center>
+<center>⬇ VS Code에서 commit message 작성 ⬇</center>
 
 <p><img src="https://user-images.githubusercontent.com/71176945/109744763-34175080-7c16-11eb-8286-d6015b74a4fa.png" alt="image"></p>
-<center>↑ VS Code에서 commit message 작성 ↑</center>
+<center>⬇ commit message를 다 작성한 후 editor(commit message파일)를 종료하면 아래와 같이 commit이 완료된다. ⬇</center>
 
 <p><img src="https://user-images.githubusercontent.com/71176945/109744816-42fe0300-7c16-11eb-85b8-2018a9ec2d0f.png" alt="image"></p>
-<center>↑ commit message를 다 작성한 후 editor(commit message파일)를 종료하면 위와 같이 commit이 완료된다. ↑</center>
-
 <h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>Mac OS를 사용한다면 아마 처음에 Visual Studio Code를 설치할때 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">공식페이지</a>에서 간단히 Download for Mac(또는 window)버튼을 눌러 설치할것이다.<br>Download 된 파일은 기본적으로 Download폴더에 위치하게 된다. 그리고 그 파일을 압축해제하면 Visual Studio Code.app이라는 파일이 생성될것이고 그대로 VS Code를 사용할 수 있게된다.<br>그래서 흔히들 Visual Studio Code.app 파일의 위치(경로)가 root/Users/사용자/Download인 채로 사용하게 되는데 나의 경우에는 이것을 인지하고 Application폴더로 이동해주었지만 그 폴더 또한 올바른 Application폴더가 아니었던것이다….  </p>
 <p>추측이지만 code명령어는 root/Applications/Visual Studio Code.app/Contents/Resources/app/bin/ 경로에서 code 파일을 찾아 작동하는것 같다. 그래서 Visual Studio Code.app 파일이 올바른 경로에 있지 않을때 code 명령어가 정상적으로 작동하지 않는것 같다.</p>
 <p>그래서 지금 이 단계까지 잘 왔다면 본문의 상단에서 작성한 .zshrc 파일에서 code명령어를 수동으로 설정했던 행위도 필요하지 않게 된다.</p>
 <p>그냥 놔둬도 되지만 거슬려서 다시 .zshrc 파일에 접근하여 주석처리를 해주었다.</p>
 <p><code>vim ~/.zshrc</code> or <code>code ~/.zshrc</code></p>
-<p><img src="https://user-images.githubusercontent.com/71176945/109746686-24e5d200-7c19-11eb-8e21-25a840c366a7.png" alt="image"></p>
-<center>#을 붙혀주면 주석처리가 된다.</center>  
+<center>⬇ #을 붙혀주면 주석처리가 된다. ⬇</center>  
 
+<p><img src="https://user-images.githubusercontent.com/71176945/109746686-24e5d200-7c19-11eb-8e21-25a840c366a7.png" alt="image"></p>
 <p>그래서 진짜 결론은 응용프로그램을 설치할때는 처음부터 잘하자ㅎㅎ</p>
 
     </div>
@@ -285,7 +285,10 @@
     <a href="/2021/03/02/TIL/20210302-TIL/" rel="prev" title="20210302-TIL 개발 도구 및 명령어 정리">
       <i class="fa fa-chevron-left"></i> 20210302-TIL 개발 도구 및 명령어 정리
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/03/TIL/%EA%B0%9C%EB%B0%9C-%EB%8F%84%EA%B5%AC-%EB%B0%8F-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/" rel="next" title="개발 도구 및 명령어 정리">
+      개발 도구 및 명령어 정리 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -358,7 +361,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
