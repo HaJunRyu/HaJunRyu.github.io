@@ -148,6 +148,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/11/20/JavaScript/1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%8B%E1%85%AB%208%E1%84%87%E1%85%B5%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HaJun Ryu">
+      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junn's 개발노트">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/20/JavaScript/1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%8B%E1%85%AB%208%E1%84%87%E1%85%B5%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A1/" class="post-title-link" itemprop="url">1바이트는 왜 8비트인가</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-11-20 11:45:10" itemprop="dateCreated datePublished" datetime="2020-11-20T11:45:10+09:00">2020-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-11-21 21:53:55" itemprop="dateModified" datetime="2020-11-21T21:53:55+09:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1바이트는-왜-8비트인가"><a href="#1바이트는-왜-8비트인가" class="headerlink" title="1바이트는 왜 8비트인가"></a>1바이트는 왜 8비트인가</h1><h2 id="아스키코드에-대해"><a href="#아스키코드에-대해" class="headerlink" title="아스키코드에 대해"></a>아스키코드에 대해</h2><ul>
+<li><p>처음 문자인코딩 방식이 결정될때 컴퓨터 문화는 영어권에서 발전했고 영어권의 언어를 표현하는데는 128개의 문자가 필요했기때문에 아스키코드는 7비트로 0 ~ 127의 코드로 총 128개의 부호를 사용했다. 그러면 나머지 1비트는 무엇인지 알아보자.</p>
+</li>
+<li><p>패리티 비트라는것이 그 1비트를 차지하고 있는데 패리티 비트란 통신중 송수신되는 데이터의 오류를 검출하기 위한 일종의 오류 식별자이다. 패리티에는 짝수 패리티(Even Parity)와 홀수 패리티(Odd Parity)가 있다. 전송 하려는 비트에  1의 값이 짝수이면 패리티 비티에는 0이 들어가고 1의값이 홀수이면 패리티 비트에는 1이 들어가게 된다. 결국에는 1의 값의 갯수를 짝수로 맞춰서 전송해주려는것인데 이것을 통해 데이터를 수신할때 수신된 데이터의 전체 비트를 계산하여 패리티 비트를 다시 계산함으로써 데이터 오류 발생 여부를 알 수 있다.</p>
+</li>
+</ul>
+<h2 id="유니코드"><a href="#유니코드" class="headerlink" title="유니코드"></a>유니코드</h2><ul>
+<li>아스키 코드는 영어권에서 발전했다고 했다. 하지만 아시아권의 문자를 표현하기에는 무리가 있었고 유니코드는 전세계의 문자를 표현할 수 있는 인코딩 타입으로 한 글자당 1 ~ 4바이트를 사용하지만 보편적으로는 2바이트를 사용한다. 현재 새로 쓰이는 문서들의 대부분의 인코딩 타입은 유니코드로 되어있다.</li>
+</ul>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><ul>
+<li>그래서 1바이트가 8비트인 이유는 결국 초창기 문자열 인코딩방식인 아스키코드에 관련이 있는데 아스키코드의 단위인 8바이트는 되어야 한 글자라도 표현할 수 있는 의미있는 데이터라고 판단했기 때문에 1바이트는 8비트이고 하나의 메모리 셀 == 1바이트 == 8비트 가 된것이다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/11/19/TIL/20201119-TIL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4794,84 +4879,10 @@ repo: 위에서 설치한 repository주소
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2020/10/18/TIL/TIL(Today%20I%20Learned)%20Start!/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="HaJun Ryu">
-      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Junn's 개발노트">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/18/TIL/TIL(Today%20I%20Learned)%20Start!/" class="post-title-link" itemprop="url">TIL(Today I Learned) Start!</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-10-18 18:12:05" itemprop="dateCreated datePublished" datetime="2020-10-18T18:12:05+09:00">2020-10-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-10-20 12:02:41" itemprop="dateModified" datetime="2020-10-20T12:02:41+09:00">2020-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index"><span itemprop="name">TIL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="오늘-했던-일과-배운점-느낀점을-간단하게나마-매일매일-적어보려고-한다"><a href="#오늘-했던-일과-배운점-느낀점을-간단하게나마-매일매일-적어보려고-한다" class="headerlink" title="오늘 했던 일과 배운점, 느낀점을 간단하게나마 매일매일 적어보려고 한다."></a>오늘 했던 일과 배운점, 느낀점을 간단하게나마 매일매일 적어보려고 한다.</h2><h3 id="주-목적은-매일매일-꾸준히-작은것이라도-기록해보는것이다"><a href="#주-목적은-매일매일-꾸준히-작은것이라도-기록해보는것이다" class="headerlink" title="주 목적은 매일매일 꾸준히 작은것이라도 기록해보는것이다."></a>주 목적은 매일매일 꾸준히 작은것이라도 기록해보는것이다.</h3><p>+markdown 문법과 친해지기</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -4937,7 +4948,7 @@ repo: 위에서 설치한 repository주소
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -4946,7 +4957,7 @@ repo: 위에서 설치한 repository주소
         <span class="site-state-item-name">카테고리</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>

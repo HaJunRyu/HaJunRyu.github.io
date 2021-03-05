@@ -148,6 +148,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2021/03/05/database/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HaJun Ryu">
+      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junn's 개발노트">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/05/database/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94/" class="post-title-link" itemprop="url">데이터 베이스의 개요</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2021-03-05 10:25:49 / Updated at: 11:23:24" itemprop="dateCreated datePublished" datetime="2021-03-05T10:25:49+09:00">2021-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="데이터-베이스의-개요"><a href="#데이터-베이스의-개요" class="headerlink" title="데이터 베이스의 개요"></a>데이터 베이스의 개요</h1><h2 id="DB-데이터-베이스란"><a href="#DB-데이터-베이스란" class="headerlink" title="DB, 데이터 베이스란?"></a>DB, 데이터 베이스란?</h2><p>데이터베이스는 여러 사람이 공유하여 사용 할 목적으로 체계화해 통합, 관리하는 데이터의 집합이다.</p>
+<h2 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h2><p>DBMS란 DataBase Management System의 약어로써 다수의 사용자들이 데이터베이스 내의 데이터에 접근할 수 있도록 해주는 스프트웨어 도구의 집합이다.<br>DBMS는 사용자 또는 다른 프로그램의 요 구를 처리하고 적절히 응답하여 데이터를 사용할 수 있도록 해준다.</p>
+<p>DBMS의 종류로는 대표적으로 RDBMS, NoSQL이 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL이란?</span><br><span class="line">Structured Query Language의 약어로써 직역해보면 구조화 질의어이고 관계형 데이터베이스(RDBMS)의</span><br><span class="line">데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어이다.</span><br><span class="line">RDBMS에서 자료의 검색과 관리 등의 작업을 위해 고안되었다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="DBMS를-사용했을때의-장점"><a href="#DBMS를-사용했을때의-장점" class="headerlink" title="DBMS를 사용했을때의 장점"></a>DBMS를 사용했을때의 장점</h3><ul>
+<li>데이터베이스 관리 시스템은 데이터베이스를 중앙 집중식으로 총괄하기 때문에 데이터베이스의 관리 및 접근을 효율적으로 통제할 수 있다. 즉, 정당한 사용자와 허용된 데이터들을 확인함으로써 데이터에 대한 철저한 보안을 제공한다.</li>
+<li>데이터를 통합하여 구성하기 때문에 데이터들의 중복을 사전에 통제할 수 있다. (데이터의 통제가 용이함)</li>
+<li>DBMS에서 제공하는 기능들(예를 들어 간편한 GUI)로 애플리케이션 프로그램들을 쉽게 개발하고 관리할 수 있다.</li>
+</ul>
+<h3 id="DBMS를-사용했을때의-단점"><a href="#DBMS를-사용했을때의-단점" class="headerlink" title="DBMS를 사용했을때의 단점"></a>DBMS를 사용했을때의 단점</h3><ul>
+<li><p>DBMS제품은 운영을 위해 사용한다면 비용이 상당히 비싸고 많은 하드웨어 자원을 필요로 하기때문에 결과적으로 운영비를 증대시킨다.</p>
+</li>
+<li><p>통합된 시스템이기 때문에 아주 사소한 일부의 고장이 전체 시스템을 정지시켜 데이터 베이스를 이용하는 상품의 신뢰도나 가용성을 저하시킬 수 있다.</p>
+</li>
+</ul>
+<h3 id="RDBMS"><a href="#RDBMS" class="headerlink" title="RDBMS"></a>RDBMS</h3><p>RDB는 Relationam Database의 약어로 관계형 데이터를 모델로 한 데이터베이스이다. 모든 데이터를 2차원 테이블로 형태로 표현해준다는 특징이 있다.</p>
+<p>거기에 Management System의 약어인 MS가 붙어 결국은 관계형 데이터베이스에 접근할 수 있도록 해주는 소프트웨어인 RDBMS가 되는것이다.</p>
+<p>대표적으로 Oracle, MySQL, MS-SQL 등이 있다.</p>
+<h3 id="RDBMS의-특징"><a href="#RDBMS의-특징" class="headerlink" title="RDBMS의 특징"></a>RDBMS의 특징</h3><ul>
+<li>데이터를 Column과 Row 형태로 저장한다.</li>
+<li>데이터의 분류, 정렬, 탐색 속도가 비교적 빠르다.</li>
+<li>SQL(Structured Query Language)라는 정교한 검색 query를 통해 데이터를 관리한다.</li>
+<li>작업의 완전성을 보장한다. (Transaction)</li>
+<li>반드시 정의해놓은 Schema 규격에 맞춰야 한다. (데이터 저장이 유연하지 못함)</li>
+<li>부하의 분산이 어렵다.</li>
+</ul>
+<h3 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h3><p>NoSQL은 이름에서 알 수 있듯이 RDBMS와 다르게 SQL을 사용하지 않는것이 일반적이다. non SQL또는 non relational 이란 의미도 되지만 Not only SQL이란 의미도 있어 SQL만 사용하지 않겠다라는 의미도 된다.<br>RDBMS와 반대되는 방식을 사용하기 때문에 데이터간의 관계 또한 정의하지 않는것이 일반적이다.</p>
+<p>대표적으로 MongoDB, Cassand, Redis, Hbase가 있다.</p>
+<h4 id="NoSQL의-특징"><a href="#NoSQL의-특징" class="headerlink" title="NoSQL의 특징"></a>NoSQL의 특징</h4><ul>
+<li>데이터간의 관계를 정의하지 않는것이 일반적이다.</li>
+<li>RDBMS의 복잡도와 용량의 한계를 극복하기 위한 목적으로 등장하였기 때문에 RDBMS에 비해서 훨씬 더 대용량의 데이터를 저장할 수 있다.</li>
+<li>분산형 구조이다. 즉, 데이터를 여러대의 서버에 분산해서 저장할 수 있다.</li>
+<li>고정적이지 않은 Table Schema방식으로 데이터의 저장이 유연하다. (비교적 다루기 쉬움)</li>
+<li>Key에 대한 put, get만을 지원한다.</li>
+<li>Schema가 없다보니 데이터들에 대한 규격화 된 결과를 얻기가 힘들다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2021/03/04/TIL/20210304-TIL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4608,105 +4703,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2021/01/07/TIL/20210107-TIL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="HaJun Ryu">
-      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Junn's 개발노트">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/07/TIL/20210107-TIL/" class="post-title-link" itemprop="url">20210107-TIL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2021-01-07 21:45:14" itemprop="dateCreated datePublished" datetime="2021-01-07T21:45:14+09:00">2021-01-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2021-01-08 10:34:05" itemprop="dateModified" datetime="2021-01-08T10:34:05+09:00">2021-01-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index"><span itemprop="name">TIL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="목요일"><a href="#목요일" class="headerlink" title="목요일"></a>목요일</h1><h2 id="오늘-한-일"><a href="#오늘-한-일" class="headerlink" title="오늘 한 일"></a>오늘 한 일</h2><ul>
-<li><p>알고리즘 연습 문제 15, 16번을 풀었다. 오늘 문제는 직사각형을 좌표를 지정해주는 x축과 y축을 3개 알려주고 나머지 1개의 좌표를 구하는 함수를 만드는것이었는데 규칙을 파악해보니 대략적으로 x y 축이 3개씩 주어지면 6개중의 배열중에 중복되지 않는 2가지 요소를 찾아야하는 문제였다.</p>
-</li>
-<li><p>Promise에 대해 마저 읽고 해당내용을 블로그에 정리하여 포스팅하였다.</p>
-</li>
-</ul>
-<h2 id="오늘-느낀점"><a href="#오늘-느낀점" class="headerlink" title="오늘 느낀점"></a>오늘 느낀점</h2><ul>
-<li><p>알고리즘을 풀때 무조건 구현이 되기보다는 깔끔한코드를 선호하게 되는것같다. 그래서 조금만 생각해야되는 문제를 만나면 코드를 치기 전 주어진조건에 대해 어떻게 코드를 작성해야할지 생각하는데 시간을 오래쓰는것 같다. 이게 좋은건지 아니면 일단 구현 먼저 시켜놓고 그 코드를 리팩토링하는게 좋은건지를 지금은 잘 모르겠다.</p>
-</li>
-<li><p>Promise는 콜백 지옥에 대한 해결책이고 사용하는 방법이 딱 정해져있는데 정말 지금은 써보라면 절대 못쓸것같다. 이것도 나름의 새로운 문법이니 가랑비에 옷 젖듯이 조금씩 써보며 익혀야할듯하다. 지금은 감이 거의 오지 않는다….</p>
-</li>
-<li><p>새로운개념에 대해 공부하는데 시간이 너무 많이 들어서 오늘도 하려고했던 TodoList구조 구체화하는것을 하지 못했다… 지금 집에만 계속 있으면서 학습 템포가 조금 느려진거같은 느낌…</p>
-</li>
-</ul>
-<h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
-<li><p>아침에 TodoList구조 구체화하는 작업부터 시작하기!</p>
-</li>
-<li><p>알고리즘 문제 최소 2개 이상 풀기 (17번 ~)</p>
-</li>
-<li><p>할일을 마무리하고 Promise이해 잘 안되는부분 다시 한번 읽어보기</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -4772,7 +4772,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -4781,7 +4781,7 @@
         <span class="site-state-item-name">카테고리</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>

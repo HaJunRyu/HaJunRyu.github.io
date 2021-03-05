@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hajunryu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="데이터 베이스의 개요DB, 데이터 베이스란?데이터베이스는 여러 사람이 공유하여 사용 할 목적으로 체계화해 통합, 관리하는 데이터의 집합이다. DBMSDBMS란 DataBase Management System의 약어로써 다수의 사용자들이 데이터베이스 내의 데이터에 접근할 수 있도록 해주는 스프트웨어 도구의 집합이다.DBMS는 사용자 또는 다른 프로그램의 요">
+<meta property="og:type" content="article">
+<meta property="og:title" content="데이터 베이스의 개요">
+<meta property="og:url" content="https://hajunryu.github.io/2021/03/05/database/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="데이터 베이스의 개요DB, 데이터 베이스란?데이터베이스는 여러 사람이 공유하여 사용 할 목적으로 체계화해 통합, 관리하는 데이터의 집합이다. DBMSDBMS란 DataBase Management System의 약어로써 다수의 사용자들이 데이터베이스 내의 데이터에 접근할 수 있도록 해주는 스프트웨어 도구의 집합이다.DBMS는 사용자 또는 다른 프로그램의 요">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-03-05T01:25:49.000Z">
+<meta property="article:modified_time" content="2021-03-05T02:23:24.187Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="database">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hajunryu.github.io/2021/03/05/database/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>데이터 베이스의 개요 | Junn's 개발노트</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Junn's 개발노트</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">My github blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2021/03/05/database/%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HaJun Ryu">
+      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junn's 개발노트">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          데이터 베이스의 개요
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2021-03-05 10:25:49 / Updated at: 11:23:24" itemprop="dateCreated datePublished" datetime="2021-03-05T10:25:49+09:00">2021-03-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="데이터-베이스의-개요"><a href="#데이터-베이스의-개요" class="headerlink" title="데이터 베이스의 개요"></a>데이터 베이스의 개요</h1><h2 id="DB-데이터-베이스란"><a href="#DB-데이터-베이스란" class="headerlink" title="DB, 데이터 베이스란?"></a>DB, 데이터 베이스란?</h2><p>데이터베이스는 여러 사람이 공유하여 사용 할 목적으로 체계화해 통합, 관리하는 데이터의 집합이다.</p>
+<h2 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h2><p>DBMS란 DataBase Management System의 약어로써 다수의 사용자들이 데이터베이스 내의 데이터에 접근할 수 있도록 해주는 스프트웨어 도구의 집합이다.<br>DBMS는 사용자 또는 다른 프로그램의 요 구를 처리하고 적절히 응답하여 데이터를 사용할 수 있도록 해준다.</p>
+<p>DBMS의 종류로는 대표적으로 RDBMS, NoSQL이 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL이란?</span><br><span class="line">Structured Query Language의 약어로써 직역해보면 구조화 질의어이고 관계형 데이터베이스(RDBMS)의</span><br><span class="line">데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어이다.</span><br><span class="line">RDBMS에서 자료의 검색과 관리 등의 작업을 위해 고안되었다.</span><br></pre></td></tr></table></figure>
+
+<h3 id="DBMS를-사용했을때의-장점"><a href="#DBMS를-사용했을때의-장점" class="headerlink" title="DBMS를 사용했을때의 장점"></a>DBMS를 사용했을때의 장점</h3><ul>
+<li>데이터베이스 관리 시스템은 데이터베이스를 중앙 집중식으로 총괄하기 때문에 데이터베이스의 관리 및 접근을 효율적으로 통제할 수 있다. 즉, 정당한 사용자와 허용된 데이터들을 확인함으로써 데이터에 대한 철저한 보안을 제공한다.</li>
+<li>데이터를 통합하여 구성하기 때문에 데이터들의 중복을 사전에 통제할 수 있다. (데이터의 통제가 용이함)</li>
+<li>DBMS에서 제공하는 기능들(예를 들어 간편한 GUI)로 애플리케이션 프로그램들을 쉽게 개발하고 관리할 수 있다.</li>
+</ul>
+<h3 id="DBMS를-사용했을때의-단점"><a href="#DBMS를-사용했을때의-단점" class="headerlink" title="DBMS를 사용했을때의 단점"></a>DBMS를 사용했을때의 단점</h3><ul>
+<li><p>DBMS제품은 운영을 위해 사용한다면 비용이 상당히 비싸고 많은 하드웨어 자원을 필요로 하기때문에 결과적으로 운영비를 증대시킨다.</p>
+</li>
+<li><p>통합된 시스템이기 때문에 아주 사소한 일부의 고장이 전체 시스템을 정지시켜 데이터 베이스를 이용하는 상품의 신뢰도나 가용성을 저하시킬 수 있다.</p>
+</li>
+</ul>
+<h3 id="RDBMS"><a href="#RDBMS" class="headerlink" title="RDBMS"></a>RDBMS</h3><p>RDB는 Relationam Database의 약어로 관계형 데이터를 모델로 한 데이터베이스이다. 모든 데이터를 2차원 테이블로 형태로 표현해준다는 특징이 있다.</p>
+<p>거기에 Management System의 약어인 MS가 붙어 결국은 관계형 데이터베이스에 접근할 수 있도록 해주는 소프트웨어인 RDBMS가 되는것이다.</p>
+<p>대표적으로 Oracle, MySQL, MS-SQL 등이 있다.</p>
+<h3 id="RDBMS의-특징"><a href="#RDBMS의-특징" class="headerlink" title="RDBMS의 특징"></a>RDBMS의 특징</h3><ul>
+<li>데이터를 Column과 Row 형태로 저장한다.</li>
+<li>데이터의 분류, 정렬, 탐색 속도가 비교적 빠르다.</li>
+<li>SQL(Structured Query Language)라는 정교한 검색 query를 통해 데이터를 관리한다.</li>
+<li>작업의 완전성을 보장한다. (Transaction)</li>
+<li>반드시 정의해놓은 Schema 규격에 맞춰야 한다. (데이터 저장이 유연하지 못함)</li>
+<li>부하의 분산이 어렵다.</li>
+</ul>
+<h3 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h3><p>NoSQL은 이름에서 알 수 있듯이 RDBMS와 다르게 SQL을 사용하지 않는것이 일반적이다. non SQL또는 non relational 이란 의미도 되지만 Not only SQL이란 의미도 있어 SQL만 사용하지 않겠다라는 의미도 된다.<br>RDBMS와 반대되는 방식을 사용하기 때문에 데이터간의 관계 또한 정의하지 않는것이 일반적이다.</p>
+<p>대표적으로 MongoDB, Cassand, Redis, Hbase가 있다.</p>
+<h4 id="NoSQL의-특징"><a href="#NoSQL의-특징" class="headerlink" title="NoSQL의 특징"></a>NoSQL의 특징</h4><ul>
+<li>데이터간의 관계를 정의하지 않는것이 일반적이다.</li>
+<li>RDBMS의 복잡도와 용량의 한계를 극복하기 위한 목적으로 등장하였기 때문에 RDBMS에 비해서 훨씬 더 대용량의 데이터를 저장할 수 있다.</li>
+<li>분산형 구조이다. 즉, 데이터를 여러대의 서버에 분산해서 저장할 수 있다.</li>
+<li>고정적이지 않은 Table Schema방식으로 데이터의 저장이 유연하다. (비교적 다루기 쉬움)</li>
+<li>Key에 대한 put, get만을 지원한다.</li>
+<li>Schema가 없다보니 데이터들에 대한 규격화 된 결과를 얻기가 힘들다.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/database/" rel="tag"># database</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/04/TIL/20210304-TIL/" rel="prev" title="20210304-TIL">
+      <i class="fa fa-chevron-left"></i> 20210304-TIL
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%9D%98-%EA%B0%9C%EC%9A%94"><span class="nav-number">1.</span> <span class="nav-text">데이터 베이스의 개요</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DB-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%9E%80"><span class="nav-number">1.1.</span> <span class="nav-text">DB, 데이터 베이스란?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DBMS"><span class="nav-number">1.2.</span> <span class="nav-text">DBMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DBMS%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%96%88%EC%9D%84%EB%95%8C%EC%9D%98-%EC%9E%A5%EC%A0%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">DBMS를 사용했을때의 장점</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBMS%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%96%88%EC%9D%84%EB%95%8C%EC%9D%98-%EB%8B%A8%EC%A0%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">DBMS를 사용했을때의 단점</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDBMS"><span class="nav-number">1.2.3.</span> <span class="nav-text">RDBMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDBMS%EC%9D%98-%ED%8A%B9%EC%A7%95"><span class="nav-number">1.2.4.</span> <span class="nav-text">RDBMS의 특징</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL"><span class="nav-number">1.2.5.</span> <span class="nav-text">NoSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL%EC%9D%98-%ED%8A%B9%EC%A7%95"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">NoSQL의 특징</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HaJun Ryu</p>
+  <div class="site-description" itemprop="description">All stories about HTML, CSS, JavaScript, node, java</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HaJun Ryu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
