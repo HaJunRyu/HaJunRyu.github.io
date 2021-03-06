@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hajunryu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="금요일오늘 한 일과 느낀점 오전 10시부터 오후 2시까지 점심시간을 제외하고 어제 들었던 데이터베이스 특강의 기본적인 내용에 대해 md파일로 정리했다. 정리를 하니 머릿속에 더 잘 들어오고 나중에 간단하게 찾아볼 수 있어서 좋은데 항상 딜레마인것이 이렇게 하니 또 주력으로 공부하는 프론트엔드쪽에 투자하는 시간이 줄어들다보니 이게 지금 잘 하고있는것인가 라는">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20210305-TIL(알고리즘, 데이터베이스 특강)">
+<meta property="og:url" content="https://hajunryu.github.io/2021/03/05/TIL/20210305-TIL(%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98,%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%ED%8A%B9%EA%B0%95)/index.html">
+<meta property="og:site_name" content="Junn&#39;s 개발노트">
+<meta property="og:description" content="금요일오늘 한 일과 느낀점 오전 10시부터 오후 2시까지 점심시간을 제외하고 어제 들었던 데이터베이스 특강의 기본적인 내용에 대해 md파일로 정리했다. 정리를 하니 머릿속에 더 잘 들어오고 나중에 간단하게 찾아볼 수 있어서 좋은데 항상 딜레마인것이 이렇게 하니 또 주력으로 공부하는 프론트엔드쪽에 투자하는 시간이 줄어들다보니 이게 지금 잘 하고있는것인가 라는">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-03-05T14:31:42.000Z">
+<meta property="article:modified_time" content="2021-03-06T08:10:13.445Z">
+<meta property="article:author" content="HaJun Ryu">
+<meta property="article:tag" content="TIL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hajunryu.github.io/2021/03/05/TIL/20210305-TIL(%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98,%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%ED%8A%B9%EA%B0%95)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>20210305-TIL(알고리즘, 데이터베이스 특강) | Junn's 개발노트</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Junn's 개발노트</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">My github blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hajunryu.github.io/2021/03/05/TIL/20210305-TIL(%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98,%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%ED%8A%B9%EA%B0%95)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HaJun Ryu">
+      <meta itemprop="description" content="All stories about HTML, CSS, JavaScript, node, java">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junn's 개발노트">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          20210305-TIL(알고리즘, 데이터베이스 특강)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2021-03-05 23:31:42" itemprop="dateCreated datePublished" datetime="2021-03-05T23:31:42+09:00">2021-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2021-03-06 17:10:13" itemprop="dateModified" datetime="2021-03-06T17:10:13+09:00">2021-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index"><span itemprop="name">TIL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="금요일"><a href="#금요일" class="headerlink" title="금요일"></a>금요일</h1><h2 id="오늘-한-일과-느낀점"><a href="#오늘-한-일과-느낀점" class="headerlink" title="오늘 한 일과 느낀점"></a>오늘 한 일과 느낀점</h2><ul>
+<li><p>오전 10시부터 오후 2시까지 점심시간을 제외하고 어제 들었던 데이터베이스 특강의 기본적인 내용에 대해 md파일로 정리했다. 정리를 하니 머릿속에 더 잘 들어오고 나중에 간단하게 찾아볼 수 있어서 좋은데 항상 딜레마인것이 이렇게 하니 또 주력으로 공부하는 프론트엔드쪽에 투자하는 시간이 줄어들다보니 이게 지금 잘 하고있는것인가 라는 생각이 든다…</p>
+</li>
+<li><p>오후 2시부터 5시까지 자료구조, 알고리즘 특강이 있었다. 신제용 강사님이 진행하는 강의였고 특이하게도 항상 첫 강의때는 수강생들에게 커피를 산다고 하신다. 조금 뜬금없지만 사주시니 넘 맛있게 마시긴했다! 일단 첫 수업이니 만큼 ot느낌으로 왜 자료구조가 필요하고 알고리즘이 필요한지 설명해주셨다. 일단 자료구조는 필요한 자료에 효율적이고 빠르게 접근하기 위해서, 자료의 중복을 최소화하여 저장장치를 효율적으로 사용하기 위해서 등, 여러가지 이유가 있었다.<br>알고리즘 같은 경우는 만약 서비스의 규모가 기하급수적으로 커졌다고 가정했을때 특정 데이터에 접근하려는데 일반적인 방법으로 접근하게되면 서비스가 매우 무거워지고 하드웨어에 과부하가 걸릴것이기 때문에 딱 필요한 동작만을 정의하여 효울적으로 데이터에 접근하기 위해서 필요하다고 했다.</p>
+</li>
+<li><p>알고리즘 수업을 들으며 따로 메모한것들</p>
+<ul>
+<li>자료와 자료구조의 차이는 자료도 자료의 집합이 될 수 있지만 자료들끼리 특정한 관계가 없다 (예를 들어 순서)<br>하지만 자료구조는 자료들끼리의 특정한 관계가 있다</li>
+<li>객체지향 (OOP) , 함수형 프로그래밍 (FP)</li>
+<li>orphan : 상위 노드가 사라져 고아가 된 노드를 부르는 용어</li>
+</ul>
+</li>
+<li><p>오후 6시부터 10시까지는 어제도 있었던 데이터베이스에 대한 특강이 있었다. 오늘은 데이터 타입과 외래키, GROUP BY등등을 배웠고 수업 커리큘럼 이외에 알려주신것이 있는데 tmux(추후에 자세히 알아보기)라고 하는것과 IP가 왜 기본이 유동 IP인지 aws에서 고정 IP를 이용하면 왜 비용이 드는지 설명해주셨다. 일단 IP가 기본이 유동 IP냐면 처음에 IP자원을 만들때 IPv4방식 즉 256 * 256 * 256 * 256개의 IP주소를 만들었다. 근데 이것이 정말 예전의 일이라 지금처럼 IP자원이 많이 필요하게 될지 몰랐고 IP자원들을 항상 고정적으로 가지고 있다면 IP자원이 남지않아 사용하지 못하는곳이 생기기때문에 인터넷을 사용하지 않을때는 IP자원을 유동적으로 해제시켜 다른곳에서 가져다 쓸 수 있게끔 만들어줘야하기 때문에 기본이 유동 IP인것이다. 그래서 고정 IP를 잡고있다면 그에 대한 비용 지불이 기본적이고 AWS EC2에서도 인스턴스를 중지시켰을때 고정 IP를 사용하게되면 그 고정 IP에 대한 비용을 내야한다. 하지만 고정 IP를 설정해도 인스턴스가 실행되고 있을때는 어차피 IP를 당연히 하나 할당받고 있어야하는것이니 그떄는 비용이 들지 않는다고 한다.</p>
+</li>
+</ul>
+<h2 id="내일-할-일"><a href="#내일-할-일" class="headerlink" title="내일 할 일"></a>내일 할 일</h2><ul>
+<li><p>오후1시 ~ 오후4시 프로그래머스 데브매칭 테스트</p>
+</li>
+<li><p>프로그래머스 알고리즘 실력체크 1단계 풀기</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TIL/" rel="tag"># TIL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/05/database/AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1/" rel="prev" title="AWS EC2 인스턴스 생성">
+      <i class="fa fa-chevron-left"></i> AWS EC2 인스턴스 생성
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EA%B8%88%EC%9A%94%EC%9D%BC"><span class="nav-number">1.</span> <span class="nav-text">금요일</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%98%A4%EB%8A%98-%ED%95%9C-%EC%9D%BC%EA%B3%BC-%EB%8A%90%EB%82%80%EC%A0%90"><span class="nav-number">1.1.</span> <span class="nav-text">오늘 한 일과 느낀점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EC%9D%BC"><span class="nav-number">1.2.</span> <span class="nav-text">내일 할 일</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HaJun Ryu</p>
+  <div class="site-description" itemprop="description">All stories about HTML, CSS, JavaScript, node, java</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">153</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HaJun Ryu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
