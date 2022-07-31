@@ -1,50 +1,31 @@
 import React, { FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
-import { PostFrontmatterType } from 'types/PostItem.types'; // 바로 아래에서 정의할 것입니다
+import { PostListItemType } from 'types/PostItem.types'; // 바로 아래에서 정의할 것입니다
 import Template from 'components/Common/Template';
 import PostHead from 'components/Post/PostHead';
 import PostContent from 'components/Post/PostContent';
 import CommentWidget from 'components/Post/CommentWidget';
 
-export type PostPageItemType = {
-  node: {
-    html: string;
-    frontmatter: PostFrontmatterType;
-  };
-};
-
 type PostTemplateProps = {
   data: {
-    allMarkdownRemark: {
-      edges: PostPageItemType[]; // 존재하지 않는 타입이므로 에러가 발생하지만 일단 작성해주세요
-    };
+    contentfulBlogPost: PostListItemType;
   };
 };
 
 const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
   data: {
-    allMarkdownRemark: { edges },
+    contentfulBlogPost: { categories, content, createdAt, thumbnail, title },
   },
 }) {
-  const {
-    node: {
-      html,
-      frontmatter: {
-        title,
-        summary,
-        date,
-        categories,
-        thumbnail: {
-          childImageSharp: { gatsbyImageData },
-        },
-      },
-    },
-  } = edges[0];
-
   return (
     <Template>
-      <PostHead title={title} date={date} categories={categories} thumbnail={gatsbyImageData} />
-      <PostContent html={html} />
+      <PostHead
+        title={title}
+        date={createdAt}
+        categories={categories}
+        thumbnail={thumbnail.gatsbyImageData}
+      />
+      <PostContent html={content.childMarkdownRemark.html} />
       <CommentWidget />
     </Template>
   );
@@ -53,22 +34,18 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
 export default PostTemplate;
 
 export const queryMarkdownDataBySlug = graphql`
-  query queryMarkdownDataBySlug($slug: String) {
-    allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
-      edges {
-        node {
+  query myQuery($slug: String) {
+    contentfulBlogPost(slug: { eq: $slug }) {
+      title
+      createdAt(formatString: "YYYY.MM.DD.")
+      summary
+      categories
+      thumbnail {
+        gatsbyImageData
+      }
+      content {
+        childMarkdownRemark {
           html
-          frontmatter {
-            title
-            summary
-            date(formatString: "YYYY.MM.DD.")
-            categories
-            thumbnail {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
         }
       }
     }

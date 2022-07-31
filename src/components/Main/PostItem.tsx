@@ -2,9 +2,9 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { PostFrontmatterType } from 'types/PostItem.types';
+import { PostListItemType } from 'types/PostItem.types';
 
-type PostItemProps = PostFrontmatterType & { link: string };
+type PostItemProps = PostListItemType & { link: string };
 
 const PostItemWrapper = styled(Link)`
   display: flex;
@@ -83,12 +83,10 @@ const Summary = styled.div`
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
   title,
-  date,
+  createdAt,
   categories,
   summary,
-  thumbnail: {
-    childImageSharp: { gatsbyImageData },
-  },
+  thumbnail: { gatsbyImageData },
   link,
 }) {
   return (
@@ -97,7 +95,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
 
       <PostItemContent>
         <Title>{title}</Title>
-        <Date>{date}</Date>
+        <Date>{createdAt}</Date>
         <Category>
           {categories.map(category => (
             <CategoryItem key={category}>{category}</CategoryItem>

@@ -17,63 +17,42 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
   });
 };
 
-// Generate a Slug Each Post Data
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode });
-
-    createNodeField({ node, name: 'slug', value: slug });
-  }
-};
-
-// Generate Post Page Through Markdown Data
-exports.createPages = async ({ actions, graphql, reporter }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-
-  // Get All Markdown File For Paging
-  const queryAllMarkdownData = await graphql(
+  const blogPostTemplate = path.resolve(`src/templates/post_template.tsx`);
+  // Query for markdown nodes to use in creating pages.
+  // You can query for whatever data you want to create pages for e.g.
+  // products, portfolio items, landing pages, etc.
+  // Variables can be added as the second function parameter
+  const result = await graphql(
     `
-      {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-            }
+      query myQuery {
+        allContentfulBlogPost {
+          nodes {
+            slug
           }
         }
       }
-    `
+    `,
+    { limit: 1000 }
   );
-  // Handling GraphQL Query Error
-  if (queryAllMarkdownData.errors) {
+
+  if (result.errors) {
     reporter.panicOnBuild(`Error while running query`);
     return;
   }
 
-  // Import Post Template Component
-  const PostTemplateComponent = path.resolve(__dirname, 'src/templates/post_template.tsx');
+  const contentfulPosts = result.data.allContentfulBlogPost.nodes;
 
-  // Page Generating Function
-  const generatePostPage = ({
-    node: {
-      fields: { slug },
-    },
-  }) => {
-    const pageOptions = {
-      path: slug,
-      component: PostTemplateComponent,
-      context: { slug },
-    };
-
-    createPage(pageOptions);
+  const generatePostPage = ({ slug }) => {
+    createPage({
+      path: `/${slug}`,
+      component: blogPostTemplate,
+      context: {
+        slug,
+      },
+    });
   };
 
-  // Generate Post Page And Passing Slug Props for Query
-  queryAllMarkdownData.data.allMarkdownRemark.edges.forEach(generatePostPage);
+  contentfulPosts.forEach(generatePostPage);
 };
