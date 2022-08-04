@@ -11,12 +11,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+
+      - name: Generate Environment Variables File
+        run: |
+          echo "CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN" >> .env
+          echo "CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID" >> .env
+        env:
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
 
       - name: Cache dependencies
         uses: actions/cache@v3
