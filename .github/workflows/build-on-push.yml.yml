@@ -9,28 +9,28 @@ on:
 
 jobs:
   deploy:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
 
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.yarn
-        key: ${{ runner.os }}-node-${{ hashFiles('**/lockfiles') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.yarn
+          key: ${{ runner.os }}-node-${{ hashFiles('**/lockfiles') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-    - run: yarn install --immutable --immutable-cache --check-cache
-    - run: yarn build
+      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn build
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: _site
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: _site
