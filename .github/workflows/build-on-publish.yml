@@ -1,12 +1,12 @@
 name: Eleventy Build on Contentful Publish Event
 on:
-	repository_dispatch:
+  repository_dispatch:
     types: [publish-event]
 
 jobs:
   deploy:
-	runs-on: ubuntu-latest
-	steps:
+  runs-on: ubuntu-latest
+  steps:
     - name: Checkout
       uses: actions/checkout@v2
 
