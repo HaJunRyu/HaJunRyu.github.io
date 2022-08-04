@@ -1,0 +1,41 @@
+name: Eleventy Build on Contentful Publish Event
+on:
+	repository_dispatch:
+    types: [publish-event]
+
+jobs:
+  deploy:
+	runs-on: ubuntu-latest
+	steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+
+    - name: Generate Environment Variables File
+        run: |
+          echo "CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN" >> .env
+          echo "CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID" >> .env
+        env:
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.yarn
+        key: ${{ runner.os }}-node-${{ hashFiles('**/lockfiles') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - run: yarn install --immutable --immutable-cache --check-cache
+    - run: yarn build
+
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./public
