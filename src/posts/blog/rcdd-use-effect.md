@@ -131,3 +131,266 @@ function updateEffectImpl(fiberFlags, hookFlags, create, deps): void {
 ```
 
 위 코드에서 deps array가 어떻게 작동하는지 볼 수 있었다. re-render 될때 deps가 변경되면 생성된 effect가 이전 cleanup function을 사용하여 실행되도록 표시된다는 점을 제외하면 무슨 일이 있어도 effect 객체를 다시 생성한다.
+
+## 3. effect는 언제 실행되고 cleanup 되는가
+
+위 내용을 기반으로 우리는 이제 `useEffect()`가 단지 Fiber Node에 추가 데이터 구조를 생성한다는 것을 알고있다. 이제 우리는 Effect 객체가 어떻게 처리되는지 알아야한다.
+
+### 3.1 flush passive effects는 `commitRoot()`에서 trigger 된다.
+
+두 Fiber Tree를 비교하여 결과를 얻은 후 commit phase에서 host DOM에 대한 변경 사항을 반영한다. flush passive effects를 쉽게 찾을 수 있다.
+
+```tsx
+function commitRootImpl(
+  root: FiberRoot,
+  recoverableErrors: null | Array<CapturedValue<mixed>>,
+  transitions: Array<Transition> | null,
+  renderPriorityLevel: EventPriority,
+) {
+  // If there are pending passive effects, schedule a callback to process them.
+  // Do this as early as possible, so it is queued before anything else that
+  // might get scheduled in the commit phase. (See #16714.)
+  // TODO: Delete all other places that schedule the passive effect callback
+  // They're redundant.
+  if (
+    (finishedWork.subtreeFlags & PassiveMask) !== NoFlags ||
+    (finishedWork.flags & PassiveMask) !== NoFlags
+  ) {
+    if (!rootDoesHavePassiveEffects) {
+      rootDoesHavePassiveEffects = true;
+      pendingPassiveEffectsRemainingLanes = remainingLanes;
+      // workInProgressTransitions might be overwritten, so we want
+      // to store it in pendingPassiveTransitions until they get processed
+      // We need to pass this through as an argument to commitRoot
+      // because workInProgressTransitions might have changed between
+      // the previous render and commit if we throttle the commit
+      // with setTimeout
+      pendingPassiveTransitions = transitions;
+      scheduleCallback(NormalSchedulerPriority, () => {
+        // 여기는 useEffect()에 의해 생성된 flushPassiveEffects이다.
+        // 이는 즉시가 아니라 다음 틱에서 flush를 예약한다.
+        flushPassiveEffects();
+        // This render triggered passive effects: release the root cache pool
+        // *after* passive effects fire to avoid freeing a cache pool that may
+        // be referenced by a node in the tree (HostRoot, Cache boundary etc)
+        return null;
+      });
+    }
+  }
+  ...
+}
+```
+
+### 3.2 `flushPassiveEffects()`
+
+```tsx
+function flushPassiveEffectsImpl() {
+  if (rootWithPendingPassiveEffects === null) {
+    return false;
+  }
+  // Cache and clear the transitions flag
+  const transitions = pendingPassiveTransitions;
+  pendingPassiveTransitions = null;
+  const root = rootWithPendingPassiveEffects;
+  const lanes = pendingPassiveEffectsLanes;
+  rootWithPendingPassiveEffects = null;
+  // TODO: This is sometimes out of sync with rootWithPendingPassiveEffects.
+  // Figure out why and fix it. It's not causing any known issues (probably
+  // because it's only used for profiling), but it's a refactor hazard.
+  pendingPassiveEffectsLanes = NoLanes;
+  const prevExecutionContext = executionContext;
+  executionContext |= CommitContext;
+  // 여기서는 callback이 실행되기 전에 effect cleanup이 먼저 실행되는 것을 명확하게 볼 수 있다.
+  commitPassiveUnmountEffects(root.current);
+  commitPassiveMountEffects(root, root.current, lanes, transitions);
+  ...
+}
+```
+
+### 3.3 `commitPassiveUnmountEffects()`
+
+```tsx
+export function commitPassiveUnmountEffects(finishedWork: Fiber): void {
+  setCurrentDebugFiberInDEV(finishedWork);
+  commitPassiveUnmountOnFiber(finishedWork);
+  resetCurrentDebugFiberInDEV();
+}
+function commitPassiveUnmountOnFiber(finishedWork: Fiber): void {
+  switch (finishedWork.tag) {
+    case FunctionComponent:
+    case ForwardRef:
+    case SimpleMemoComponent: {
+      // children의 effects가 먼저 cleanup 된 것을 볼 수 있다.
+      recursivelyTraversePassiveUnmountEffects(finishedWork);
+
+      if (finishedWork.flags & Passive) {
+        commitHookPassiveUnmountEffects(
+          finishedWork,
+          finishedWork.return,
+          // 해당 flag는 deps가 변경되지 않으면 callback이 실행되지 않도록 한다.
+          HookPassive | HookHasEffect,
+        );
+      }
+      break;
+    }
+    ...
+  }
+}
+function commitHookPassiveUnmountEffects(
+  finishedWork: Fiber,
+  nearestMountedAncestor: null | Fiber,
+  hookFlags: HookFlags,
+) {
+  if (shouldProfile(finishedWork)) {
+    startPassiveEffectTimer();
+    commitHookEffectListUnmount(
+      hookFlags,
+      finishedWork,
+      nearestMountedAncestor,
+    );
+    recordPassiveEffectDuration(finishedWork);
+  } else {
+    commitHookEffectListUnmount(
+      hookFlags,
+      finishedWork,
+      nearestMountedAncestor,
+    );
+  }
+}
+function commitHookEffectListUnmount(
+  flags: HookFlags,
+  finishedWork: Fiber,
+  nearestMountedAncestor: Fiber | null,
+) {
+  const updateQueue: FunctionComponentUpdateQueue | null =
+    (finishedWork.updateQueue: any);
+  const lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
+  if (lastEffect !== null) {
+    const firstEffect = lastEffect.next;
+    let effect = firstEffect;
+    do {
+      if ((effect.tag & flags) === flags) {
+        // Unmount
+        const inst = effect.inst;
+        const destroy = inst.destroy;
+        if (destroy !== undefined) {
+          inst.destroy = undefined;
+          safelyCallDestroy(finishedWork, nearestMountedAncestor, destroy);
+        }
+      }
+      effect = effect.next;
+      // 여기서는 updateQueue의 모든 Effect를 반복하고
+      // flag별로 필요한 것을 필터링한다.
+    } while (effect !== firstEffect);
+  }
+}
+function safelyCallDestroy(
+  current: Fiber,
+  nearestMountedAncestor: Fiber | null,
+  destroy: () => void,
+) {
+  try {
+    destroy();
+  } catch (error) {
+    captureCommitPhaseError(current, nearestMountedAncestor, error);
+  }
+}
+```
+
+### 3.4 `commitPassiveMountEffects()`
+
+`commitPassiveMountEffects()`도 같은 방식으로 작동한다.
+
+```tsx
+export function commitPassiveMountEffects(
+  root: FiberRoot,
+  finishedWork: Fiber,
+  committedLanes: Lanes,
+  committedTransitions: Array<Transition> | null,
+): void {
+  setCurrentDebugFiberInDEV(finishedWork);
+  commitPassiveMountOnFiber(
+    root,
+    finishedWork,
+    committedLanes,
+    committedTransitions,
+  );
+  resetCurrentDebugFiberInDEV();
+}
+function commitPassiveMountOnFiber(
+  finishedRoot: FiberRoot,
+  finishedWork: Fiber,
+  committedLanes: Lanes,
+  committedTransitions: Array<Transition> | null,
+): void {
+  // When updating this function, also update reconnectPassiveEffects, which does
+  // most of the same things when an offscreen tree goes from hidden -> visible,
+  // or when toggling effects inside a hidden tree.
+  const flags = finishedWork.flags;
+  switch (finishedWork.tag) {
+    case FunctionComponent:
+    case ForwardRef:
+    case SimpleMemoComponent: {
+      // children의 effects가 먼저 실행되는 것을 볼 수 있다.
+      recursivelyTraversePassiveMountEffects(
+        finishedRoot,
+        finishedWork,
+        committedLanes,
+        committedTransitions,
+      );
+      if (flags & Passive) {
+        commitHookPassiveMountEffects(
+          finishedWork,
+          // 해당 flag는 deps가 변경되지 않으면 callback이 실행되지 않도록 한다.
+          HookPassive | HookHasEffect,
+        );
+      }
+      break;
+    }
+    ...
+  }
+}
+function commitHookPassiveMountEffects(
+  finishedWork: Fiber,
+  hookFlags: HookFlags,
+) {
+  if (shouldProfile(finishedWork)) {
+    startPassiveEffectTimer();
+    try {
+      commitHookEffectListMount(hookFlags, finishedWork);
+    } catch (error) {
+      captureCommitPhaseError(finishedWork, finishedWork.return, error);
+    }
+    recordPassiveEffectDuration(finishedWork);
+  } else {
+    try {
+      commitHookEffectListMount(hookFlags, finishedWork);
+    } catch (error) {
+      captureCommitPhaseError(finishedWork, finishedWork.return, error);
+    }
+  }
+}
+function commitHookEffectListMount(flags: HookFlags, finishedWork: Fiber) {
+  const updateQueue: FunctionComponentUpdateQueue | null =
+    (finishedWork.updateQueue: any);
+  const lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
+  if (lastEffect !== null) {
+    const firstEffect = lastEffect.next;
+    let effect = firstEffect;
+    do {
+      if ((effect.tag & flags) === flags) {
+        // Mount
+        const create = effect.create;
+        const inst = effect.inst;
+        // callback은 해당 구문에서 호출된다.
+        const destroy = create();
+
+        inst.destroy = destroy;
+      }
+      effect = effect.next;
+      // 다시 필요한 effect를 실행하고 필터링하고 실행한다.
+    } while (effect !== firstEffect);
+  }
+}
+
+```
