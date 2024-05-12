@@ -35,8 +35,8 @@ function mountEffectImpl(fiberFlags, hookFlags, create, deps): void {
 
   const nextDeps = deps === undefined ? null : deps
   currentlyRenderingFiber.flags |= fiberFlags
-  // pushEffect()는 Effect 객체를 생성한 후 이를 hook.
-  // memoizedState에 할당한다. 다음 코드블럭에서 pushEffect()를 더 자세히 살펴보자.
+  // pushEffect()는 Effect 객체를 생성한 후 이를 hook.memoizedState에
+  // 할당한다. 다음 코드블럭에서 pushEffect()를 더 자세히 살펴보자.
   hook.memoizedState = pushEffect(
     // HookHasEffect flag는 initial mount시에 해당 effect를 실행해야 함을 의미하는 중요한 요소이다.
     HookHasEffect | hookFlags,
@@ -394,3 +394,22 @@ function commitHookEffectListMount(flags: HookFlags, finishedWork: Fiber) {
 }
 
 ```
+
+## 4. Summary
+
+코드를 살펴보니 `useEffect()`의 내부 로직은 비교적 단순하다. 글로 한번 정리해보자.
+
+1. `useEffect()`는 Fiber에 저장되는 Effect 객체를 생성한다.
+   - Effect에는 실행이 필요한지 여부를 나타내는 `tag`가 있다.
+   - Effect에는 우리가 전달하는 첫 번째 인자인 `create()` callback이 있다.
+   - Effect에는 `create()` cleanup인 `destroy()`가 있으며, `create()`가 실행될 때만 설정된다.
+2. `useEffect()`는 매번 새로운 Effect 객체를 생성하지만, deps array가 변경되면 다른 `tag`를 설정한다.
+3. host DOM에 대한 update를 commit할 때 다음 tick의 작업은 `tag`를 기반으로 모든 Effect를 다시 실행하도록 예약된다.
+   - 하위 component들의 Effect가 먼저 처리된다.
+   - cleanup이 먼저 실행된다.
+
+## 5. Quiz Challenge
+
+위에서 살펴본 내용을 기반으로 useEffect가 어떻게 동작하는지 console.log의 실행순서를 맞춰보자.
+
+[https://bigfrontend.dev/react-quiz/useeffect-iii](https://bigfrontend.dev/react-quiz/useeffect-iii)
