@@ -22,7 +22,7 @@ const metaConfig = {
   author: "Hajun Ryu",
   siteUrl: "https://gatsby-starter-apple.netlify.app",
   lang: "ko",
-  utterances: "sungik-choi/gatsby-starter-apple-comment",
+  utterances: "HaJunRyu/HaJunRyu.github.io",
   links: {
     github: "https://github.com/HaJunRyu",
   },
