@@ -7,8 +7,7 @@ thumbnail: "./images/rcdd/RCDD-thumbnail.png"
 alt: "React Core Deep Dive"
 ---
 
-> jser.dev 블로그의 [useEffect](https://jser.dev/2023-07-08-how-does-useeffect-work) 챕터를 보며 번역하고 이해한것을 정리하였습니다.  
-> 해당 글에서 사용된 이미지들도 모두 위 블로그에서 작성된것을 사용하였습니다.
+> jser.dev 블로그의 [useEffect](https://jser.dev/2023-07-08-how-does-useeffect-work) 챕터를 보며 번역하고 이해한것을 정리하였습니다.
 
 `useEffect()`는 `useState()`를 제외한다면 React에서 가장 많이 사용되는 hook일 수 있다. 매우 유용하게 사용할 수 있지만 가끔은 개발자의 의도와는 다른 동작으로 인해 혼란을 겪을때도 있다. 지금부터 `useEffect()`가 내부적으로 어떻게 작동하는지 알아보자.
 
