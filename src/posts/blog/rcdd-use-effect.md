@@ -13,7 +13,7 @@ alt: "React Core Deep Dive"
 
 ## 1. Initial mount에서의 `useEffect()`
 
-`useEffect()`는 initial mount시 `mountEffect()`를 사용한다.
+`useEffect()`는 initial mount시 `mountEffect()`를 호출한다. 아래 코드를 보며 `mountEffect()`가 어떻게 동작하는지 살펴보자.
 
 ```tsx
 function mountEffect(
@@ -28,6 +28,7 @@ function mountEffect(
     deps,
   )
 }
+
 function mountEffectImpl(fiberFlags, hookFlags, create, deps): void {
   // 해당 구문에서 새로운 hook을 생성한다.
   const hook = mountWorkInProgressHook()
@@ -37,7 +38,8 @@ function mountEffectImpl(fiberFlags, hookFlags, create, deps): void {
   // pushEffect()는 Effect 객체를 생성한 후 이를 hook.memoizedState에
   // 할당한다. 다음 코드블럭에서 pushEffect()를 더 자세히 살펴보자.
   hook.memoizedState = pushEffect(
-    // HookHasEffect flag는 initial mount시에 해당 effect를 실행해야 함을 의미하는 중요한 요소이다.
+    // HookHasEffect flag는 initial mount시에
+    // 해당 effect를 실행해야 함을 의미하는 중요한 요소이다.
     HookHasEffect | hookFlags,
     create,
     undefined,
@@ -409,6 +411,6 @@ function commitHookEffectListMount(flags: HookFlags, finishedWork: Fiber) {
 
 ## 5. Quiz Challenge
 
-위에서 살펴본 내용을 기반으로 useEffect가 어떻게 동작하는지 console.log의 실행순서를 맞춰보자.
+위에서 살펴본 내용을 기반으로 useEffect가 어떻게 동작하는지 console.log의 실행순서를 예측해보자.
 
 [https://bigfrontend.dev/react-quiz/useeffect-iii](https://bigfrontend.dev/react-quiz/useeffect-iii)
