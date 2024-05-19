@@ -35,8 +35,8 @@ function mountEffectImpl(fiberFlags, hookFlags, create, deps): void {
 
   const nextDeps = deps === undefined ? null : deps
   currentlyRenderingFiber.flags |= fiberFlags
-  // pushEffect()는 Effect 객체를 생성한 후 이를 hook.memoizedState에
-  // 할당한다. 다음 코드블럭에서 pushEffect()를 더 자세히 살펴보자.
+  // pushEffect()는 Effect 객체를 생성한 후 이를 hook.memoizedState에 할당한다.
+  // 다음 코드블럭에서 pushEffect()를 더 자세히 살펴보자.
   hook.memoizedState = pushEffect(
     // HookHasEffect flag는 initial mount시에
     // 해당 effect를 실행해야 함을 의미하는 중요한 요소이다.
@@ -63,7 +63,9 @@ function pushEffect(tag, create, destroy, deps) {
     // 하나의 component에 여러개의 effect가 있을 수 있다.
     next: (null: any),
   };
-  let componentUpdateQueue: null | FunctionComponentUpdateQueue = (currentlyRenderingFiber.updateQueue: any);
+  let componentUpdateQueue: null | FunctionComponentUpdateQueue =
+  (currentlyRenderingFiber.updateQueue: any);
+
   if (componentUpdateQueue === null) {
     componentUpdateQueue = createFunctionComponentUpdateQueue();
     // effect는 fiber의 updateQueue에 저장된다. 이는 hook의 memoizedState와 다르다.
