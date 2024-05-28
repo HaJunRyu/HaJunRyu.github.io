@@ -238,7 +238,230 @@ if (startTime > currentTime) {
 
 여기선 else 지점에만 집중하자. 우리는 두 가지 중요한 호출을 볼 수 있다.
 
-1. `push(taskQueue, newTask)` - 작업을 대기열에 추가한다. 이것은 단지 우선순위 대기열 API이므로 건너뛰겠다.
-2. `requestHostCallback(flushWork)` - 이곳에서 요청
+1. `push(taskQueue, newTask)` - task를 queue에 추가한다.
+2. `requestHostCallback(flushWork)` - task들을 처리한다.
 
-`requestHostCallback(flushWork)`은 필요하다. Scheduler는 호스트에 구애받지 않기 때문에 모든 호스트에서 실행될 수 있는 독립적인 블랙 박스여야 하므로 요청해야 한다.
+Scheduler는 호스트(브라우저, Node)환경에 구애받지 않고 동작해야 하기 때문에 모든 호스트에서 실행될 수 있는 독립적인 blackbox여야 한다. 그렇기 때문에 `requestHostCallback(flushWork)`를 호출하여 host에게 요청해야한다.
+
+### 4.2 `requestHostCallback()`
+
+```tsx
+function requestHostCallback(callback) {
+  scheduledHostCallback = callback
+  if (!isMessageLoopRunning) {
+    isMessageLoopRunning = true
+    schedulePerformWorkUntilDeadline()
+  }
+}
+const performWorkUntilDeadline = () => {
+  if (scheduledHostCallback !== null) {
+    const currentTime = getCurrentTime()
+    // Keep track of the start time so we can measure how long the main thread
+    // has been blocked.
+    startTime = currentTime
+    const hasTimeRemaining = true
+    // If a scheduler task throws, exit the current browser task so the
+    // error can be observed.
+    //
+    // Intentionally not using a try-catch, since that makes some debugging
+    // techniques harder. Instead, if `scheduledHostCallback` errors, then
+    // `hasMoreWork` will remain true, and we'll continue the work loop.
+    let hasMoreWork = true
+    try {
+      hasMoreWork = scheduledHostCallback(hasTimeRemaining, currentTime)
+    } finally {
+      if (hasMoreWork) {
+        // If there's more work, schedule the next message event at the end
+        // of the preceding one.
+        // 스케줄러가 예약을 통해 대기열에서 작업을 계속 처리하는 것을 볼 수 있다.
+        // 여기서는 브라우저에 paint 할 수 있는 기회를 제공한다.
+        schedulePerformWorkUntilDeadline()
+      } else {
+        isMessageLoopRunning = false
+        scheduledHostCallback = null
+      }
+    }
+  } else {
+    isMessageLoopRunning = false
+  }
+  // Yielding to the browser will give it a chance to paint, so we can
+  // reset this.
+  needsPaint = false
+}
+```
+
+2.2에서 언급한 바와 같이, `SchedulePerformWorkUntilDeadline()`은 단지 `PerformWorkUntilDeadline()`의 wrapper일 뿐이다.
+
+`scheduledHostCallback`은 `requestHostCallback()`에서 설정되고 `PerformWorkUntilDeadline()`에서 즉시 호출된다. 이는 비동기 특성으로 인해 메인 스레드에 렌더링할 기회를 제공하기 위한 것이다.
+
+몇 가지 세부 코드를 제외하고 가장 중요한 코드만 살펴보자.
+
+```tsx
+hasMoreWork = scheduledHostCallback(hasTimeRemaining, currentTime)
+```
+
+이는 `flushWork()`가 `(true, currentTime)`을 사용하여 호출된다는 의미이다.
+
+### 4.3 flushWork()
+
+```tsx
+try {
+  // No catch in prod code path.
+  return workLoop(hasTimeRemaining, initialTime)
+} finally {
+  //
+}
+```
+
+flushWork는 `workLoop()`를 마무리한다.
+
+### 4.4 workLoop() - Scheduler의 핵심
+
+reconciliation의 `workLoopConcurrent()`와 마찬가지로 `workLoop()`는 Scheduler의 핵심이다. 비슷한 프로세스를 가지고 있기 때문에 함수명도 비슷하다.
+
+```tsx
+if (
+  currentTask.expirationTime > currentTime &&
+  //                    (               )
+  (!hasTimeRemaining || shouldYieldToHost())
+) {
+  // This currentTask hasn't expired, and we've reached the deadline.
+  break
+}
+```
+
+`workLoopConcurrent()`와 마찬가지로 여기서 `shouldYieldToHost()`도 확인한다.
+
+```tsx
+const callback = currentTask.callback
+if (typeof callback === "function") {
+  currentTask.callback = null
+  currentPriorityLevel = currentTask.priorityLevel
+  const didUserCallbackTimeout = currentTask.expirationTime <= currentTime
+  const continuationCallback = callback(didUserCallbackTimeout)
+  currentTime = getCurrentTime()
+  // 여기서 task들의 반환 값이 중요한 이유를 알 수 있다.
+  // 해당 분기에서는 task가 pop되지 않는다.
+  if (typeof continuationCallback === "function") {
+    currentTask.callback = continuationCallback
+  } else {
+    if (currentTask === peek(taskQueue)) {
+      pop(taskQueue)
+    }
+  }
+  advanceTimers(currentTime)
+} else {
+  pop(taskQueue)
+}
+```
+
+자세히 분석해보자.
+
+`currentTask.callback`은 이 경우 실제로 `PerformConcurrentWorkOnRoot()`이다.
+
+```tsx
+const didUserCallbackTimeout = currentTask.expirationTime <= currentTime
+const continuationCallback = callback(didUserCallbackTimeout)
+```
+
+만료되었는지 여부를 나타내는 flag와 함께 호출된다.
+
+`PerformConcurrentWorkOnRoot()`는 시간이 초과되면 sync mode로 돌아간다([code](https://github.com/facebook/react/blob/555ece0cd14779abd5a1fc50f71625f9ada42bef/packages/react-reconciler/src/ReactFiberWorkLoop.js#L1053-1059)). 이는 이제부터 어떠한 방해도 있어서는 안 된다는 것을 의미한다.
+
+```tsx
+const shouldTimeSlice =
+  !includesBlockingLane(root, lanes) &&
+  !includesExpiredLane(root, lanes) &&
+  (disableSchedulerTimeoutInWorkLoop || !didTimeout)
+let exitStatus = shouldTimeSlice
+  ? renderRootConcurrent(root, lanes)
+  : renderRootSync(root, lanes)
+```
+
+이제 다시 `workLoop()`로 돌아가보자.
+
+```tsx
+if (typeof continuationCallback === "function") {
+  currentTask.callback = continuationCallback
+} else {
+  if (currentTask === peek(taskQueue)) {
+    pop(taskQueue)
+  }
+}
+```
+
+여기서 중요한 점은 callback의 return 값이 함수가 아닌 경우에만 task가 pop되는 것을 볼 수 있다는 것이다. 함수인 경우 task의 callback만 업데이트한다. pop되지 않으므로 다음 `workLoop()` tick에서는 동일한 task가 다시 발생한다.
+
+이는 이 callback의 return 값이 함수인 경우 이 task가 완료되지 않았으므로 다시 작업해야 함을 의미한다.
+
+### 4.5 `shouldYield()` 는 어떻게 작동할까
+
+[전체 소스코드](https://github.com/facebook/react/blob/555ece0cd14779abd5a1fc50f71625f9ada42bef/packages/scheduler/src/forks/Scheduler.js#L487)
+
+```tsx
+function shouldYieldToHost() {
+  const timeElapsed = getCurrentTime() - startTime
+  if (timeElapsed < frameInterval) {
+    // The main thread has only been blocked for a really short amount of time;
+    // smaller than a single frame. Don't yield yet.
+    return false
+  }
+  // The main thread has been blocked for a non-negligible amount of time. We
+  // may want to yield control of the main thread, so the browser can perform
+  // high priority tasks. The main ones are painting and user input. If there's
+  // a pending paint or a pending input, then we should yield. But if there's
+  // neither, then we can yield less often while remaining responsive. We'll
+  // eventually yield regardless, since there could be a pending paint that
+  // wasn't accompanied by a call to `requestPaint`, or other main thread tasks
+  // like network events.
+  if (enableIsInputPending) {
+    if (needsPaint) {
+      // There's a pending paint (signaled by `requestPaint`). Yield now.
+      return true
+    }
+    if (timeElapsed < continuousInputInterval) {
+      // We haven't blocked the thread for that long. Only yield if there's a
+      // pending discrete input (e.g. click). It's OK if there's pending
+      // continuous input (e.g. mouseover).
+      if (isInputPending !== null) {
+        return isInputPending()
+      }
+    } else if (timeElapsed < maxInterval) {
+      // Yield if there's either a pending discrete or continuous input.
+      if (isInputPending !== null) {
+        return isInputPending(continuousOptions)
+      }
+    } else {
+      // We've blocked the thread for a long time. Even if there's no pending
+      // input, there may be some other scheduled work that we don't know about,
+      // like a network event. Yield now.
+      return true
+    }
+  }
+  // `isInputPending` isn't available. Yield now.
+  return true
+}
+```
+
+실제로는 복잡하지 않다. 주석이 모든 것을 설명합니다. 매우 기본적인 라인은 다음과 같다.
+
+```tsx
+const timeElapsed = getCurrentTime() - startTime
+if (timeElapsed < frameInterval) {
+  // The main thread has only been blocked for a really short amount of time;
+  // smaller than a single frame. Don't yield yet.
+  return false
+}
+return true
+```
+
+따라서 각 task는 5ms(`frameInterval`)씩 주어지며, 시간이 다 되면 양보해야 한다.
+
+이는 각 `PerformUnitOfWork()`에 대한 것이 아니라 Scheduler에서 `task`를 실행하기 위한 것이다. `startTime은` `PerformWorkUntilDeadline()`에서만 설정된다는 것을 알 수 있다. 이는 각 `flushWork()`에 대해 재설정된다는 의미이며, 여러 task들이 `flushWork()`에서 처리될 수 있는 경우 그 사이에는 산출물이 없다는 의미이다.
+
+## Summary
+
+지금까지의 내용을 정리한 도표이다.
+![](./images/rcdd/scheduler/scheduler-2.png)
+
+아직 부족한 부분이 많지만 Scheduler를 이해했다면 큰 진전을 이루었다. React 내부를 더 잘 이해하는데 도움이 되는 정도로 생각하면 될 것이고 지금 위의 도표를 모두 이해하기에는 큰 Diagram이므로 다른 에피소드들을 살표보며 더 자세히 알아보자.
