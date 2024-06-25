@@ -1,5 +1,5 @@
 ---
-title: "useEffect의 내부동작"
+title: "useState의 내부동작"
 category: "RCDD"
 date: "2024-06-06 13:45:00 +09:00"
 desc: "useState의 내부동작"
